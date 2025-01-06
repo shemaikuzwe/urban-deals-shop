@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack ",
     "build": "next build",
     "lint": "next lint",
     "postinstall": "prisma generate",
@@ -44,7 +44,6 @@
     "node-appwrite": "^14.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-redux": "^9.2.0",
     "recharts": "^2.15.0",
     "server-only": "^0.0.1",
     "stripe": "^17.5.0",

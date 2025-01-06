@@ -41,12 +41,17 @@ export default function Cart() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" className="w-20">
+        <Button 
+          variant="outline" 
+          className="w-20" 
+          role="button"
+          aria-label="Shopping cart"
+        >
           <ShoppingCart className="mr-2 h-4 w-4" />
-          {cart.length ? <Badge>{cart.length}</Badge> : null}
+          {cart.length ? <Badge aria-label={`${cart.length} items in cart`}>{cart.length}</Badge> : null}
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent role="complementary" aria-label="Shopping cart items">
         <SheetHeader>
           <SheetTitle>Your Cart</SheetTitle>
           <SheetDescription>Review your items before checkout</SheetDescription>
@@ -57,6 +62,8 @@ export default function Cart() {
               <Delete
                 className="text-destructive cursor-pointer"
                 onClick={handleRemoveAll}
+                role="button"
+                aria-label="Remove all items"
               />
             )}
           </div>

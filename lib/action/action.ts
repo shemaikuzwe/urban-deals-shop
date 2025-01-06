@@ -1,14 +1,12 @@
 "use server";
 import {
   ChangePasswordState,
-  LoginError,
   ProductState,
   updateProfileState,
 } from "@/lib/types/types";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { auth, signIn } from "@/app/auth";
-import { CredentialsSignin } from "next-auth";
 import { OrderState } from "../types/types";
 import {
   changePasswordShema,
@@ -23,7 +21,10 @@ import { createFileUrl, getFileId } from "../utils";
 import { ID } from "node-appwrite";
 import { z } from "zod";
 import { getProduct } from "@/lib/action/server";
-import { unstable_cacheTag as cacheTag } from "next/cache";
+import {
+  unstable_cacheTag as cacheTag,
+  unstable_cacheLife as cacheLife,
+} from "next/cache";
 import Stripe from "stripe";
 
 const AddProduct = productSchema.omit({ id: true });
@@ -339,4 +340,15 @@ export async function updateFeatured(
     redirect("/admin/products");
     return { status: isFeatured };
   }
+}
+
+export async function getGithubStars(repo: string) {
+  "use cache";
+  cacheLife("days");
+  const stars = await fetch(`https://api.github.com/repos/${repo}`)
+    .then((response) => response.json())
+    .then((data) => data.stargazers_count)
+    .catch((error) => console.error("Error fetching GitHub stars:", error));
+    
+  return stars as number;
 }

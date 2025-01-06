@@ -40,12 +40,12 @@ export default function ImageSlider({
               >
                 <Card className="p-0 h-full w-full rounded-none border-0">
                   <CardContent className="p-1 w-full h-full">
-                    <div className="relative aspect-square overflow-hidden h-full w-full ">
+                    <div className="relative h-full w-full">
                       <Image
                         src={product.image}
                         alt={product.name}
                         fill
-                        className="transition-transform group-hover:scale-105 rounded-sm"
+                        className="transition-transform group-hover:scale-105 rounded-sm object-cover object-center"
                       />
                       <div className="absolute left-4 top-2">
                         <Badge
