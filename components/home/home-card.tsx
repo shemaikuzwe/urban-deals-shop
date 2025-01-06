@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { getFeaturedProducts, getLatestProducts } from "@/lib/action/action";
 import { ProductCard } from "../products/product-card";
+import { ArrowRight } from "lucide-react";
 
 interface Props {
   name: "Featured" | "Latest";
@@ -34,7 +35,7 @@ export default async function HomeCard({ name, viewAll = true }: Props) {
       {viewAll && (
         <center>
           <Button variant={"default"} asChild>
-            <Link href={"/products"}>View All</Link>
+            <Link href={"/products"}>View All <ArrowRight/> </Link>
           </Button>
         </center>
       )}

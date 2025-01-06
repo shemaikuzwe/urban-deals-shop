@@ -44,7 +44,8 @@ export default function ImageSlider({
                       <Image
                         src={product.image}
                         alt={product.name}
-                        priority={true}
+                        priority={index === 0}
+                        sizes={"100vw"}
                         fill
                         className="transition-transform group-hover:scale-105 rounded-sm object-cover object-center"
                       />
