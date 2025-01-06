@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import Link from "next/link";
 import { LogIn, Menu } from "lucide-react";
@@ -13,11 +12,12 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Home } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
 import Cart from "../cart/cart-sheet";
-import { useSession } from "next-auth/react";
 import User from "../user/user";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import SearchForm from "./search";
 import ThemeToggle from "../providers/theme-toggle";
+import { auth } from "@/app/auth";
+import UserSkelton from "../skeltons/user-skelton";
 
 const Links = [
   { name: "Home", href: "/", icon: <Home className="h-5 w-5" /> },
@@ -29,9 +29,6 @@ const Links = [
 ];
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const { status } = useSession();
   return (
     <nav className="bg-card border-b h-20 py-2">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -61,20 +58,13 @@ export function Navbar() {
               </NavigationMenuList>
             </NavigationMenu>
             <Cart />
-            <ThemeToggle/>
-            {status === "authenticated" ? (
+            <ThemeToggle />
+            <Suspense fallback={<UserSkelton />}>
               <User />
-            ) : (
-              <Button asChild variant="ghost">
-                <div>
-                  <LogIn />
-                  <Link href="/login">Login</Link>
-                </div>
-              </Button>
-            )}
+            </Suspense>
           </div>
           <div className="md:hidden flex items-center">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" className="ml-2">
                   <Menu className="h-6 w-6" />
@@ -88,26 +78,16 @@ export function Navbar() {
                       key={link.name}
                       href={link.href}
                       className="px-3 flex gap-1 py-2 rounded-md text-sm font-medium"
-                      onClick={() => setIsOpen(false)}
                     >
                       {link.icon}
                       {link.name}
                     </Link>
                   ))}
                   <Cart />
-                  <ThemeToggle/>
-                  {status === "authenticated" ? (
-                    <>
-                      <User />
-                    </>
-                  ) : (
-                    <Button asChild variant="ghost">
-                      <div>
-                        <LogIn />
-                        <Link href="/login">Login</Link>
-                      </div>
-                    </Button>
-                  )}
+                  <ThemeToggle />
+                  <Suspense fallback={<UserSkelton />}>
+                    <User />
+                  </Suspense>
                 </div>
               </SheetContent>
             </Sheet>

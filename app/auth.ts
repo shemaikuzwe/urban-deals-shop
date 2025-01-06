@@ -68,4 +68,4 @@ const {
   },
 });
 const auth = cache(isAuth);
-export { handlers, signIn, signOut, auth };
+export { handlers, signIn,signOut,auth };

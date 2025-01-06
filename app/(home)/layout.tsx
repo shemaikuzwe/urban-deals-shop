@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/home/footer";
 

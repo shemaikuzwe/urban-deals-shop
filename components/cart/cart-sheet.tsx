@@ -1,3 +1,4 @@
+"use client"
 import React, { useActionState, useEffect, useState } from "react";
 import {
   Sheet,
@@ -19,8 +20,6 @@ export default function Cart() {
   const session = useSession();
   const status = session.status;
   const { cart, removeAll } = useCart();
-
-  const userId = session?.data?.user?.id as string;
   const [totalPrice, setTotalPrice] = useState(0);
   const [state, action, isPending] = useActionState(addOrder, undefined);
   useEffect(() => {
