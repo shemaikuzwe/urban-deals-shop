@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import Products from "./products";
 import Categories from "@/components/products/categories";
 import { Suspense } from "react";
+import ProductGridSkelton from "@/components/skeltons/product-grid";
+
 export const metadata: Metadata = {
   title: "Products",
   description: "Products Page",
@@ -27,7 +29,9 @@ export default async function Page(props: {
         <Categories />
 
         <div className={"flex flex-wrap gap-2 mt-10"}>
-          <Products category={category} page={page} />
+           <Suspense fallback={<ProductGridSkelton/>}>
+           <Products category={category} page={page} />
+           </Suspense>
         </div>
       </div>
     </div>

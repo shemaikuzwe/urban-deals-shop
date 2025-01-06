@@ -4,7 +4,7 @@ import {  useState } from "react";
 
 export default function ThemeToggle() {
   const { setTheme, theme } = useTheme();
-  const [checked, setChecked] = useState(theme === "dark");
+  const [checked, setChecked] = useState(false);
   function toggleMode() {
     setTheme(theme === "dark" ? "light" : "dark");
     setChecked(!checked);
@@ -12,7 +12,7 @@ export default function ThemeToggle() {
   }
   return (
     <div className="flex gap-2">
-      <Switch onClick={toggleMode} checked={checked} className=" bg-foreground"/>
+      <Switch onClick={toggleMode} checked={checked} className=" bg-foreground" role="switch"/>
     </div>
   );
 }
