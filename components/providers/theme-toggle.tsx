@@ -12,7 +12,7 @@ export default function ThemeToggle() {
   }
   return (
     <div className="flex gap-2">
-      <Switch onClick={toggleMode} checked={checked} className=" bg-foreground" role="switch"/>
+      <Switch onClick={toggleMode} checked={checked} className=" bg-foreground" role="button" aria-label="switch"/>
     </div>
   );
 }
