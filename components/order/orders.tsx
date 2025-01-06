@@ -8,7 +8,7 @@ import { Check, CheckCircle, Package } from "lucide-react";
 import { OrderUser } from "@/lib/action/server";
 import { useSearchParams } from "next/navigation";
 import { useCart } from "@/lib/store";
-import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { Alert, AlertDescription } from "../ui/alert";
 import { motion } from "framer-motion";
 
 export default function Orders({ order }: { order: OrderUser }) {

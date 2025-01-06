@@ -33,6 +33,7 @@
     "babel-plugin-react-compiler": "19.0.0-beta-55955c9-20241229",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "embla-carousel-autoplay": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
     "framer-motion": "^11.15.0",

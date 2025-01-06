@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Clock, CheckCircle } from "lucide-react";
+import { ChevronDown, ChevronUp} from "lucide-react";
 import { format } from "date-fns";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -12,7 +11,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-
 import { Order } from "@/lib/types/types";
 
 interface OrderCardProps {
@@ -24,7 +22,7 @@ export default function OrderCard({ order }: OrderCardProps) {
   const { products, total_price, date } = order;
 
   return (
-    <Card className="">
+    <Card >
       <CardHeader className="flex-row items-center justify-between space-y-0 ">
         <time className="text-sm text-muted-foreground">
           {format(date, "EEEE, MMMM d, yyyy")}
