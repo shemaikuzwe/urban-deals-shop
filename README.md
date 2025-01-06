@@ -1,22 +1,57 @@
-### Ecommerce Application
+## Urban Deals Shop
 
-Clone git Repository
+**Urban deals Shop** is an open-source Ecommerce production-ready  platform built with modern web technologies.
 
+* React
+* Next js 15
+* Auth js
+* Zustand
+* Prisma ORM
+* Tailwind css and Schadcn ui
+
+### Features
+
+- [x] Adding To cart
+- [x] Ordering Product
+- [x] Payment With Stripe
+- [x] Authentication With Github and Google
+- [x] Admin Dashboard   
+
+### Why not Fork 🍴 Urban Deals Shop 
+
+> Clone git Repository or Fork
+>
 ```bash
-git clone https://github.com/shemaikuzwe/Ecommerce.git
+#if you clone it 
+git clone https://github.com/shemaikuzwe/urban-deals-shop.git
+#if you fork it 
+git clone https://github.com/YOUR-USERNAME/urban-deals-shop.git
 ```
 
-install dependicies
+> Install dependicies
 
 ```bash
 pnpm install
 ```
 
-Start the development server
+> Start the development server
 
 ```bash
-
 pnpm run dev
 ```
+> Go to
+[localhost:3000](http://localhost:3000)
 
-goto [localhost:3000](http://localhost:3000)
+> Do some changes
+> Then Run
+  ```bash
+   git checkout -b main
+   git add .
+   git commit -m "initial commit "
+   git push -u origin main
+  ```
+> Create a Pull Request
+
+### Current Accessibity and Performance Metrics
+
+![image](https://github.com/user-attachments/assets/66d447b2-4ab9-4690-8625-63832e60e51d)
