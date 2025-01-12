@@ -22,8 +22,8 @@ export default async function HomeCard({ name, viewAll = true }: Props) {
       </center>
       <div className={"flex flex-wrap gap-2 mt-10"}>
         {products && products.length > 0 ? (
-          products.map((product) => (
-            <ProductCard product={product} key={product.id} />
+          products.map((product,index) => (
+            <ProductCard product={product} key={product.id}  />
           ))
         ) : (
           <center className=" text-xl text-center mt-24">

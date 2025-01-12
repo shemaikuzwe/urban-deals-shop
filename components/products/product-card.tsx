@@ -73,6 +73,7 @@ export function ProductCard({ product }: Props) {
           <Image
             src={`${product.image}`}
             alt={product.name}
+             sizes="100vw"
             fill
             className="object-cover rounded-lg"
           />

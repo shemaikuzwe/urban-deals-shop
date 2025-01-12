@@ -14,7 +14,7 @@ export default function ProductsGrid({ products }: Props) {
             No products available
           </p>
         ) : (
-          products?.map((product) => (
+          products?.map((product,index)=> (
             <ProductCard key={product.id} product={product} />
           ))
         )}

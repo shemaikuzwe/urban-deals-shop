@@ -29,9 +29,9 @@ export default async function Page(props: {
         <Categories />
 
         <div className={"flex flex-wrap gap-2 mt-10"}>
-           <Suspense fallback={<ProductGridSkelton/>}>
-           <Products category={category} page={page} />
-           </Suspense>
+          <Suspense fallback={<ProductGridSkelton />}>
+            <Products category={category} page={page} />
+          </Suspense>
         </div>
       </div>
     </div>
