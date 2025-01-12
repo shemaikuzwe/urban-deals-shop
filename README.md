@@ -15,7 +15,11 @@
 - [x] Ordering Product
 - [x] Payment With Stripe
 - [x] Authentication With Github and Google
-- [x] Admin Dashboard   
+- [ ] Credentials Authentication
+- [x] Admin Dashboard
+- [ ] Many images per product
+- [ ] Product Ratings
+- [ ] Discounts   
 
 ### Why not Fork 🍴 Urban Deals Shop 
 
@@ -54,4 +58,5 @@ pnpm run dev
 
 ### Current Accessibity and Performance Metrics
 
-![image](https://github.com/user-attachments/assets/66d447b2-4ab9-4690-8625-63832e60e51d)
+![image](https://github.com/user-attachments/assets/a46af7ab-931c-4654-be5b-1c604126b5fa)
+
