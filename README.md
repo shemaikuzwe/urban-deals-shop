@@ -38,23 +38,22 @@ git clone https://github.com/YOUR-USERNAME/urban-deals-shop.git
 pnpm install
 ```
 
-> Start the development server
+1  Start the development server
 
 ```bash
 pnpm run dev
 ```
 > Go to
 [localhost:3000](http://localhost:3000)
-
-> Do some changes
-> Then Run
+2 Do some changes
+3 Then Run
   ```bash
    git checkout -b main
    git add .
    git commit -m "initial commit "
    git push -u origin main
   ```
-> Create a Pull Request
+4 Create a Pull Request
 
 ### Current Accessibity and Performance Metrics
 
