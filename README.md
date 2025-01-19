@@ -23,8 +23,8 @@
 
 ### Why not Fork 🍴 Urban Deals Shop 
 
-> Clone git Repository or Fork
->
+1.  Clone git Repository or Fork
+2.
 ```bash
 #if you clone it 
 git clone https://github.com/shemaikuzwe/urban-deals-shop.git
@@ -32,28 +32,28 @@ git clone https://github.com/shemaikuzwe/urban-deals-shop.git
 git clone https://github.com/YOUR-USERNAME/urban-deals-shop.git
 ```
 
-> Install dependicies
+3. Install dependicies
 
 ```bash
 pnpm install
 ```
 
-1  Start the development server
+4. Start the development server
 
 ```bash
 pnpm run dev
 ```
-> Go to
+5. Go to
 [localhost:3000](http://localhost:3000)
-2 Do some changes
-3 Then Run
+6. Do some changes
+7. Then Run
   ```bash
    git checkout -b main
    git add .
    git commit -m "initial commit "
    git push -u origin main
   ```
-4 Create a Pull Request
+8. Create a Pull Request
 
 ### Current Accessibity and Performance Metrics
 
