@@ -31,7 +31,7 @@
     "@radix-ui/react-tabs": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.6",
     "@vercel/speed-insights": "^1.1.0",
-    "babel-plugin-react-compiler": "19.0.0-beta-63e3235-20250105",
+    "babel-plugin-react-compiler": "19.0.0-beta-decd7b8-20250118",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
