@@ -10,6 +10,8 @@ export async function getProducts() {
 }
 
 export async function getProduct(id: string) {
+  "use cache"
+  cacheTag("products");
   return db.product.findFirst({
     where: {
       id: id,

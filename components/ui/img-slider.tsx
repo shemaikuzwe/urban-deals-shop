@@ -13,6 +13,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Suspense, use, useState } from "react";
 import { Product } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
+import { useRouter } from "next/navigation";
 
 export default function ImageSlider({
   productsPromise,
@@ -21,6 +22,11 @@ export default function ImageSlider({
 }) {
   const [_, setApi] = useState<CarouselApi>();
   const products = use(productsPromise);
+  const router = useRouter();
+
+  const handleClick = (id: string) => {
+    router.push(`/products/${id}`);
+  };
   return (
     <Suspense fallback={null}>
       <div className="relative sm:w-[72vh] w-full mx-auto rounded-md p-0">
@@ -35,8 +41,9 @@ export default function ImageSlider({
           <CarouselContent className="p-0 h-64 sm:h-80 md:h-96 lg:h-[30rem]  border-0 ">
             {products.map((product, index) => (
               <CarouselItem
+                onClick={() => handleClick(product.id)}
                 key={index}
-                className="p-0 h-full w-full  group relative  hover:shadow-lg transition-all  border-0"
+                className="p-0 h-full w-full  group relative  hover:shadow-lg transition-all  border-0 cursor-pointer"
               >
                 <Card className="p-0 h-full w-full rounded-none border-0">
                   <CardContent className="p-1 w-full h-full">
