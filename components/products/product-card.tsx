@@ -10,6 +10,7 @@ interface Props {
 
 export function ProductCard({ product }: Props) {
   const router = useRouter();
+
   const handleClick = () => {
     router.push(`/products/${product.id}`);
   };

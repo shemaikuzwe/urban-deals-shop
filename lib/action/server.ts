@@ -2,6 +2,7 @@ import "server-only";
 import { db } from "@/lib/db";
 import { ChartData, TOrder } from "@/lib/types/types";
 import { unstable_cacheTag as cacheTag, revalidateTag } from "next/cache";
+import { Category } from "@prisma/client";
 
 export async function getProducts() {
   "use cache";
@@ -10,7 +11,7 @@ export async function getProducts() {
 }
 
 export async function getProduct(id: string) {
-  "use cache"
+  "use cache";
   cacheTag("products");
   return db.product.findFirst({
     where: {
@@ -138,4 +139,17 @@ export async function addOrder(order: TOrder) {
     },
   });
   revalidateTag("orders");
+}
+
+export async function getRelatedProducts(type: Category,id:string) {
+  "use cache";
+  cacheTag("products");
+  return await db.product.findMany({
+    where: {
+      type: type,
+      id: {
+        not: id,
+      },
+    },
+  });
 }
