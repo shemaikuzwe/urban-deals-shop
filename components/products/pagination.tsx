@@ -30,7 +30,7 @@ export default function Pagination({ pages }: { pages: number[] }) {
  
     <div
      className={
-        "inline-flex -space-x-px rounded-md shadow-sm gap-2 text-white mx-auto"
+        "inline-flex -space-x-px rounded-md shadow-sm gap-2 text-white mx-auto mt-5"
       }
     >
       <Button

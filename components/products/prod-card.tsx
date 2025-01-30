@@ -54,7 +54,7 @@ export function ProdCard({ product }: Props) {
 
   return (
     <Card className="p-4">
-      <CardContent className="flex justify-between  gap-4">
+      <CardContent className="flex max-md:flex-col justify-between  gap-4">
         <div className="w-96 h-96 relative">
           <Image
             src={`${product.image}`}
