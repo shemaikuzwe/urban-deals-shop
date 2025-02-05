@@ -1,4 +1,3 @@
-"use client"
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import {
@@ -9,12 +8,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuItem,
 } from "../ui/dropdown-menu";
-import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-export default function User() {
-  const session = useSession();
-  const user = session?.data?.user;
+import { auth, signOut } from "@/app/auth";
+export default async function User() {
+  const session = await auth();
+  const user = session?.user;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,7 +24,7 @@ export default function User() {
               {user?.name!.slice(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
-          <div className={"flex flex-col"}>
+          <div className={"flex flex-col group-data-[collapsible=icon]:hidden"}>
             <span className={"text-base"}>{user?.name}</span>
             <span className={"text-muted-foreground text-sm"}>
               {user?.email}
@@ -44,7 +43,11 @@ export default function User() {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className={"w-full"}>
-          <Button size={"sm"} className={"w-full"} onClick={() => signOut()}>
+          <Button
+            size={"sm"}
+            className={"w-full"}
+            onClick={async () => signOut()}
+          >
             Sign out
           </Button>
         </DropdownMenuItem>
