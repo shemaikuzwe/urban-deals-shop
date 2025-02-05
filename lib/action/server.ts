@@ -92,6 +92,7 @@ export async function getPendingOrders() {
     include: {
       user: true,
     },
+    take: 5,
   });
 }
 
@@ -141,7 +142,7 @@ export async function addOrder(order: TOrder) {
   revalidateTag("orders");
 }
 
-export async function getRelatedProducts(type: Category,id:string) {
+export async function getRelatedProducts(type: Category, id: string) {
   "use cache";
   cacheTag("products");
   return await db.product.findMany({
