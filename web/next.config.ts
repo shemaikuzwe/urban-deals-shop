@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
         hostname: "lh3.googleusercontent.com",
         protocol: "https",
       },
-      { hostname: "cloud.appwrite.io", protocol: "https" },
+      { hostname: "fra.cloud.appwrite.io", protocol: "https" },
     ],
   },
 };

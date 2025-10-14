@@ -26,11 +26,11 @@ export const links = [
     icon: ShoppingCart,
     href: "/admin/products",
   },
-  {
-    name: "Orders",
-    icon: Package,
-    href: "/admin/orders",
-  },
+  // {
+  //   name: "Orders",
+  //   icon: Package,
+  //   href: "/admin/orders",
+  // },
   // {
   //   name: "Users",
   //   icon: Users,

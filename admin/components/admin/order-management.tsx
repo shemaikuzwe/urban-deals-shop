@@ -13,9 +13,9 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Clock, XCircle } from "lucide-react";
 import { Item, Order } from "@/lib/types/types";
-import { Status, User } from "@/generated/prisma/client";
 import OrderCard from "./order-card";
 import { OrderUser } from "@/lib/action/server";
+import { Status } from "@/generated/prisma/enums";
 
 interface Props {
   ordersPromise: Promise<OrderUser>;

@@ -23,7 +23,7 @@ export function NoProducts() {
       </EmptyHeader>
       <EmptyContent>
         <Button size="sm" asChild>
-          <Link href="/products/new">Create Product</Link>
+          <Link href="/admin/products/new">Create Product</Link>
         </Button>
       </EmptyContent>
     </Empty>

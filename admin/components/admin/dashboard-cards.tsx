@@ -18,13 +18,13 @@ export default async function DashboardCards() {
       />*/}
       <DashboardCard
         label="All Orders"
-        content={noOfProducts.length}
+        content={0}
         icon="sales"
         color="bg-violet-500"
       />
       <DashboardCard
         label="Pending Orders"
-        content={noOfProducts.length}
+        content={0}
         icon="money"
         color="bg-primary"
       />

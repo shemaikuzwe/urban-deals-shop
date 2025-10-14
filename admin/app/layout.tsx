@@ -4,7 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "@/components/providers/session-provider";
-import { auth } from "@/lib/action/server";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400"] });
 
@@ -21,7 +20,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={poppins.className}>
@@ -32,7 +30,7 @@ export default async function RootLayout({
           enableSystem
         >
           <Toaster />
-          <SessionProvider session={session}>{children}</SessionProvider>
+          <SessionProvider>{children}</SessionProvider>
         </ThemeProvider>
       </body>
     </html>

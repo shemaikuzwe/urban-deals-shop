@@ -1,7 +1,7 @@
 import { auth } from "@/lib/action/server";
 import { NextResponse } from "next/server";
 
-export default async function session() {
+export async function GET() {
   try {
     const session = await auth();
     return NextResponse.json({ session });

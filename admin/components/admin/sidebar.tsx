@@ -25,11 +25,11 @@ export function DashSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupContent className="pl-4">
+          <SidebarGroupContent className="">
             <SidebarMenu>
               {links.map((item, index) => (
                 <SidebarMenuItem key={index}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild tooltip={item.name}>
                     <Link href={item.href}>
                       <item.icon width={30} />
                       <span>{item.name}</span>
