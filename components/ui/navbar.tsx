@@ -1,6 +1,5 @@
-import * as React from "react";
 import Link from "next/link";
-import { LogIn, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,14 +11,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Home } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
 import Cart from "../cart/cart-sheet";
-import User from "../user/user";
 import { Suspense } from "react";
 import SearchForm from "./search";
 import ThemeToggle from "../providers/theme-toggle";
-import { auth } from "@/app/auth";
-import UserSkelton from "../skeltons/user-skelton";
 
-const Links = [
+const links = [
   { name: "Home", href: "/", icon: <Home className="h-5 w-5" /> },
   {
     name: "Products",
@@ -44,7 +40,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center space-x-4">
             <NavigationMenu>
               <NavigationMenuList>
-                {Links.map((link) => (
+                {links.map((link) => (
                   <NavigationMenuItem key={link.name}>
                     <Link
                       href={link.href}
@@ -59,9 +55,9 @@ export function Navbar() {
             </NavigationMenu>
             <Cart />
             <ThemeToggle />
-            <Suspense fallback={<UserSkelton />}>
+            {/*<Suspense fallback={<UserSkelton />}>
               <User />
-            </Suspense>
+            </Suspense>*/}
           </div>
           <div className="md:hidden flex items-center">
             <Sheet>
@@ -73,7 +69,7 @@ export function Navbar() {
               </SheetTrigger>
               <SheetContent side="right">
                 <div className="flex flex-col justify-start items-start gap-2 mt-4">
-                  {Links.map((link) => (
+                  {links.map((link) => (
                     <Link
                       key={link.name}
                       href={link.href}
@@ -85,9 +81,9 @@ export function Navbar() {
                   ))}
                   <Cart />
                   <ThemeToggle />
-                  <Suspense fallback={<UserSkelton />}>
+                  {/*<Suspense fallback={<UserSkelton />}>
                     <User />
-                  </Suspense>
+                  </Suspense>*/}
                 </div>
               </SheetContent>
             </Sheet>

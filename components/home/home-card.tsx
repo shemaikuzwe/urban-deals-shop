@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getFeaturedProducts, getLatestProducts } from "@/lib/action/action";
 import { ProductCard } from "../products/product-card";
 import { ArrowRight } from "lucide-react";
+import { NoProducts } from "../ui/no-products";
 
 interface Props {
   name: "Featured" | "Latest";
@@ -22,20 +23,20 @@ export default async function HomeCard({ name, viewAll = true }: Props) {
       </center>
       <div className={"flex flex-wrap gap-2 mt-10"}>
         {products && products.length > 0 ? (
-          products.map((product,index) => (
-            <ProductCard product={product} key={product.id}  />
+          products.map((product, index) => (
+            <ProductCard product={product} key={product.id} />
           ))
         ) : (
-          <center className=" text-xl text-center mt-24">
-            No products found
-          </center>
+          <NoProducts />
         )}
       </div>
 
-      {viewAll && (
+      {viewAll && products.length > 0 && (
         <center>
           <Button variant={"default"} asChild>
-            <Link href={"/products"}>View All <ArrowRight/> </Link>
+            <Link href={"/products"}>
+              View All <ArrowRight />{" "}
+            </Link>
           </Button>
         </center>
       )}

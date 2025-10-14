@@ -1,12 +1,13 @@
 import Pagination from "@/components/products/pagination";
 import ProductsGrids from "@/components/products/products-grid";
+import { NoProducts } from "@/components/ui/no-products";
 import { getProducts } from "@/lib/action/server";
 export default async function Products({
   page,
   category,
 }: {
   page: number | undefined;
-  category: string[] |string| undefined;
+  category: string[] | string | undefined;
 }) {
   let products = await getProducts();
   if (category && category.length) {
@@ -34,7 +35,7 @@ export default async function Products({
           <ProductsGrids products={prod} />
         ) : (
           <center className=" text-xl text-center mt-24">
-            No products found
+            <NoProducts />
           </center>
         )}
       </div>
