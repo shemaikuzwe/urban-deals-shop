@@ -11,7 +11,7 @@ export async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-6">
             <h3 className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
-              Urban Deals Shop
+              Umucyo Tailoring
             </h3>
             <ul className="space-y-4">
               <li>
@@ -144,7 +144,7 @@ export async function Footer() {
         </div>
         <div className="mt-8 border-t  pt-3">
           <p className="text-base  text-gray-600 text-center">
-            &copy; {date} Urban Deals Shop.
+            &copy; {date} Umucyo Tailoring.
           </p>
         </div>
       </div>
@@ -153,6 +153,6 @@ export async function Footer() {
 }
 async function getCurentYear() {
   "use cache";
-  cacheLife("max")
+  cacheLife("max");
   return new Date().getFullYear();
 }

@@ -10,9 +10,9 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400"] });
 export const metadata: Metadata = {
   title: {
     template: "%s",
-    default: "Urban Deals Shop",
+    default: "Umucyo Tailoring",
   },
-  description: "Urban Deals shop in kigali",
+  description: "Umucyo Tailoring Ltd ",
 };
 
 export default function RootLayout({

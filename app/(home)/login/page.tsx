@@ -12,7 +12,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Login",
-  description: "Urban deals shop ",
+  description: "Umucyo Tailoring ",
 };
 export default function LoginForm() {
   return (
