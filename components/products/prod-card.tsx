@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Product, Size } from "@prisma/client";
+import { Product, Size } from "@/generated/prisma/client";
 import { cn } from "@/lib/utils";
 import { Item } from "@/lib/types/types";
 import { useCart } from "@/lib/store";
@@ -63,14 +63,14 @@ export function ProdCard({ product }: Props) {
             className="object-cover rounded-lg"
           />
         </div>
-        
+
         <div className=" flex  justify-center items-center flex-col gap-4">
           <div>
             <h1 className="text-2xl font-bold capitalize">{product.name}</h1>
             <p className="text-gray-500">{product.description}</p>
             <Badge>{product.price.toLocaleString()} Rwf</Badge>
           </div>
-          <Separator/>
+          <Separator />
           <div className="flex flex-col gap-2">
             <div className="flex flex-wrap gap-2">
               {sizes.map((size) => (
@@ -83,7 +83,7 @@ export function ProdCard({ product }: Props) {
                   {size}
                 </Button>
               ))}
-            </div >
+            </div>
             <div className="flex items-center gap-2">
               <Button
                 variant="outline"

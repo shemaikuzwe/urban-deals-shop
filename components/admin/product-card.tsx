@@ -15,7 +15,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
-import { Product } from "@prisma/client";
+import { Product } from "@/generated/prisma/client";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import DeleteDialog from "./delete-dialog";

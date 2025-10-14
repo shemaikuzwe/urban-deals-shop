@@ -1,5 +1,5 @@
 "use client";
-import { Order, Status } from "@prisma/client";
+import { Order, Status } from "@/generated/prisma/client";
 import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
@@ -59,23 +59,23 @@ export default function Orders({ order }: { order: OrderUser }) {
             <TabsContent key={status} value={status}>
               {isOpen && (
                 <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                //@ts-ignore
-                className="w-full max-w-md mx-auto my-2"
-              >
-                <Alert className="border-green-200 bg-green-50/50 dark:bg-green-950/20 dark:border-green-900">
-                  <div className="flex items-center gap-4">
-                    <div className="h-8 w-8 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center">
-                      <Check className="h-4 w-4 text-green-600 dark:text-green-400" />
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  //@ts-ignore
+                  className="w-full max-w-md mx-auto my-2"
+                >
+                  <Alert className="border-green-200 bg-green-50/50 dark:bg-green-950/20 dark:border-green-900">
+                    <div className="flex items-center gap-4">
+                      <div className="h-8 w-8 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center">
+                        <Check className="h-4 w-4 text-green-600 dark:text-green-400" />
+                      </div>
+                      <AlertDescription className="text-green-800 dark:text-green-200 text-sm font-medium">
+                        Order created successfully
+                      </AlertDescription>
                     </div>
-                    <AlertDescription className="text-green-800 dark:text-green-200 text-sm font-medium">
-                      Order created successfully
-                    </AlertDescription>
-                  </div>
-                </Alert>
-              </motion.div>
+                  </Alert>
+                </motion.div>
               )}
               {orders.length === 0 ? (
                 <div className="text-center py-12">

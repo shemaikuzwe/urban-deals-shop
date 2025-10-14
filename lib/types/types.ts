@@ -1,4 +1,4 @@
-import { Size, Status } from "@prisma/client";
+import { Size, Status } from "@/generated/prisma/client";
 
 export type ProductState = {
   errors?: {
@@ -63,13 +63,13 @@ export type Item = {
 export type Cart = {
   cart: Array<Item>;
 };
-export  type  Actions={
-  addToCart:(item:Item)=> void
-  removeFromCart:(id:string) =>void;
-  incrementQuantity:(id:string)=>void
-  decrementQuantity:(id:string) =>void;
-  removeAll:()=>void;
-}
+export type Actions = {
+  addToCart: (item: Item) => void;
+  removeFromCart: (id: string) => void;
+  incrementQuantity: (id: string) => void;
+  decrementQuantity: (id: string) => void;
+  removeAll: () => void;
+};
 
 export type ChartData = {
   product: string;

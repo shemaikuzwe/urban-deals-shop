@@ -13,7 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Clock, XCircle } from "lucide-react";
 import { Item, Order } from "@/lib/types/types";
-import { Status, User } from "@prisma/client";
+import { Status, User } from "@/generated/prisma/client";
 import OrderCard from "./order-card";
 import { OrderUser } from "@/lib/action/server";
 
@@ -102,7 +102,6 @@ export function OrderManagement({ ordersPromise }: Props) {
                               total_price: order.total_price,
                               date: order.date,
                               status: order.status,
-                              
                             }}
                           />
                         </TableCell>

@@ -1,14 +1,14 @@
 import { getRelatedProducts } from "@/lib/action/server";
-import { Category } from "@prisma/client";
+import { Category } from "@/generated/prisma/client";
 import React from "react";
 import ProductsGrids from "@/components/products/products-grid";
 interface Props {
   type: Category;
-  id:string
+  id: string;
 }
 
-export default async function RelatedProduct({ type,id }: Props) {
-  const products = await getRelatedProducts(type,id);
+export default async function RelatedProduct({ type, id }: Props) {
+  const products = await getRelatedProducts(type, id);
   return (
     <div className=" flex flex-col gap-3 justify-center items-center mt-4">
       <h1 className="text-xl font-bold">Related Products</h1>

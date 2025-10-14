@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/generated/prisma/client";
 import Github from "next-auth/providers/github";
 import { cache } from "react";
 
@@ -68,4 +68,4 @@ const {
   },
 });
 const auth = cache(isAuth);
-export { handlers, signIn,signOut,auth };
+export { handlers, signIn, signOut, auth };

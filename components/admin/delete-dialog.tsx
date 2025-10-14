@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
-import { Product } from "@prisma/client";
+import { Product } from "@/generated/prisma/client";
 import { useRouter } from "next/navigation";
 import { deleteProduct } from "@/lib/action/action";
 

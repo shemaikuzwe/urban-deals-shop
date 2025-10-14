@@ -2,7 +2,7 @@ import "server-only";
 import { db } from "@/lib/db";
 import { ChartData, TOrder } from "@/lib/types/types";
 import { unstable_cacheTag as cacheTag, revalidateTag } from "next/cache";
-import { Category } from "@prisma/client";
+import { Category } from "@/generated/prisma/enums";
 
 export async function getProducts() {
   "use cache";
@@ -121,7 +121,7 @@ export async function getChartData() {
       ([product, orderSet]) => ({
         product,
         orders: orderSet.size,
-      })
+      }),
     );
 
     return chartData;
