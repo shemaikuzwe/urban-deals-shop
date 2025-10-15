@@ -1,5 +1,5 @@
 import NextAuth, { DefaultSession } from "next-auth";
-import { Role } from "@/generated/prisma/client";
+import { Role } from "@prisma/client";
 import "next-auth/jwt";
 import "@auth/core/adapters";
 

@@ -1,5 +1,5 @@
 import { getRelatedProducts } from "@/lib/action/server";
-import { Category } from "@/generated/prisma/client";
+import { Category } from "@prisma/client";
 import React from "react";
 import ProductsGrids from "@/components/products/products-grid";
 interface Props {

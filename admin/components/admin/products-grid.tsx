@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "./product-card";
-import { Product } from "@/generated/prisma/client";
+import { Product } from "@prisma/client";
 import Link from "next/link";
 import { use } from "react";
 import { NoProducts } from "../ui/no-products";

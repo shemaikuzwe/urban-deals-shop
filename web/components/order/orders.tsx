@@ -1,5 +1,5 @@
 "use client";
-import { Order, Status } from "@/generated/prisma/client";
+import { Order, Status } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";

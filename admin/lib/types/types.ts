@@ -1,4 +1,4 @@
-import { Size, Status } from "@/generated/prisma/client";
+import { Size, Status } from "@prisma/client";
 
 export type LoginState = {
   errors?: {

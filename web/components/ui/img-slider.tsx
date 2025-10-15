@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Suspense, use, useState } from "react";
-import { Product } from "@/generated/prisma/client";
+import { Product } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
 

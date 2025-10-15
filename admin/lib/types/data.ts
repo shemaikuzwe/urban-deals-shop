@@ -1,4 +1,4 @@
-import { Category, Size } from "@/generated/prisma/client";
+import { Category, Size } from "@prisma/client";
 import {
   LayoutDashboard,
   ShoppingCart,

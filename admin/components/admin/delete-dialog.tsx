@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
-import { Product } from "@/generated/prisma/client";
+import { Product } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { deleteProduct } from "@/lib/action/action";
 
@@ -25,7 +25,7 @@ export default function DeleteDialog({
   const [pending, setIsPending] = useState(false);
   const handleClick = async () => {
     await deleteProduct(product.id);
-    setIsPending(false)
+    setIsPending(false);
     setIsOpen(false);
     router.refresh();
   };
