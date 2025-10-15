@@ -6,7 +6,6 @@
     "dev": "next dev --turbopack ",
     "build": "next build",
     "lint": "eslint .",
-    "postinstall": "prisma generate",
     "start": "next start",
     "db:studio": "prisma studio",
     "db:push": "prisma db push"

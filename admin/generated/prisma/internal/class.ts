@@ -33,6 +33,10 @@ const config: runtime.GetPrismaClientConfig = {
         "fromEnvVar": null,
         "value": "debian-openssl-3.0.x",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -46,6 +50,7 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -54,8 +59,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Status {\n  PENDING\n  COMPLETED\n  FAILED\n}\n\nenum Role {\n  USER\n  ADMIN\n}\n\nenum Category {\n  SHORTS\n  PANTS\n  T_SHIRT\n  SHOES\n  OTHER\n}\n\nenum Size {\n  XS\n  S\n  M\n  L\n  XL\n}\n\nmodel Product {\n  id          String   @id @default(uuid())\n  name        String\n  price       Int\n  description String\n  type        Category @default(OTHER)\n  size        Size     @default(M)\n  image       String\n  isFeatured  Boolean  @default(false)\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @default(now()) @updatedAt\n}\n\nmodel Order {\n  id          String   @id @default(uuid())\n  names       String?\n  phoneNumber String?\n  address     String?\n  userId      String?\n  products    Json[]\n  total_price Int\n  status      Status   @default(PENDING)\n  date        DateTime @default(now())\n  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)\n  createdAt   DateTime @default(now())\n}\n\nmodel User {\n  id            String    @id @default(uuid())\n  name          String?\n  email         String?   @unique\n  emailVerified DateTime?\n  image         String?\n  password      String?\n  accounts      Account[]\n  orders        Order[]\n  role          Role      @default(USER)\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @updatedAt\n}\n\nmodel Account {\n  userId            String\n  type              String\n  provider          String\n  providerAccountId String\n  refresh_token     String?\n  access_token      String?\n  expires_at        Int?\n  token_type        String?\n  scope             String?\n  id_token          String?\n  session_state     String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@id([provider, providerAccountId])\n}\n",
-  "inlineSchemaHash": "d70ac6c827a596acd4085623af75ce565bf5cecfe644666ec57ff0d4f51502da",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client\"\n  output        = \"../generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Status {\n  PENDING\n  COMPLETED\n  FAILED\n}\n\nenum Role {\n  USER\n  ADMIN\n}\n\nenum Category {\n  SHORTS\n  PANTS\n  T_SHIRT\n  SHOES\n  OTHER\n}\n\nenum Size {\n  XS\n  S\n  M\n  L\n  XL\n}\n\nmodel Product {\n  id          String   @id @default(uuid())\n  name        String\n  price       Int\n  description String\n  type        Category @default(OTHER)\n  size        Size     @default(M)\n  image       String\n  isFeatured  Boolean  @default(false)\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @default(now()) @updatedAt\n}\n\nmodel Order {\n  id          String   @id @default(uuid())\n  names       String?\n  phoneNumber String?\n  address     String?\n  userId      String?\n  products    Json[]\n  total_price Int\n  status      Status   @default(PENDING)\n  date        DateTime @default(now())\n  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)\n  createdAt   DateTime @default(now())\n}\n\nmodel User {\n  id            String    @id @default(uuid())\n  name          String?\n  email         String?   @unique\n  emailVerified DateTime?\n  image         String?\n  password      String?\n  accounts      Account[]\n  orders        Order[]\n  role          Role      @default(USER)\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @updatedAt\n}\n\nmodel Account {\n  userId            String\n  type              String\n  provider          String\n  providerAccountId String\n  refresh_token     String?\n  access_token      String?\n  expires_at        Int?\n  token_type        String?\n  scope             String?\n  id_token          String?\n  session_state     String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@id([provider, providerAccountId])\n}\n",
+  "inlineSchemaHash": "c11893484f0244de3a6b91146ab0239343bd2a014ccbcfd8f9199e956df8a768",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
