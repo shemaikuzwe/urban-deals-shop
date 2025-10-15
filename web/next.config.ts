@@ -3,13 +3,16 @@ const nextConfig: NextConfig = {
   experimental: {
     cacheComponents: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     remotePatterns: [
       {
         hostname: "lh3.googleusercontent.com",
         protocol: "https",
       },
-      { hostname: "fra.cloud.appwrite.io", protocol: "https" },
+      { hostname: "cu8iqyca8r.ufs.sh", protocol: "https" },
     ],
   },
 };

@@ -96,41 +96,6 @@ export async function getPendingOrders() {
   });
 }
 
-export async function getChartData() {
-  "use cache";
-  try {
-    const dashboardData = await db.order.findMany();
-    const productOrdersMap = new Map<string, Set<string>>();
-    dashboardData.forEach((order) => {
-      const productsInThisOrder = new Set<string>();
-
-      order?.products?.forEach((product) => {
-        //@ts-ignore
-        if (product && product.name && !productsInThisOrder.has(product.name)) {
-          //@ts-ignore
-          const existingSet = productOrdersMap.get(product.name) || new Set();
-          existingSet.add(order.id);
-          //@ts-ignore
-          productOrdersMap.set(product.name, existingSet);
-          //@ts-ignore
-          productsInThisOrder.add(product.name);
-        }
-      });
-    });
-    const chartData: ChartData[] = Array.from(productOrdersMap).map(
-      ([product, orderSet]) => ({
-        product,
-        orders: orderSet.size,
-      }),
-    );
-
-    return chartData;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
-
 export async function addOrder(order: TOrder) {
   await db.order.create({
     data: {
@@ -139,7 +104,7 @@ export async function addOrder(order: TOrder) {
       products: JSON.parse(order.products),
     },
   });
-  revalidateTag("orders");
+  revalidateTag("orders", "max");
 }
 
 export async function getRelatedProducts(type: Category, id: string) {

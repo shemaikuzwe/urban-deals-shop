@@ -14,11 +14,11 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useSession } from "next-auth/react";
-import {  updateProfile } from "@/lib/action/action";
+import { updateProfile } from "@/lib/action/action";
 import { Alert, AlertTitle } from "../ui/alert";
 import { cn } from "@/lib/utils";
 import ThemeSelector from "../providers/theme-selector";
+import { useSession } from "../providers/session-provider";
 
 // interface UserProfileProps {
 //   orders: Promise<number>;
@@ -32,7 +32,7 @@ export default function Profile() {
   // );
   const [isEditing, setIsEditing] = useState(false);
   const session = useSession();
-  const user = session?.data?.user;
+  const user = session?.data;
   useEffect(() => {
     if (state?.status == "success") {
       setIsEditing(false);
@@ -54,7 +54,6 @@ export default function Profile() {
               <CardDescription>{user?.email!}</CardDescription>
             </div>
           </div>
-          
         </CardHeader>
         <CardContent>
           <motion.div
@@ -79,7 +78,7 @@ export default function Profile() {
                         aria-live="polite"
                         className="mt-2 text-destructive"
                         key={error}
-                     >
+                      >
                         {error}
                       </span>
                     ))}
@@ -134,7 +133,7 @@ export default function Profile() {
                     Edit Profile
                   </Button>
                 )}
-                
+
                 {/* <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="outline">
@@ -234,8 +233,8 @@ export default function Profile() {
           </motion.div>
         </CardContent>
         <CardFooter>
-        <ThemeSelector/>
-          </CardFooter>
+          <ThemeSelector />
+        </CardFooter>
       </Card>
     </div>
   );

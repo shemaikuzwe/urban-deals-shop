@@ -15,10 +15,6 @@ import {
   UpdateUserProfileSchema,
 } from "../types/schema";
 import { db } from "../db";
-import createAdminClient from "../appwrite/appwrite.config";
-import { appWrite } from "../appwrite/config";
-import { createFileUrl, getFileId } from "../utils";
-import { ID } from "node-appwrite";
 import { z } from "zod";
 import { auth, getProduct } from "@/lib/action/server";
 import {
@@ -31,6 +27,13 @@ import * as jose from "jose";
 import { cookies } from "next/headers";
 
 const AddProduct = productSchema.omit({ id: true });
+
+import { UTApi } from "uploadthing/server";
+import { getKeyFromUrl } from "../utils";
+
+const utapi = new UTApi({
+  // ...options,
+});
 
 export async function login(
   prevState: LoginState | undefined,
@@ -131,7 +134,7 @@ export async function addProduct(
       price: price,
       description: description,
       type: type,
-      image: imagePath,
+      image: imagePath ?? "",
     },
   });
   revalidateTag("products", "max");
@@ -199,25 +202,19 @@ export async function editProduct(
 }
 async function uploadProduct(image: File) {
   try {
-    const { storage } = await createAdminClient();
-    const product = await storage.createFile(
-      appWrite.BUCKET_ID,
-      ID.unique(),
-      image,
-    );
-    return createFileUrl(product.$id);
+    const res = await utapi.uploadFiles(image);
+    console.log(res.data);
+    return res.data?.ufsUrl;
   } catch (err) {
     console.log(err);
     throw err;
   }
 }
-async function deleteProd(imagePath: string) {
+//TODO: Implement deleteProd function
+async function deleteProd(url: string) {
   try {
-    const fileId = getFileId(imagePath);
-    console.log(fileId);
-
-    const { storage } = await createAdminClient();
-    await storage.deleteFile(appWrite.BUCKET_ID, fileId);
+    const keyId = getKeyFromUrl(url);
+    await utapi.deleteFiles(keyId);
   } catch (err) {
     if (err instanceof Error) {
       console.log(err.message);

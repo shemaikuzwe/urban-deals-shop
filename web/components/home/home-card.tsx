@@ -16,6 +16,7 @@ export default async function HomeCard({ name, viewAll = true }: Props) {
     name == "Featured"
       ? await getFeaturedProducts()
       : await getLatestProducts();
+  if (products.length === 0) return null;
   return (
     <div className="mt-10">
       <center>
