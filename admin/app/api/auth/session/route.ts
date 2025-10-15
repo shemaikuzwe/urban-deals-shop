@@ -5,7 +5,6 @@ export async function GET() {
   try {
     const session = await auth();
     return NextResponse.json(session);
-    s;
   } catch (err) {
     return NextResponse.json(
       { error: "something went wrong" },
