@@ -2,7 +2,7 @@ import "server-only";
 import { db } from "@/lib/db";
 import { ChartData, Session, TOrder } from "@/lib/types/types";
 import { unstable_cacheTag as cacheTag, revalidateTag } from "next/cache";
-import { Category } from "@/generated/prisma/enums";
+import { Category } from "@prisma/client";
 import { cookies } from "next/headers";
 import * as jose from "jose";
 
