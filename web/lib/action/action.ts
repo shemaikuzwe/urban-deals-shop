@@ -1,57 +1,47 @@
 "use server";
 import { ChangePasswordState, updateProfileState } from "@/lib/types/types";
-import { revalidateTag } from "next/cache";
-import { redirect } from "next/navigation";
 import { auth } from "@/app/auth";
 import { OrderState } from "../types/types";
-import { changePasswordShema, UpdateUserProfileSchema } from "../types/schema";
+import {
+  changePasswordShema,
+  createOrderSchema,
+  UpdateUserProfileSchema,
+} from "../types/schema";
 import { db } from "../db";
-import { z } from "zod";
 import {
   unstable_cacheTag as cacheTag,
   unstable_cacheLife as cacheLife,
 } from "next/cache";
-import Stripe from "stripe";
 
 export async function addOrder(
   prevState: OrderState | undefined,
   formData: FormData,
 ): Promise<OrderState | undefined> {
-  const cart = formData.get("cart") as string;
-  const totalPrice = formData.get("totalPrice") as string;
-  const userId = (await auth())?.user.id as string;
-  if (!userId) throw new Error("User not found");
-  const amount = parseInt(totalPrice);
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
-  const stripeSession = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price_data: {
-          currency: "rwf",
-          unit_amount: amount,
-          product_data: {
-            name: "Order",
-          },
-        },
-        quantity: 1,
-      },
-    ],
-    metadata: {
-      buyerId: userId,
-      products: cart,
+  const validate = createOrderSchema.safeParse(
+    Object.fromEntries(formData.entries()),
+  );
+  if (!validate.success) {
+    return {
+      status: "error",
+      errors: validate.error.flatten().fieldErrors,
+    };
+  }
+  const { totalPrice, address, cart, name, phoneNumber } = validate.data;
+  // TODO:send Email
+  await db.order.create({
+    data: {
+      total_price: totalPrice,
+      address,
+      products: JSON.parse(cart),
+      names: name,
+      phoneNumber,
     },
-    payment_method_types: ["card", "paypal"],
-    // shipping_address_collection: {
-    //    allowed_countries:["RW"]
-    // },
-    mode: "payment",
-    success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/orders?success=order created successfully`,
-    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   });
-  redirect(stripeSession.url!);
+  return {
+    status: "success",
+    message: "Order added successfully",
+  };
 }
-
 export async function changePassword(
   prevState: ChangePasswordState | undefined,
   formData: FormData,

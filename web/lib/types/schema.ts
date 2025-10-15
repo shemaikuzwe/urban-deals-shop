@@ -33,9 +33,18 @@ const UpdateUserProfileSchema = z.object({
   email: z.string().email({ message: "Invalid email" }),
   fullName: z.string().min(5, { message: "Enter your full names" }),
 });
+
+const createOrderSchema = z.object({
+  totalPrice: z.coerce.number().min(100, { message: "Enter alid amount" }),
+  cart: z.string(),
+  name: z.string().min(3, { message: "Enter your name" }),
+  phoneNumber: z.string().min(10, { message: "Enter valid phone number" }),
+  address: z.string().min(3, { message: "Enter your address" }),
+});
 export {
   productSchema,
   changePasswordShema,
   UpdateUserProfileSchema,
   fileSchema,
+  createOrderSchema,
 };

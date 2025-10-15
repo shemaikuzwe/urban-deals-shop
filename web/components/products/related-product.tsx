@@ -9,6 +9,7 @@ interface Props {
 
 export default async function RelatedProduct({ type, id }: Props) {
   const products = await getRelatedProducts(type, id);
+  if (products.length === 0) return null;
   return (
     <div className=" flex flex-col gap-3 justify-center items-center mt-4">
       <h1 className="text-xl font-bold">Related Products</h1>

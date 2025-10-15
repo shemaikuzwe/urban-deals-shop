@@ -50,12 +50,15 @@ model Product {
 
 model Order {
   id          String   @id @default(uuid())
-  userId      String
+  names       String?
+  phoneNumber String?
+  address     String?
+  userId      String?
   products    Json[]
   total_price Int
   status      Status   @default(PENDING)
   date        DateTime @default(now())
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   createdAt   DateTime @default(now())
 }
 

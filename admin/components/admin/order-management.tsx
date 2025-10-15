@@ -90,7 +90,21 @@ export function OrderManagement({ ordersPromise }: Props) {
                   <TableBody>
                     {filteredOrders.map((order) => (
                       <TableRow key={order.id}>
-                        <TableCell>{order.user?.name}</TableCell>
+                        <TableCell>
+                          <div className="text-sm flex-col gap-2 leading-none">
+                            <p className="font-medium text-lg  mb-2">
+                              {order.user?.name || order.names}
+                            </p>
+                            <p className="font-normal mb-2 text-md">
+                              {order?.user?.email || order?.phoneNumber}
+                            </p>
+                            {order.address && (
+                              <p className="font-normal text-md">
+                                {order.address}
+                              </p>
+                            )}
+                          </div>
+                        </TableCell>
                         <TableCell>{order.date.toLocaleDateString()}</TableCell>
                         <TableCell>
                           {order.total_price.toLocaleString()} Rwf

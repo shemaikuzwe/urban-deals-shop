@@ -14,9 +14,8 @@ import Link from "next/link";
 import { getPendingOrders } from "@/lib/action/server";
 import { AvatarImage } from "@radix-ui/react-avatar";
 
-
 export default async function PendingOrders() {
-  const orders = await  getPendingOrders()
+  const orders = await getPendingOrders();
 
   return (
     <Card className="w-full rounded-sm h-fit">
@@ -30,19 +29,29 @@ export default async function PendingOrders() {
             orders.map((order, index) => (
               <div key={index} className="flex items-center space-x-4">
                 <Avatar className="h-10 w-10">
-                    <AvatarImage src={order.user.image!}/>
+                  <AvatarImage src={order?.user?.image ?? ""} />
                   <AvatarFallback>
-                    {order.user.name!
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .toUpperCase()}
+                    {order?.user?.name ||
+                      order?.names ||
+                      ""
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")
+                        .toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1 space-y-1">
-                  <p className="text-sm font-medium leading-none">
-                    {order.user.name}
-                  </p>
+                  <div className="text-sm flex-col gap-2 leading-none">
+                    <p className="font-medium mb-2">
+                      {order.user?.name || order.names}
+                    </p>
+                    <p className="font-normal mb-2">
+                      {order?.user?.email || order?.phoneNumber}
+                    </p>
+                    {order.address && (
+                      <p className="font-normal">{order.address}</p>
+                    )}
+                  </div>
                   <p className="text-xs text-muted-foreground">
                     {order.date.toLocaleDateString()}
                   </p>
@@ -64,7 +73,7 @@ export default async function PendingOrders() {
       </CardContent>
       <Separator className="my-2" />
       <CardFooter className="flex justify-center p-1">
-        <Button  asChild>
+        <Button asChild>
           <Link
             href="/admin/orders"
             className="flex items-center  justify-center gap-2 bg-primary text-background"
