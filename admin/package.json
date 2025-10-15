@@ -9,8 +9,7 @@
     "postinstall": "prisma generate",
     "start": "next start",
     "db:studio": "prisma studio",
-    "db:push": "prisma db push",
-    "db:seed": "prisma/scripts/seed.ts"
+    "db:push": "prisma db push"
   },
   "dependencies": {
     "@prisma/client": "6.17.1",
