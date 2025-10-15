@@ -9,6 +9,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const fetchSession = async () => {
       try {
+        setSession({ data: null, status: "pending" });
         const response = await fetch("/api/auth/session");
         const data = await response.json();
         setSession(data);
@@ -17,7 +18,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       }
     };
     fetchSession();
-  }, []);
+  }, [setSession]);
 
   return (
     <SessionContext.Provider value={session}>

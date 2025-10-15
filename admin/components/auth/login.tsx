@@ -12,8 +12,8 @@ export function LoginPage() {
   const [state, dispatch, isPending] = useActionState(login, undefined);
   const router = useRouter();
   useEffect(() => {
-    if (state && state?.status !== "success") {
-      toast.error(state?.message);
+    if (state && state?.status !== "success" && state?.message) {
+      toast.error(state.message);
     }
     if (state?.status === "success") {
       router.push("/admin");

@@ -45,9 +45,7 @@ export function DashSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Suspense fallback={<UserSkelton />}>
-                <User />
-              </Suspense>
+              <User />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

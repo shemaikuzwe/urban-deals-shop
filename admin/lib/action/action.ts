@@ -53,7 +53,6 @@ export async function login(
     if (!validate.success) {
       return {
         errors: validate.error.flatten().fieldErrors,
-        message: "Missing fields",
         status: "error",
       };
     }
@@ -62,11 +61,12 @@ export async function login(
         email: validate.data.email,
       },
     });
-    console.log("user", user);
     if (!user)
       return {
         status: "error",
-        message: "Invalid credentials",
+        errors: {
+          email: ["Invalid credentials"],
+        },
       };
     const isValid = await bcrypt.compare(
       validate.data.password,
@@ -75,7 +75,9 @@ export async function login(
     if (!isValid)
       return {
         status: "error",
-        message: "Invalid credentials",
+        errors: {
+          email: ["Invalid credentials"],
+        },
       };
     const secretKey = process.env.AUTH_SECRET;
     if (!secretKey) {
@@ -113,6 +115,12 @@ export async function login(
     };
   }
 }
+export async function logout() {
+  const cookieStore = await cookies();
+  cookieStore.delete("auth_token");
+  redirect("/");
+}
+
 export async function addProduct(
   prevState: ProductState | undefined,
   formData: FormData,

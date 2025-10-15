@@ -12,30 +12,39 @@ import {
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { useSession } from "../providers/session-provider";
+import { logout } from "@/lib/action/action";
 
 export default function User() {
   const session = useSession();
-  const user = session?.data;
+  if (
+    !session ||
+    session.status === "pending" ||
+    session.data === null ||
+    session.data === undefined
+  )
+    return null;
+  console.log("session", session);
+  const user = session.data;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className={"w-full flex cursor-pointer bg-muted "}>
           <Avatar className="h-10 w-10">
-            <AvatarImage src={""} alt={user?.name || "user"} />
+            <AvatarImage src={""} alt={user.name || "user"} />
             <AvatarFallback>
-              {user?.name!.slice(0, 2).toUpperCase()}
+              {user.name.slice(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <div className={"flex flex-col group-data-[collapsible=icon]:hidden"}>
-            <span className={"text-base"}>{user?.name}</span>
+            <span className={"text-base"}>{user.name}</span>
             <span className={"text-muted-foreground text-sm"}>
-              {user?.email}
+              {user.email}
             </span>
           </div>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className={"w-56"}>
-        <DropdownMenuLabel>{user?.name!}</DropdownMenuLabel>
+        <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Link href="/admin/profile">Profile</Link>
@@ -45,11 +54,7 @@ export default function User() {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className={"w-full"}>
-          <Button
-            size={"sm"}
-            className={"w-full"}
-            // onClick={async () => signOut()}
-          >
+          <Button size={"sm"} className={"w-full"} onClick={logout}>
             Sign out
           </Button>
         </DropdownMenuItem>

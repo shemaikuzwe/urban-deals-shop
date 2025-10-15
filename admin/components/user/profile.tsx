@@ -44,7 +44,7 @@ export default function Profile() {
         <CardHeader>
           <div className="flex items-center space-x-4">
             <Avatar className="h-20 w-20">
-              <AvatarImage src={user?.image!} alt={user?.name!} />
+              <AvatarImage src={""} alt={user?.name!} />
               <AvatarFallback>
                 {user?.name!.slice(0, 2).toUpperCase()}
               </AvatarFallback>

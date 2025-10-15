@@ -5,7 +5,7 @@ export type LoginState = {
     email?: string[];
     password?: string[];
   };
-  message: string;
+  message?: string;
   status: "success" | "error";
 };
 export interface Session {
