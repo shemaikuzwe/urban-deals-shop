@@ -1,13 +1,13 @@
 import DashboardCard from "./dashboard-card";
-import { getAllUsers, getProducts } from "@/lib/action/server";
+import { getAllUsers, getProducts, getProductsNo } from "@/lib/action/server";
 export default async function DashboardCards() {
-  const noOfProducts = await getProducts();
+  const noOfProducts = await getProductsNo();
   const noOfCustomers = await getAllUsers();
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-4 sm:grid-cols-1 justify-center items-center md:grid-cols-2 lg:grid-cols-4">
       <DashboardCard
         label="Products"
-        content={noOfProducts.length}
+        content={noOfProducts}
         icon="money"
         color="bg-muted"
       />

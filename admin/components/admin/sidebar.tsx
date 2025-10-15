@@ -15,6 +15,8 @@ import Image from "next/image";
 import { links } from "@/lib/types/data";
 import UserSkelton from "../skeltons/user-skelton";
 import { Suspense } from "react";
+import { logout } from "@/lib/action/action";
+import { LogOutIcon } from "lucide-react";
 export function DashSidebar() {
   return (
     <Sidebar collapsible="icon">
@@ -44,8 +46,8 @@ export function DashSidebar() {
       <SidebarFooter className="py-2 w-full border-t-border  mt-auto border-none">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <User />
+            <SidebarMenuButton onClick={logout}>
+              <LogOutIcon /> LogOut
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

@@ -41,7 +41,7 @@ export default function AddForm() {
   };
   return (
     <div className="flex p-6 border rounded-md mt-10">
-      <form action={dispatch} className=" flex gap-2">
+      <form action={dispatch} className=" flex max-md:flex-col w-full gap-2">
         <div className=" flex justify-center items-center min-w-96">
           {image ? (
             <Image

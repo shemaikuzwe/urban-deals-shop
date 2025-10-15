@@ -10,7 +10,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
-
 interface DashboardCardProps {
   label: string;
   content: string | number;
@@ -34,7 +33,7 @@ export default function DashboardCard({
   const Icon = iconMap[icon];
 
   return (
-    <Card className="overflow-hidden transition-all hover:shadow-lg rounded-sm w-52 ">
+    <Card className="overflow-hidden transition-all hover:shadow-lg rounded-sm  w-52 ">
       <CardHeader
         className={`flex flex-row items-center justify-between space-y-0 p-2 ${color}`}
       >
@@ -44,9 +43,7 @@ export default function DashboardCard({
       <Separator />
       <CardContent className="p-8">
         <div className="text-3xl font-bold text-center ">{content}</div>
-        <p className="text-xs text-muted-foreground m-4">
-        
-        </p>
+        <p className="text-xs text-muted-foreground m-4"></p>
       </CardContent>
     </Card>
   );

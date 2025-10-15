@@ -37,6 +37,11 @@ export async function getProducts() {
   cacheTag("products");
   return db.product.findMany();
 }
+export async function getProductsNo() {
+  "use cache";
+  cacheTag("products");
+  return db.product.count();
+}
 
 export async function getProduct(id: string) {
   "use cache";

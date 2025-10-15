@@ -73,7 +73,7 @@ export function OrderManagement({ ordersPromise }: Props) {
             </h2>
             {filteredOrders.length === 0 ? (
               <p className="text-center text-muted-foreground">
-                No {status} orders found.
+                No {status.toLocaleLowerCase()} orders found.
               </p>
             ) : (
               <div className="overflow-x-auto">

@@ -13,23 +13,23 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { useSession } from "../providers/session-provider";
 import { logout } from "@/lib/action/action";
+import UserSkelton from "../skeltons/user-skelton";
 
 export default function User() {
   const session = useSession();
-  if (
-    !session ||
-    session.status === "pending" ||
-    session.data === null ||
-    session.data === undefined
-  )
+  if (session?.status === "pending") return <UserSkelton />;
+  if (!session || session.data === null || session.data === undefined)
     return null;
-  console.log("session", session);
   const user = session.data;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className={"w-full flex cursor-pointer bg-muted "}>
-          <Avatar className="h-10 w-10">
+        <div
+          className={
+            "w-full flex cursor-pointer items-center justify-center h-full "
+          }
+        >
+          <Avatar>
             <AvatarImage src={""} alt={user.name || "user"} />
             <AvatarFallback>
               {user.name.slice(0, 2).toUpperCase()}

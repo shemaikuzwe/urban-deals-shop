@@ -19,7 +19,6 @@ import { categories } from "@/lib/types/data";
 import { Label } from "../ui/label";
 import { Alert, AlertTitle } from "../ui/alert";
 import { cn } from "@/lib/utils";
-import { error } from "console";
 
 interface Props {
   product: Product;
@@ -46,7 +45,7 @@ export default function EditForm({ product }: Props) {
   };
   return (
     <div className="flex p-6 border rounded-md mt-10">
-      <form action={action} className=" flex gap-2">
+      <form action={action} className="flex max-md:flex-col w-full  gap-2">
         <div>
           <Image
             src={image ? image : `${product.image}`}
@@ -95,7 +94,7 @@ export default function EditForm({ product }: Props) {
             ))}
           <div>
             <Label>Category</Label>
-            <Select name="type">
+            <Select name="type" defaultValue={product.type}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
@@ -104,7 +103,7 @@ export default function EditForm({ product }: Props) {
                   <SelectLabel>Categories</SelectLabel>
                   {categories.map((item) => (
                     <SelectItem value={item} key={item} className=" capitalize">
-                      {item.toLocaleLowerCase()}
+                      {item.split("_").join(" ").toLocaleLowerCase()}
                     </SelectItem>
                   ))}
                 </SelectGroup>
