@@ -20,6 +20,8 @@ enum Role {
 
 enum Category {
   SHORTS
+  SUITS
+  SHIRTS
   PANTS
   T_SHIRT
   SHOES

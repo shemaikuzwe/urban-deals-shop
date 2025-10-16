@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 export const categories: Category[] = [
   "T_SHIRT",
+  "SHIRTS",
+  "SUITS",
   "PANTS",
   "SHORTS",
   "SHOES",

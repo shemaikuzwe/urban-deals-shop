@@ -1,17 +1,13 @@
 import { Category, Size } from "@prisma/client";
-import {
-  LayoutDashboard,
-  ShoppingCart,
-  Package,
-  Users,
-  Columns2,
-} from "lucide-react";
+import { LayoutDashboard, ShoppingCart, Package, Users } from "lucide-react";
 export const categories: Category[] = [
   "T_SHIRT",
   "PANTS",
   "SHORTS",
   "SHOES",
   "OTHER",
+  "SUITS",
+  "SHIRTS",
 ];
 export const size: Size[] = ["S", "XS", "M", "XL", "L"];
 

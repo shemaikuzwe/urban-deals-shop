@@ -84,6 +84,8 @@ enum Category {
   T_SHIRT
   SHOES
   OTHER
+  SUITS
+  SHIRTS
 }
 
 enum Size {
