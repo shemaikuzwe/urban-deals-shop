@@ -31,7 +31,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <Image src={"/logo.png"} height={90} width={90} alt="logo" />
+              <Image src={"/logo2.png"} height={100} width={100} alt="logo" />
             </Link>
           </div>
           <Suspense fallback={null}>

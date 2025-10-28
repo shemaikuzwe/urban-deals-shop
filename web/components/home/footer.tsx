@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Twitter, Linkedin } from "lucide-react";
+import { Twitter, Linkedin, InstagramIcon } from "lucide-react";
 import { unstable_cacheLife as cacheLife } from "next/cache";
 
 export async function Footer() {
@@ -83,22 +83,13 @@ export async function Footer() {
             </h3>
             <div className="flex space-x-6">
               <a
-                href=""
+                href="https://www.instagram.com/umucyo.style?igsh=M20weXM1eWc2bmln&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-gray-500"
               >
-                <span className="sr-only">X</span>
-                <Twitter className="h-6 w-6" />
-              </a>
-              <a
-                href=""
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-500"
-              >
-                <span className="sr-only">LinkedIn</span>
-                <Linkedin className="h-6 w-6" />
+                <span className="sr-only">Instagram</span>
+                <InstagramIcon className="h-6 w-6" />
               </a>
             </div>
           </div>
