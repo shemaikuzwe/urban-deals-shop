@@ -10,17 +10,15 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import Image from "next/image";
 import { links } from "@/lib/types/data";
 import { logout } from "@/lib/action/action";
 import { LogOutIcon } from "lucide-react";
+import Logo from "./logo";
 export function DashSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="p-2 border-b-border">
-        <div className="flex items-center gap-2">
-          <Image src={"/logo2.png"} alt="logo" height={90} width={90} />
-        </div>
+        <Logo />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

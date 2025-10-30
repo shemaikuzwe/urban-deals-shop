@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Menu } from "lucide-react";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -14,6 +13,7 @@ import Cart from "../cart/cart-sheet";
 import { Suspense } from "react";
 import SearchForm from "./search";
 import ThemeToggle from "../providers/theme-toggle";
+import Logo from "./logo";
 
 const links = [
   { name: "Home", href: "/", icon: <Home className="h-5 w-5" /> },
@@ -29,11 +29,7 @@ export function Navbar() {
     <nav className="bg-card border-b h-20 py-2">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0">
-              <Image src={"/logo2.png"} height={100} width={100} alt="logo" />
-            </Link>
-          </div>
+          <Logo />
           <Suspense fallback={null}>
             <SearchForm />
           </Suspense>
@@ -56,8 +52,8 @@ export function Navbar() {
             <Cart />
             <ThemeToggle />
             {/*<Suspense fallback={<UserSkelton />}>
-              <User />
-            </Suspense>*/}
+            <User />
+          </Suspense>*/}
           </div>
           <div className="md:hidden flex items-center">
             <Sheet>
@@ -82,8 +78,8 @@ export function Navbar() {
                   <Cart />
                   <ThemeToggle />
                   {/*<Suspense fallback={<UserSkelton />}>
-                    <User />
-                  </Suspense>*/}
+                  <User />
+                </Suspense>*/}
                 </div>
               </SheetContent>
             </Sheet>

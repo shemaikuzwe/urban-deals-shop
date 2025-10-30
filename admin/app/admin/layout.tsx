@@ -1,6 +1,6 @@
 import Header from "@/components/admin/header";
 import { DashSidebar } from "@/components/admin/sidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { ReactNode } from "react";
 
 export default function layout({ children }: { children: ReactNode }) {

@@ -33,17 +33,15 @@ export default function DashboardCard({
   const Icon = iconMap[icon];
 
   return (
-    <Card className="overflow-hidden transition-all hover:shadow-lg rounded-sm  w-52 ">
-      <CardHeader
-        className={`flex flex-row items-center justify-between space-y-0 p-2 ${color}`}
-      >
-        <CardTitle className="text-sm font-medium">{label}</CardTitle>
-        <Icon className="h-4 w-4 text-muted-foreground" />
-      </CardHeader>
-      <Separator />
-      <CardContent className="p-8">
-        <div className="text-3xl font-bold text-center ">{content}</div>
-        <p className="text-xs text-muted-foreground m-4"></p>
+    <Card className="w-80 h-20 flex items-center dark:bg-muted/70 ">
+      <CardContent className="flex gap-2  p-4 w-full h-full">
+        <div className="bg-gray-50 dark:bg-card flex justify-center items-center p-2 text-center rounded-md">
+          {<Icon width={20} height={20} />}
+        </div>
+        <div className="flex gap-2 justify-center items-center font-black text-md">
+          <p>{content}</p>
+          <p>{label}</p>
+        </div>
       </CardContent>
     </Card>
   );

@@ -7,6 +7,7 @@ import { login } from "@/lib/action/action";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
+import Logo from "../admin/logo";
 
 export function LoginPage() {
   const [state, dispatch, isPending] = useActionState(login, undefined);
@@ -16,12 +17,17 @@ export function LoginPage() {
       toast.error(state.message);
     }
     if (state?.status === "success") {
-      router.push("/admin");
+      router.refresh();
+      router.replace("/admin");
     }
   }, [state]);
   return (
     <CardContent>
       <form action={dispatch}>
+        {/*<div className="flex justify-center items-center">
+          <Logo />
+        </div>*/}
+
         <div className="flex flex-col gap-6">
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>

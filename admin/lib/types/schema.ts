@@ -1,15 +1,17 @@
 import { z } from "zod";
+import { categories } from "./data";
+
 const fileSchema = z
   .instanceof(File)
   .refine((file) => file.size == 0 || file.type.startsWith("image/"), {
     message: "File type not supported",
   });
-const Category = z.enum(["T_SHIRT", "PANTS", "SHORTS", "SHOES", "OTHER"]);
+
 const productSchema = z.object({
   id: z.string(),
   product: z.string().min(3, { message: "Enter product name" }),
   description: z.string().min(5, { message: "Enter product description" }),
-  type: Category,
+  type: z.enum(categories),
   price: z.coerce.number().gt(100, "Enter product price"),
   image: fileSchema.refine((file) => file.size > 0, {
     message: "Please upload image",
