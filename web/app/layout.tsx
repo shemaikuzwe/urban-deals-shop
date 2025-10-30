@@ -25,7 +25,7 @@ export default function RootLayout({
         <ThemeProvider
           attribute={"class"}
           disableTransitionOnChange
-          defaultTheme="light"
+          defaultTheme="system"
           enableSystem
         >
           <SessionProvider>{children}</SessionProvider>
