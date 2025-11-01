@@ -17,8 +17,9 @@ import {
   unstable_cacheLife as cacheLife,
 } from "next/cache";
 import { z } from "zod";
-// import sendOrderEmail from "../email/send-order";
-// import sendContactEmail from "../email/contact";
+
+import sendOrderEmail from "../email/send-order";
+import sendContactEmail from "../email/contact";
 
 export async function addOrder(
   prevState: OrderState | undefined,
@@ -34,7 +35,7 @@ export async function addOrder(
     };
   }
   const { totalPrice, address, cart, name, phoneNumber } = validate.data;
-  // TODO:send Email
+
   const order = await db.order.create({
     data: {
       total_price: totalPrice,
@@ -44,16 +45,18 @@ export async function addOrder(
       phoneNumber,
     },
   });
-  // await sendOrderEmail({
-  //   totalPrice,
-  //   userNames: name,
-  //   phoneNumber,
-  //   products: JSON.parse(cart) as any,
-  //   createdAt: order.createdAt,
-  //   id: order.id,
-  //   status: order.status,
-  //   updatedAt: new Date(),
-  // });
+
+  await sendOrderEmail({
+    totalPrice,
+    userNames: name,
+    phoneNumber,
+    products: JSON.parse(cart) as any,
+    createdAt: order.createdAt,
+    id: order.id,
+    status: order.status,
+    updatedAt: new Date(),
+  });
+
   return {
     status: "success",
     message: "Order added successfully",
@@ -186,7 +189,8 @@ export async function sendMessage(
       };
     }
     const { email, message, name } = validate.data;
-    // await sendContactEmail(name, message, email);
+
+    await sendContactEmail(name, message, email);
     return {
       status: "success",
       message: "Thanks for your feedback!",

@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack --port 3001 ",
     "build": "next build",
     "emailDev": "email dev",
+    "mail:dev": "email dev",
     "lint": "eslint .",
     "start": "next start",
     "postinstall": "prisma generate",
