@@ -6,7 +6,7 @@ import ProductGridSkelton from "@/components/skeltons/product-grid";
 
 export const metadata: Metadata = {
   title: "Products",
-  description: "Products Page",
+  description: "Discover collection of products we offer",
 };
 
 export default async function Page(props: {

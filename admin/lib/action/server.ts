@@ -25,7 +25,6 @@ export async function auth(): Promise<Session> {
       data: payload as any,
     };
   } catch (error) {
-    console.error(error);
     return {
       status: "un_authenticated",
       data: null,

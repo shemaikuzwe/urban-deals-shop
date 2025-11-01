@@ -50,7 +50,7 @@ export default function Orders({ order }: { order: OrderUser }) {
           <TabsList className="grid w-full grid-cols-3 max-w-xl mx-auto mb-6">
             {[Status.COMPLETED, Status.PENDING, Status.FAILED].map((status) => (
               <TabsTrigger key={status} value={status} className="capitalize">
-                {status.toLowerCase()}
+                {status.toLowerCase(}
               </TabsTrigger>
             ))}
           </TabsList>

@@ -1,5 +1,9 @@
 "use server";
-import { ChangePasswordState, updateProfileState } from "@/lib/types/types";
+import {
+  ChangePasswordState,
+  FormStatus,
+  updateProfileState,
+} from "@/lib/types/types";
 import { auth } from "@/app/auth";
 import { OrderState } from "../types/types";
 import {
@@ -12,6 +16,9 @@ import {
   unstable_cacheTag as cacheTag,
   unstable_cacheLife as cacheLife,
 } from "next/cache";
+import { z } from "zod";
+// import sendOrderEmail from "../email/send-order";
+// import sendContactEmail from "../email/contact";
 
 export async function addOrder(
   prevState: OrderState | undefined,
@@ -28,7 +35,7 @@ export async function addOrder(
   }
   const { totalPrice, address, cart, name, phoneNumber } = validate.data;
   // TODO:send Email
-  await db.order.create({
+  const order = await db.order.create({
     data: {
       total_price: totalPrice,
       address,
@@ -37,6 +44,16 @@ export async function addOrder(
       phoneNumber,
     },
   });
+  // await sendOrderEmail({
+  //   totalPrice,
+  //   userNames: name,
+  //   phoneNumber,
+  //   products: JSON.parse(cart) as any,
+  //   createdAt: order.createdAt,
+  //   id: order.id,
+  //   status: order.status,
+  //   updatedAt: new Date(),
+  // });
   return {
     status: "success",
     message: "Order added successfully",
@@ -147,6 +164,43 @@ export async function updateProfile(
     return {
       status: "error",
       message: "Something went wrong",
+    };
+  }
+}
+export async function sendMessage(
+  prevState: FormStatus | undefined,
+  formData: FormData,
+): Promise<FormStatus> {
+  try {
+    const validate = z
+      .object({
+        email: z.string().email(),
+        message: z.string().min(3).max(40),
+        name: z.string().min(3).max(20),
+      })
+      .safeParse(Object.fromEntries(formData.entries()));
+    if (!validate.success) {
+      return {
+        status: "error",
+        message: validate.error.errors[0].message,
+      };
+    }
+    const { email, message, name } = validate.data;
+    // await sendContactEmail(name, message, email);
+    return {
+      status: "success",
+      message: "Thanks for your feedback!",
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        status: "error",
+        message: "Something went wrong ! try again",
+      };
+    }
+    return {
+      status: "error",
+      message: "Message not sent try again !",
     };
   }
 }

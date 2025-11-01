@@ -11,7 +11,8 @@ export const metadata: Metadata = {
     template: "%s",
     default: "Umucyo Styles",
   },
-  description: "Umucyo Tailoring Ltd ",
+  description: "Umucyo Styles – Where Creativity Meets Quality",
+  keywords: ["fashion", "rwanda", "Umucyo Styles", "clothes"],
 };
 
 export default function RootLayout({

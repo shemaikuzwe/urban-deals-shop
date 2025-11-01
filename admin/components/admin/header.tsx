@@ -20,7 +20,7 @@ export default function Header() {
             <ArrowLeft className="h-3 w-3" />
           </Button>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 h-full">
           <ThemeToggle />
           <User />
         </div>

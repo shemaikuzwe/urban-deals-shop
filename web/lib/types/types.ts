@@ -20,14 +20,14 @@ export type Product = {
   type: string;
   image: string;
 };
-export type Order = {
-  id?: string;
-  userId?: string;
-  products: Item[];
-  total_price: number;
-  status: Status;
-  date: Date;
-};
+// export type Order = {
+//   id?: string;
+//   userId?: string;
+//   products: Item[];
+//   total_price: number;
+//   status: Status;
+//   date: Date;
+// };
 export type TOrder = {
   userId: string;
   amount: number;
@@ -79,4 +79,19 @@ export type Actions = {
 export type ChartData = {
   product: string;
   orders: number;
+};
+
+export type FormStatus = {
+  status: "error" | "success";
+  message: string;
+};
+export type Order = {
+  id: string;
+  status: Status;
+  userNames: string;
+  phoneNumber: string;
+  totalPrice: number;
+  products: Item[];
+  createdAt: Date;
+  updatedAt: Date;
 };

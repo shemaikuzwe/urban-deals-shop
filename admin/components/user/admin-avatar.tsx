@@ -24,15 +24,15 @@ export default function User() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div
-          className={
-            "w-full flex cursor-pointer items-center justify-center h-full "
-          }
-        >
+        <div className={"w-full flex cursor-pointer  h-full "}>
           <Avatar>
             <AvatarImage src={""} alt={user.name || "user"} />
             <AvatarFallback>
-              {user.name.slice(0, 2).toUpperCase()}
+              {user.name
+                .split(" ")
+                .map((n) => n[0])
+                .join()
+                .toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <div className={"flex flex-col group-data-[collapsible=icon]:hidden"}>

@@ -5,7 +5,7 @@ import {
   ProductState,
   updateProfileState,
 } from "@/lib/types/types";
-import { revalidateTag } from "next/cache";
+import { revalidateTag, revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { OrderState } from "../types/types";
 import {
@@ -30,6 +30,7 @@ const AddProduct = productSchema.omit({ id: true });
 
 import { UTApi } from "uploadthing/server";
 import { getKeyFromUrl } from "../utils";
+import { Status } from "@prisma/client";
 
 const utapi = new UTApi({
   // ...options,
@@ -159,6 +160,11 @@ export async function deleteProduct(id: string) {
   });
   revalidateTag("products", "max");
   redirect("/admin/products");
+}
+
+export async function updateStatus(id: string, status: Status) {
+  await db.order.update({ where: { id }, data: { status } });
+  revalidatePath("/admin/orders");
 }
 
 export async function editProduct(

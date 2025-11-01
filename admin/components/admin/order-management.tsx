@@ -16,6 +16,7 @@ import { Item, Order } from "@/lib/types/types";
 import OrderCard from "./order-card";
 import { OrderUser } from "@/lib/action/server";
 import { Status } from "@prisma/client";
+import StatusChange from "../order/status-change";
 
 interface Props {
   ordersPromise: Promise<OrderUser>;
@@ -27,29 +28,6 @@ export function OrderManagement({ ordersPromise }: Props) {
   const [activeTab, setActiveTab] = useState<Status>("PENDING");
 
   const filteredOrders = orders.filter((order) => order.status === activeTab);
-
-  const getStatusBadge = (status: Order["status"]) => {
-    switch (status) {
-      case "COMPLETED":
-        return (
-          <Badge className="bg-green-500">
-            <CheckCircle className="w-3 h-3 mr-1" /> Completed
-          </Badge>
-        );
-      case "PENDING":
-        return (
-          <Badge variant="secondary">
-            <Clock className="w-3 h-3 mr-1" /> Pending
-          </Badge>
-        );
-      case "FAILED":
-        return (
-          <Badge variant="destructive">
-            <XCircle className="w-3 h-3 mr-1" /> Failed
-          </Badge>
-        );
-    }
-  };
 
   return (
     <div className="space-y-4">
@@ -119,7 +97,9 @@ export function OrderManagement({ ordersPromise }: Props) {
                             }}
                           />
                         </TableCell>
-                        <TableCell>{getStatusBadge(order.status)}</TableCell>
+                        <TableCell>
+                          {<StatusChange status={order.status} id={order.id} />}
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
