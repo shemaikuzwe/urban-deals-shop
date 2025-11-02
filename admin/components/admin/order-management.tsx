@@ -11,13 +11,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Clock, XCircle } from "lucide-react";
+import { CheckCircle, Clock, RefreshCcwIcon, XCircle } from "lucide-react";
 import { Item, Order } from "@/lib/types/types";
 import OrderCard from "./order-card";
 import { OrderUser } from "@/lib/action/server";
 import { Status } from "@prisma/client";
 import StatusChange from "../order/status-change";
 import { ScrollArea } from "../ui/scroll-area";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Button } from "../ui/button";
+import { refreshOrders } from "@/lib/action/action";
 
 interface Props {
   ordersPromise: Promise<OrderUser>;
@@ -47,9 +50,20 @@ export function OrderManagement({ ordersPromise }: Props) {
             value={status}
             className="border rounded-lg p-4"
           >
-            <h2 className="text-lg font-bold mb-4 capitalize">
-              {status.toLocaleLowerCase()} Orders
-            </h2>
+            <div className="flex justify-between">
+              <h2 className="text-lg font-bold mb-4 capitalize">
+                {status.toLocaleLowerCase()} Orders
+              </h2>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button onClick={async () => await refreshOrders()}>
+                    <RefreshCcwIcon />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Refresh</TooltipContent>
+              </Tooltip>
+            </div>
+
             {filteredOrders.length === 0 ? (
               <p className="text-center text-muted-foreground">
                 No {status.toLocaleLowerCase()} orders found.

@@ -97,7 +97,7 @@ export async function login(
     })
       .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
-      .setExpirationTime("24h")
+      .setExpirationTime("7d")
       .sign(key);
     const cookieStore = await cookies();
     cookieStore.set("auth_token", token, {
@@ -105,7 +105,7 @@ export async function login(
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 24 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     return { status: "success", message: "Login successful" };
   } catch (err) {
@@ -121,7 +121,10 @@ export async function logout() {
   cookieStore.delete("auth_token");
   redirect("/");
 }
-
+export async function refreshOrders() {
+  revalidateTag("orders", "max");
+  revalidatePath("/admin/orders");
+}
 export async function addProduct(
   prevState: ProductState | undefined,
   formData: FormData,
