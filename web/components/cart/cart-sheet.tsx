@@ -128,7 +128,7 @@ export default function Cart() {
                 <Input
                   type="text"
                   name="address"
-                  placeholder="Enter your address"
+                  placeholder="Enter your location"
                   required
                   min={3}
                 />

@@ -1,4 +1,3 @@
-"use client";
 import { Body } from "@react-email/body";
 import { Container } from "@react-email/container";
 import { Head } from "@react-email/head";
@@ -123,20 +122,6 @@ function NewOrderEmail({
         </Container>
 
         <Section style={footer}>
-          <Row style={{ width: "25%" }}>
-            <Column
-              align="right"
-              style={{ width: "100%", paddingRight: "4px" }}
-            >
-              <Img width={23} src={`${baseUrl}/static/instagram.png`} />
-            </Column>
-            <Column style={{ width: "100%", paddingLeft: "4px" }}>
-              <Img width={23} src={`${baseUrl}/static/twitter.png`} />
-            </Column>
-            <Column style={{ width: "100%", paddingLeft: "4px" }}>
-              <Img width={23} src={`${baseUrl}/static/linkedin.png`} />
-            </Column>
-          </Row>
           <Row>
             <Text style={{ textAlign: "center", color: "#706a7b" }}>
               © {date.getFullYear()}, All Rights Reserved <br />

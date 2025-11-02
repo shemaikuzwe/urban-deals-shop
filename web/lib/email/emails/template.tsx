@@ -9,17 +9,14 @@ import { Row } from "@react-email/row";
 import { Text } from "@react-email/text";
 import { Column } from "@react-email/column";
 
-interface TwitchResetPasswordEmailProps {
+interface Props {
   name: string;
   message: string;
 }
 
 const baseUrl = "https://umucyostyle.rw";
 
-export const EmailTemplate = ({
-  name,
-  message,
-}: TwitchResetPasswordEmailProps) => {
+export const EmailTemplate = ({ name, message }: Props) => {
   const date = new Date();
   return (
     <Html>
