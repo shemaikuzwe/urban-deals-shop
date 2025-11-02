@@ -21,7 +21,7 @@ export default async function sendMail(
     const resend = new Resend(process.env.RESEND_API_KEY);
     const from = process.env.MAIL_FROM;
     const to = process.env.MAIL_TO;
-    await resend.emails.send({
+    const res = await resend.emails.send({
       to: [to!],
       from: from!,
       subject: subject,
@@ -29,6 +29,9 @@ export default async function sendMail(
       react: react,
       replyTo: email,
     });
+    if (res.error) {
+      console.error("sending email error", res.error);
+    }
   } catch (e) {
     throw new Error("Email not sent");
   }

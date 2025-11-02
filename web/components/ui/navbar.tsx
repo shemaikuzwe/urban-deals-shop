@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -14,6 +14,7 @@ import { Suspense } from "react";
 import SearchForm from "./search";
 import ThemeToggle from "../providers/theme-toggle";
 import Logo from "./logo";
+import { MenuTrigger } from "./menu";
 
 const links = [
   { name: "Home", href: "/", icon: <Home className="h-5 w-5" /> },
@@ -21,6 +22,11 @@ const links = [
     name: "Products",
     href: "/products",
     icon: <ShoppingCart className="h-5 w-5" />,
+  },
+  {
+    name: "Contact",
+    href: "/contact",
+    icon: <PhoneIcon className="h-5 w-5" />,
   },
 ];
 
@@ -57,11 +63,8 @@ export function Navbar() {
           </div>
           <div className="md:hidden flex items-center">
             <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" className="ml-2">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
+              <SheetTrigger>
+                <MenuTrigger />
               </SheetTrigger>
               <SheetContent side="right">
                 <div className="flex flex-col justify-start items-start gap-2 mt-4">

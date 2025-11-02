@@ -96,7 +96,7 @@ export default function Cart() {
             <span className="font-bold text-black">
               Total Price :{totalPrice.toLocaleString()} Rwf
             </span>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-full">
               <Input
                 type="text"
                 name="name"
@@ -110,33 +110,35 @@ export default function Cart() {
                     {error}
                   </p>
                 ))}
+              <div className="flex  gap-2">
+                <Input
+                  type="tel"
+                  name="phoneNumber"
+                  placeholder="Enter Phone Number"
+                  required
+                  min={10}
+                />
+                {state?.errors?.phoneNumber &&
+                  state.errors.phoneNumber.map((error) => (
+                    <p key={error} className="text-red-500 text-sm">
+                      {error}
+                    </p>
+                  ))}
 
-              <Input
-                type="tel"
-                name="phoneNumber"
-                placeholder="Enter Phone Number"
-                required
-                min={10}
-              />
-              {state?.errors?.phoneNumber &&
-                state.errors.phoneNumber.map((error) => (
-                  <p key={error} className="text-red-500 text-sm">
-                    {error}
-                  </p>
-                ))}
-              <Input
-                type="text"
-                name="address"
-                placeholder="Enter your address"
-                required
-                min={3}
-              />
-              {state?.errors?.address &&
-                state.errors.address.map((error) => (
-                  <p key={error} className="text-red-500 text-sm">
-                    {error}
-                  </p>
-                ))}
+                <Input
+                  type="text"
+                  name="address"
+                  placeholder="Enter your address"
+                  required
+                  min={3}
+                />
+                {state?.errors?.address &&
+                  state.errors.address.map((error) => (
+                    <p key={error} className="text-red-500 text-sm">
+                      {error}
+                    </p>
+                  ))}
+              </div>
             </div>
             <Button
               disabled={isPending}

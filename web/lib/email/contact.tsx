@@ -1,5 +1,5 @@
 import "server-only";
-import EmailTemplate from "./template";
+import EmailTemplate from "./emails/template";
 import sendMail from "./send";
 export default async function sendContactEmail(
   name: string,

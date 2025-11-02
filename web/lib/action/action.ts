@@ -177,9 +177,17 @@ export async function sendMessage(
   try {
     const validate = z
       .object({
-        email: z.string().email(),
-        message: z.string().min(3).max(40),
-        name: z.string().min(3).max(20),
+        email: z
+          .string({ message: "Invalid Email" })
+          .email({ message: "Invalid Email" }),
+        message: z
+          .string({ message: "Invalid Message" })
+          .min(3, { message: "Invalid message" })
+          .max(100, { message: "Invalid message" }),
+        name: z
+          .string({ message: "Invalid name" })
+          .min(3, { message: "Invalid name" })
+          .max(20, { message: "Invalid name" }),
       })
       .safeParse(Object.fromEntries(formData.entries()));
     if (!validate.success) {

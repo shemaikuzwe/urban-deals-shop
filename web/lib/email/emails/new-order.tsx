@@ -1,3 +1,4 @@
+"use client";
 import { Body } from "@react-email/body";
 import { Container } from "@react-email/container";
 import { Head } from "@react-email/head";
@@ -20,16 +21,18 @@ interface Props {
   totalPrice: number;
 }
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 function NewOrderEmail({
-  userNames,
-  createdAt,
-  phoneNumber,
-  products,
-  totalPrice,
+  userNames = "John Doe",
+  createdAt = new Date(),
+  phoneNumber = "07888888",
+  products = [
+    { id: "1", name: "Product 1", price: 100, quantity: 1, size: "XL" },
+  ],
+  totalPrice = 1000,
 }: Props) {
   const date = new Date();
-
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const adminUrl = process.env.ADMIN_URL;
   return (
     <Html>
       <Head />
@@ -39,11 +42,7 @@ function NewOrderEmail({
           <Section style={logo}>
             <Row>
               <Column>
-                <Img
-                  width={60}
-                  src={`${baseUrl}/logo.png`}
-                  alt="Umucyo styles Logo"
-                />
+                <Img width={60} src={`${baseUrl}/logo1.png`} alt="Logo" />
               </Column>
               <Column>
                 <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
@@ -111,7 +110,7 @@ function NewOrderEmail({
                 ...{ display: "flex", justifyContent: "center" },
               }}
             >
-              <Button style={button} href={`${baseUrl}/dashboard/orders`}>
+              <Button style={button} href={`${adminUrl}/dashboard/orders`}>
                 Orders
               </Button>
             </Section>
@@ -191,7 +190,7 @@ const table = {
 };
 
 const tableHeader = {
-  backgroundColor: "rgb(252, 152, 3)",
+  backgroundColor: " rgb(31, 41, 55)",
 };
 
 const tableHeaderCell = {
@@ -237,7 +236,7 @@ const sectionBorder = {
 };
 
 const sectionCenter = {
-  borderBottom: "1px solid rgb(252, 152, 3)",
+  borderBottom: "1px solid  rgb(31, 41, 55)",
   width: "102px",
 };
 const bold = {
@@ -247,7 +246,7 @@ const bold = {
 };
 
 const button = {
-  backgroundColor: "rgb(252, 152, 3)",
+  backgroundColor: "rgb(31, 41, 55)",
   borderRadius: 4,
   color: "#FFF",
   cursor: "pointer",

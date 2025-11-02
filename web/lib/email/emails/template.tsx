@@ -14,7 +14,7 @@ interface TwitchResetPasswordEmailProps {
   message: string;
 }
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+const baseUrl = "https://umucyostyle.rw";
 
 export const EmailTemplate = ({
   name,
@@ -65,20 +65,6 @@ export const EmailTemplate = ({
         </Container>
 
         <Section style={footer}>
-          <Row style={{ width: "25%" }}>
-            <Column
-              align="right"
-              style={{ width: "100%", paddingRight: "4px" }}
-            >
-              <Img width={23} src={`${baseUrl}/static/instagram.png`} />
-            </Column>
-            <Column style={{ width: "100%", paddingLeft: "4px" }}>
-              <Img width={23} src={`${baseUrl}/static/twitter.png`} />
-            </Column>
-            <Column style={{ width: "100%", paddingLeft: "4px" }}>
-              <Img width={23} src={`${baseUrl}/static/linkedin.png`} />
-            </Column>
-          </Row>
           <Row>
             <Text style={{ textAlign: "center", color: "#706a7b" }}>
               © {date.getFullYear()}, All Rights Reserved <br />
@@ -138,6 +124,6 @@ const sectionBorder = {
 };
 
 const sectionCenter = {
-  borderBottom: "1px solid rgb(252, 152, 3)",
+  borderBottom: "1px solid  rgb(31, 41, 55)",
   width: "102px",
 };
