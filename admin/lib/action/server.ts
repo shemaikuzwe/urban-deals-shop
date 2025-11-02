@@ -52,6 +52,20 @@ export async function getProduct(id: string) {
   });
 }
 
+export async function getPendingOrdersNo() {
+  "use cache";
+  cacheTag("orders");
+  return db.order.count({
+    where: {
+      status: "PENDING",
+    },
+  });
+}
+export async function getOrdersNo() {
+  "use cache";
+  cacheTag("orders");
+  return db.order.count();
+}
 export async function getOrders() {
   "use cache";
   cacheTag("orders");

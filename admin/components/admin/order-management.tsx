@@ -17,6 +17,7 @@ import OrderCard from "./order-card";
 import { OrderUser } from "@/lib/action/server";
 import { Status } from "@prisma/client";
 import StatusChange from "../order/status-change";
+import { ScrollArea } from "../ui/scroll-area";
 
 interface Props {
   ordersPromise: Promise<OrderUser>;
@@ -54,7 +55,7 @@ export function OrderManagement({ ordersPromise }: Props) {
                 No {status.toLocaleLowerCase()} orders found.
               </p>
             ) : (
-              <div className="overflow-x-auto">
+              <ScrollArea className="h-100">
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -104,7 +105,7 @@ export function OrderManagement({ ordersPromise }: Props) {
                     ))}
                   </TableBody>
                 </Table>
-              </div>
+              </ScrollArea>
             )}
           </TabsContent>
         ))}

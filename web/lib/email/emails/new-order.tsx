@@ -109,7 +109,7 @@ function NewOrderEmail({
                 ...{ display: "flex", justifyContent: "center" },
               }}
             >
-              <Button style={button} href={`${adminUrl}/dashboard/orders`}>
+              <Button style={button} href={`${adminUrl}/admin/orders`}>
                 Orders
               </Button>
             </Section>

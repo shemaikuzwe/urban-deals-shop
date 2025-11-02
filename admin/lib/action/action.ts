@@ -164,6 +164,7 @@ export async function deleteProduct(id: string) {
 
 export async function updateStatus(id: string, status: Status) {
   await db.order.update({ where: { id }, data: { status } });
+  revalidateTag("orders", "max");
   revalidatePath("/admin/orders");
 }
 

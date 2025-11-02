@@ -1,8 +1,17 @@
 import DashboardCard from "./dashboard-card";
-import { getAllUsers, getProducts, getProductsNo } from "@/lib/action/server";
+import {
+  getOrdersNo,
+  getPendingOrdersNo,
+  getProductsNo,
+} from "@/lib/action/server";
 export default async function DashboardCards() {
-  const noOfProducts = await getProductsNo();
-  const noOfCustomers = await getAllUsers();
+  const [noOfProducts, orders, pending] = await Promise.all([
+    getProductsNo(),
+    getOrdersNo(),
+    getPendingOrdersNo(),
+  ]);
+
+  // const noOfCustomers = await getAllUsers();
   return (
     <div className="grid gap-4 sm:grid-cols-1 justify-center items-center md:grid-cols-2 lg:grid-cols-3">
       <DashboardCard
@@ -18,13 +27,13 @@ export default async function DashboardCards() {
       />*/}
       <DashboardCard
         label="All Orders"
-        content={0}
+        content={orders}
         icon="money"
         color="bg-violet-500"
       />
       <DashboardCard
         label="Pending Orders"
-        content={0}
+        content={pending}
         icon="money"
         color="bg-primary"
       />
