@@ -6,8 +6,7 @@ async function seed() {
   console.log(process.env.DEFAULT_PASSWORD);
   console.log(process.env.DEFAULT_EMAIL);
   const hashPassword = await bcrypt.hash(process.env.DEFAULT_PASSWORD!, 10);
-  const email = process.env.DEFAULT_EMAIL!;
-  console.log(hashPassword);
+  const email = process.env.DEFAULT_EMAIL;
   await db.user.create({
     data: {
       email,

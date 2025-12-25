@@ -10,9 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Clock, RefreshCcwIcon, XCircle } from "lucide-react";
-import { Item, Order } from "@/lib/types/types";
+import { RefreshCcwIcon } from "lucide-react";
+import { Item } from "@/lib/types/types";
 import OrderCard from "./order-card";
 import { OrderUser } from "@/lib/action/server";
 import { Status } from "@prisma/client";
@@ -86,16 +85,11 @@ export function OrderManagement({ ordersPromise }: Props) {
                         <TableCell>
                           <div className="text-sm flex-col gap-2 leading-none">
                             <p className="font-medium text-lg  mb-2">
-                              {order.user?.name || order.names}
+                              {order.user?.name}
                             </p>
                             <p className="font-normal mb-2 text-md">
-                              {order?.user?.email || order?.phoneNumber}
+                              {order?.user?.email}
                             </p>
-                            {order.address && (
-                              <p className="font-normal text-md">
-                                {order.address}
-                              </p>
-                            )}
                           </div>
                         </TableCell>
                         <TableCell>{order.date.toLocaleDateString()}</TableCell>

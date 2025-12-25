@@ -11,7 +11,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Login",
-  description: "Umucyo Tailoring ",
+  description: "Urban Deals Shop ",
 };
 export default function LoginForm() {
   return (

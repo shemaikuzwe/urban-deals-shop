@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(uuid())
+  id          String   @id @db.Uuid @default(uuid())
   name        String
   price       Int
   description String
@@ -21,21 +21,18 @@ model Product {
 }
 
 model Order {
-  id          String   @id @default(uuid())
-  userId      String?
+  id          String   @id @db.Uuid @default(uuid())
+  userId      String   @db.Uuid
   products    Json[]
   total_price Int
   status      Status   @default(PENDING)
   date        DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   createdAt   DateTime @default(now())
-  address     String?
-  names       String?
-  phoneNumber String?
-  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id            String    @id @default(uuid())
+  id            String    @id @default(uuid()) @db.Uuid
   name          String?
   email         String?   @unique
   emailVerified DateTime?
@@ -49,7 +46,7 @@ model User {
 }
 
 model Account {
-  userId            String
+  userId            String   @db.Uuid
   type              String
   provider          String
   providerAccountId String

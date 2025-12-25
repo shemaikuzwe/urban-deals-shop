@@ -1,11 +1,6 @@
 import Link from "next/link";
-import {
-  Twitter,
-  Linkedin,
-  InstagramIcon,
-  PhoneIcon,
-  MailIcon,
-} from "lucide-react";
+import { Twitter, Github, Linkedin, Globe } from "lucide-react";
+import { GitHubStars } from "./github-stars";
 import { unstable_cacheLife as cacheLife } from "next/cache";
 
 export async function Footer() {
@@ -16,7 +11,7 @@ export async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-6">
             <h3 className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
-              Umucyo Styles
+              Urban Deals Shop
             </h3>
             <ul className="space-y-4">
               <li>
@@ -29,7 +24,7 @@ export async function Footer() {
               </li>
               <li>
                 <Link
-                  href="/contact"
+                  href="#"
                   className="block py-3 px-4 text-base text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
                 >
                   Contact
@@ -48,6 +43,22 @@ export async function Footer() {
                   className="text-base text-gray-500 hover:text-gray-900"
                 >
                   All Products
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/login"
+                  className="text-base text-gray-500 hover:text-gray-900"
+                >
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/login"
+                  className="text-base text-gray-500 hover:text-gray-900"
+                >
+                  Create Account
                 </Link>
               </li>
             </ul>
@@ -85,60 +96,55 @@ export async function Footer() {
           </div>
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
-              Contact
+              Connect
             </h3>
             <div className="flex space-x-6">
               <a
-                href="https://www.instagram.com/umucyo.style?igsh=M20weXM1eWc2bmln&utm_source=qr"
+                href="https://x.com/Shemaelie97"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-gray-600 flex gap-2"
+                className="text-gray-400 hover:text-gray-500"
               >
-                <InstagramIcon className="h-6 w-6" />
-                <span>Instagram</span>
+                <span className="sr-only">X</span>
+                <Twitter className="h-6 w-6" />
+              </a>
+              <a
+                href="https://github.com/shemaikuzwe"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <span className="sr-only">GitHub</span>
+                <Github className="h-6 w-6" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ikuzwe-shema-elie-791b63304/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <span className="sr-only">LinkedIn</span>
+                <Linkedin className="h-6 w-6" />
+              </a>
+              <a
+                href="hhttps://shema-elie.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <span className="sr-only">Website</span>
+                <Globe className="h-6 w-6" />
               </a>
             </div>
-            <div className="flex space-x-6">
-              <a
-                href="tel:0793052454"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-gray-600 flex  gap-2"
-              >
-                <span className="sr-only">Phone</span>
-                <PhoneIcon className="h-6 w-6" />
-                <span>0793052454</span>
-              </a>
-            </div>
-            <div className="flex space-x-6">
-              <a
-                href="mailto:umucyotailoring@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-gray-600 flex  gap-2"
-              >
-                <span className="sr-only">Email</span>
-                <MailIcon className="h-6 w-6" />
-                <span>umucyotailoring@gmail.com</span>
-              </a>
-            </div>
-            <div className="flex space-x-6">
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 text-md hover:text-gray-600 flex  gap-2"
-              >
-                <span className="sr-only">Location</span>
-                <MailIcon className="h-6 w-6" />
-                <span>Rusizi,Kamembe</span>
-              </a>
+            <div className="flex items-center space-x-2">
+              <span className="text-sm text-gray-500">Star Us:</span>
+              <GitHubStars repo="shemaikuzwe/urban-deals-shop" />
             </div>
           </div>
         </div>
         <div className="mt-8 border-t  pt-3">
           <p className="text-base  text-gray-600 text-center">
-            &copy; {date} Umucyo Styles.
+            &copy; {date} Urban Deals Shop.
           </p>
         </div>
       </div>
@@ -147,6 +153,6 @@ export async function Footer() {
 }
 async function getCurentYear() {
   "use cache";
-  cacheLife("max");
+  cacheLife("max")
   return new Date().getFullYear();
 }

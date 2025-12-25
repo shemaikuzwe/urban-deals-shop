@@ -35,11 +35,8 @@ const UpdateUserProfileSchema = z.object({
 });
 
 const createOrderSchema = z.object({
-  totalPrice: z.coerce.number().min(100, { message: "Enter alid amount" }),
+  totalPrice: z.coerce.number().min(100, { message: "Enter invalid amount" }),
   cart: z.string(),
-  name: z.string().min(3, { message: "Enter your name" }),
-  phoneNumber: z.string().min(10, { message: "Enter valid phone number" }),
-  address: z.string().min(3, { message: "Enter your address" }),
 });
 export {
   productSchema,

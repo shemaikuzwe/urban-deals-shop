@@ -14,7 +14,7 @@ interface Props {
   message: string;
 }
 
-const baseUrl = "https://umucyostyle.rw";
+const baseUrl = "https://urban-deals-shop.vercel.app";
 
 export const EmailTemplate = ({ name, message }: Props) => {
   const date = new Date();
@@ -31,7 +31,7 @@ export const EmailTemplate = ({ name, message }: Props) => {
               </Column>
               <Column>
                 <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
-                  Umucyo Sytles
+                  Urban Deals Shop
                 </Text>
               </Column>
             </Row>

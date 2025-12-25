@@ -35,12 +35,7 @@ export type TOrder = {
 };
 export type OrderState = {
   status: "success" | "error";
-  message?: string;
-  errors?: {
-    phoneNumber?: string[];
-    name?: string[];
-    address?: string[];
-  };
+  message?:string
 };
 export type ChangePasswordState = OrderState & {
   errors?: {

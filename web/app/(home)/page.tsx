@@ -22,5 +22,5 @@ export default function Page() {
 export const metadata: Metadata = {
   title: "Home",
   description:
-    "At Umucyo Styles, we design, sew, and sell high-quality clothes made with passion and precision. Whether you want modern fashion, traditional wear, or custom-made designs.",
+    "At Urban Deals Shop, we design, sew, and sell high-quality clothes made with passion and precision. Whether you want modern fashion, traditional wear, or custom-made designs.",
 };

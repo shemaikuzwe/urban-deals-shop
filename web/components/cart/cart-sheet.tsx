@@ -14,8 +14,7 @@ import { CartItem } from "./cart-item";
 import { addOrder } from "@/lib/action/action";
 import { Badge } from "../ui/badge";
 import { useCart } from "@/lib/store";
-import { Input } from "../ui/input";
-import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { Alert,  AlertTitle } from "../ui/alert";
 
 export default function Cart() {
   const { cart, removeAll } = useCart();
@@ -26,8 +25,8 @@ export default function Cart() {
       cart.reduce(
         (acc: number, curr: { price: number; quantity: number }) =>
           (acc += curr.price * curr.quantity),
-        0,
-      ),
+        0
+      )
     );
   }, [cart]);
   useEffect(() => {
@@ -91,55 +90,13 @@ export default function Cart() {
             className="flex flex-col justify-start gap-2 items-start"
             action={action}
           >
+
             <input type="hidden" name="totalPrice" value={totalPrice} />
             <input type="hidden" name="cart" value={JSON.stringify(cart)} />
             <span className="font-bold text-black">
               Total Price :{totalPrice.toLocaleString()} Rwf
             </span>
-            <div className="flex flex-col gap-2 w-full">
-              <Input
-                type="text"
-                name="name"
-                placeholder="Enter your full names"
-                required
-                min={3}
-              />
-              {state?.errors?.name &&
-                state.errors.name.map((error) => (
-                  <p key={error} className="text-red-500 text-sm">
-                    {error}
-                  </p>
-                ))}
-              <div className="flex  gap-2">
-                <Input
-                  type="tel"
-                  name="phoneNumber"
-                  placeholder="Enter Phone Number"
-                  required
-                  min={10}
-                />
-                {state?.errors?.phoneNumber &&
-                  state.errors.phoneNumber.map((error) => (
-                    <p key={error} className="text-red-500 text-sm">
-                      {error}
-                    </p>
-                  ))}
-
-                <Input
-                  type="text"
-                  name="address"
-                  placeholder="Enter your location"
-                  required
-                  min={3}
-                />
-                {state?.errors?.address &&
-                  state.errors.address.map((error) => (
-                    <p key={error} className="text-red-500 text-sm">
-                      {error}
-                    </p>
-                  ))}
-              </div>
-            </div>
+            
             <Button
               disabled={isPending}
               className="w-full disabled:cursor-not-allowed"

@@ -1,5 +1,5 @@
 import AddForm from "@/components/admin/add-form";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 export default function Page() {
   return <AddForm />;
 }

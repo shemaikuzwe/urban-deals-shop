@@ -45,7 +45,7 @@ function NewOrderEmail({
               </Column>
               <Column>
                 <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
-                  Umucyo Styles
+                  Urban Deals Shop
                 </Text>
               </Column>
             </Row>

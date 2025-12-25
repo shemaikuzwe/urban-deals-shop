@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Menu, PhoneIcon } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -15,6 +15,9 @@ import SearchForm from "./search";
 import ThemeToggle from "../providers/theme-toggle";
 import Logo from "./logo";
 import { MenuBadge } from "./menu";
+import UserSkelton from "../skeltons/user-skelton";
+import User from "../user/user";
+
 
 const links = [
   { name: "Home", href: "/", icon: <Home className="h-5 w-5" /> },
@@ -22,11 +25,6 @@ const links = [
     name: "Products",
     href: "/products",
     icon: <ShoppingCart className="h-5 w-5" />,
-  },
-  {
-    name: "Contact",
-    href: "/contact",
-    icon: <PhoneIcon className="h-5 w-5" />,
   },
 ];
 
@@ -57,9 +55,9 @@ export function Navbar() {
             </NavigationMenu>
             <Cart />
             <ThemeToggle />
-            {/*<Suspense fallback={<UserSkelton />}>
-            <User />
-          </Suspense>*/}
+            <Suspense fallback={<UserSkelton />}>
+              <User />
+            </Suspense>
           </div>
           <div className="md:hidden flex items-center">
             <Sheet>
@@ -84,9 +82,9 @@ export function Navbar() {
                   ))}
                   <Cart />
                   <ThemeToggle />
-                  {/*<Suspense fallback={<UserSkelton />}>
-                  <User />
-                </Suspense>*/}
+                  <Suspense fallback={<UserSkelton />}>
+                    <User />
+                  </Suspense>
                 </div>
               </SheetContent>
             </Sheet>

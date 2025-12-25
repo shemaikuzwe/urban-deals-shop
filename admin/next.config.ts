@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
         hostname: "lh3.googleusercontent.com",
         protocol: "https",
       },
-      { hostname: "cu8iqyca8r.ufs.sh", protocol: "https" },
+      { hostname: "cmx55brlhb.ufs.sh", protocol: "https" },
     ],
   },
 };

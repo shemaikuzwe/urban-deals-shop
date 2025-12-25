@@ -8,7 +8,7 @@ export default async function sendContactEmail(
 ) {
   await sendMail(
     <EmailTemplate message={message} name={name} />,
-    "Umucyo Tailoring",
+    "Urban Deals Shop",
     `New Message from ${name}`,
     email,
   );

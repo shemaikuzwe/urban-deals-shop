@@ -6,7 +6,7 @@ import NewOrderEmail from "./emails/new-order";
 export default async function sendOrderEmail(order: Order) {
   await sendMail(
     <NewOrderEmail {...order} />,
-    "Umucyo Styles",
+    "Urban Deals Shop",
     `New Order by ${order.userNames}`,
   );
 }

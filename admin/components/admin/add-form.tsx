@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useActionState, useRef } from "react";
 import InputGroup from "@/components/auth/inputGroup";

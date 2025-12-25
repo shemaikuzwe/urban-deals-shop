@@ -17,59 +17,65 @@ import {
   unstable_cacheLife as cacheLife,
 } from "next/cache";
 import { z } from "zod";
-
-import sendOrderEmail from "../email/send-order";
 import sendContactEmail from "../email/contact";
+import Stripe from "stripe";
+import { redirect } from "next/navigation";
 
 export async function addOrder(
   prevState: OrderState | undefined,
-  formData: FormData,
+  formData: FormData
 ): Promise<OrderState | undefined> {
   const validate = createOrderSchema.safeParse(
-    Object.fromEntries(formData.entries()),
+    Object.fromEntries(formData.entries())
   );
   if (!validate.success) {
     return {
       status: "error",
-      errors: validate.error.flatten().fieldErrors,
+      message: "validation error",
     };
   }
-  const { totalPrice, address, cart, name, phoneNumber } = validate.data;
+  const userId = (await auth())?.user.id as string;
+  if (!userId) throw new Error("User not found");
+  const { totalPrice: amount, cart } = validate.data;
 
-  const order = await db.order.create({
-    data: {
-      total_price: totalPrice,
-      address,
-      products: JSON.parse(cart),
-      names: name,
-      phoneNumber,
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
+  const stripeSession = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        price_data: {
+          currency: "rwf",
+          unit_amount: amount,
+          product_data: {
+            name: "Order",
+          },
+        },
+        quantity: 1,
+      },
+    ],
+    metadata: {
+      buyerId: userId,
+      products: cart,
     },
+    payment_method_types: ["card", "paypal"],
+    // shipping_address_collection: {
+    //    allowed_countries:["RW"]
+    // },
+    mode: "payment",
+    success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/orders?success=order created successfully`,
+    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   });
-
-  await sendOrderEmail({
-    totalPrice,
-    userNames: name,
-    phoneNumber,
-    products: JSON.parse(cart) as any,
-    createdAt: order.createdAt,
-    id: order.id,
-    status: order.status,
-    updatedAt: new Date(),
-  });
-
-  return {
-    status: "success",
-    message: "Order added successfully",
-  };
+  redirect(stripeSession.url!);
 }
+
 export async function changePassword(
   prevState: ChangePasswordState | undefined,
-  formData: FormData,
+  formData: FormData
 ): Promise<ChangePasswordState | undefined> {
   const session = await auth();
   const userId = session?.user?.id as string;
   const validate = changePasswordShema.safeParse(
-    Object.fromEntries(formData.entries()),
+    Object.fromEntries(formData.entries())
   );
   if (!validate.success) {
     return {
@@ -132,7 +138,7 @@ const find_password = async (id: string, pass: string) => {
 
 export async function updateProfile(
   prevState: updateProfileState | undefined,
-  formData: FormData,
+  formData: FormData
 ): Promise<updateProfileState | undefined> {
   const session = await auth();
   const userId = session?.user?.id as string;
@@ -172,7 +178,7 @@ export async function updateProfile(
 }
 export async function sendMessage(
   prevState: FormStatus | undefined,
-  formData: FormData,
+  formData: FormData
 ): Promise<FormStatus> {
   try {
     const validate = z
