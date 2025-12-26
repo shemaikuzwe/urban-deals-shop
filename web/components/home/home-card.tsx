@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { getFeaturedProducts, getLatestProducts } from "@/lib/action/action";
@@ -13,18 +12,24 @@ interface Props {
 
 export default async function HomeCard({ name, viewAll = true }: Props) {
   const products =
-    name == "Featured"
+    name === "Featured"
       ? await getFeaturedProducts()
       : await getLatestProducts();
+
   if (products.length === 0) return null;
+
   return (
-    <div className="mt-10">
-      <center>
-        <span className="text-center font-bold text-2xl">{name} Products</span>
-      </center>
-      <div className={"flex flex-wrap gap-2 mt-10"}>
+    <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="flex flex-col items-center gap-4 mb-10">
+        <h2 className="text-3xl md:text-4xl font-bold font-heading text-center tracking-tight">
+          {name} <span className="text-primary">Products</span>
+        </h2>
+        <div className="h-1 w-20 bg-primary rounded-full" />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {products && products.length > 0 ? (
-          products.map((product, index) => (
+          products.map((product) => (
             <ProductCard product={product} key={product.id} />
           ))
         ) : (
@@ -33,14 +38,19 @@ export default async function HomeCard({ name, viewAll = true }: Props) {
       </div>
 
       {viewAll && products.length > 0 && (
-        <center>
-          <Button variant={"default"} asChild>
-            <Link href={"/products"}>
-              View All <ArrowRight />{" "}
+        <div className="flex justify-center mt-12">
+          <Button
+            variant="outline"
+            size="lg"
+            className="rounded-full px-8"
+            asChild
+          >
+            <Link href="/products" className="flex items-center gap-2">
+              View All Products <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>
-        </center>
+        </div>
       )}
-    </div>
+    </section>
   );
 }

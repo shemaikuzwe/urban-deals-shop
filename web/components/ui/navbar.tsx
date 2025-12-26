@@ -18,7 +18,6 @@ import { MenuBadge } from "./menu";
 import UserSkelton from "../skeltons/user-skelton";
 import User from "../user/user";
 
-
 const links = [
   { name: "Home", href: "/", icon: <Home className="h-5 w-5" /> },
   {
@@ -30,67 +29,88 @@ const links = [
 
 export function Navbar() {
   return (
-    <nav className="bg-card border-b h-20 py-2">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Logo />
-          <Suspense fallback={null}>
-            <SearchForm />
-          </Suspense>
-          <div className="hidden md:flex items-center space-x-4">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          <div className="flex-shrink-0">
+            <Logo />
+          </div>
+
+          <div className="hidden md:flex flex-1 justify-center max-w-2xl mx-auto">
+            <Suspense fallback={null}>
+              <SearchForm />
+            </Suspense>
+          </div>
+
+          <div className="hidden md:flex items-center gap-6">
             <NavigationMenu>
-              <NavigationMenuList>
+              <NavigationMenuList className="gap-2">
                 {links.map((link) => (
                   <NavigationMenuItem key={link.name}>
                     <Link
                       href={link.href}
-                      className="px-3 flex gap-1 py-2 rounded-md text-sm font-medium"
+                      className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                     >
-                      {link.icon}
+                      <span className="mr-2 opacity-70 group-hover:opacity-100 transition-opacity">
+                        {link.icon}
+                      </span>
                       {link.name}
                     </Link>
                   </NavigationMenuItem>
                 ))}
               </NavigationMenuList>
             </NavigationMenu>
-            <Cart />
-            <ThemeToggle />
-            <Suspense fallback={<UserSkelton />}>
-              <User />
-            </Suspense>
+            <div className="flex items-center gap-4 border-l pl-6 ml-2">
+              <Cart />
+              <ThemeToggle />
+              <Suspense fallback={<UserSkelton />}>
+                <User />
+              </Suspense>
+            </div>
           </div>
+
           <div className="md:hidden flex items-center">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" className="ml-2">
+                <Button variant="ghost" size="icon" className="relative">
                   <Menu className="h-6 w-6" />
                   <MenuBadge />
                   <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="right">
-                <div className="flex flex-col justify-start items-start gap-2 mt-4">
-                  {links.map((link) => (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      className="px-3 flex gap-1 py-2 rounded-md text-sm font-medium"
-                    >
-                      {link.icon}
-                      {link.name}
-                    </Link>
-                  ))}
-                  <Cart />
-                  <ThemeToggle />
-                  <Suspense fallback={<UserSkelton />}>
-                    <User />
-                  </Suspense>
+                <div className="flex flex-col flex-1 gap-6 mt-8">
+                  <div className="flex flex-col gap-2">
+                    {links.map((link) => (
+                      <Link
+                        key={link.name}
+                        href={link.href}
+                        className="flex items-center gap-4 px-4 py-3 text-lg font-medium rounded-lg hover:bg-accent"
+                      >
+                        {link.icon}
+                        {link.name}
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="h-px bg-border" />
+                  <div className="flex flex-col gap-4 px-4">
+                    <Cart />
+                    <div className="flex items-center justify-between">
+                      <span>Theme</span>
+                      <ThemeToggle />
+                    </div>
+                  </div>
+                  <div className="mt-auto">
+                    <Suspense fallback={<UserSkelton />}>
+                      <User />
+                    </Suspense>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
           </div>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }

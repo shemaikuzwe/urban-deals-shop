@@ -1,4 +1,3 @@
-"use client";
 import { type CarouselApi } from "@/components/ui/carousel";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Suspense, use, useState } from "react";
-import { Product } from "@prisma/client";
+import type { Product } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
 
@@ -29,7 +28,7 @@ export default function ImageSlider({
   };
   return (
     <Suspense fallback={null}>
-      <div className="relative sm:w-[72vh] w-full mx-auto rounded-md p-0">
+      <div className="relative sm:w-[72vh] w-full mx-auto p-0">
         <Carousel
           setApi={setApi}
           plugins={[
@@ -42,10 +41,10 @@ export default function ImageSlider({
             {products.map((product, index) => (
               <CarouselItem
                 onClick={() => handleClick(product.id)}
-                key={index}
-                className="p-0 h-full w-full  group relative  hover:shadow-lg transition-all  border-0 cursor-pointer"
+                key={product.id}
+                className="p-0 h-full w-full group relative  hover:shadow-lg transition-all  border-0 cursor-pointer"
               >
-                <Card className="p-0 h-full w-full rounded-none border-0">
+                <Card className="p-0 h-full w-full rounded-full border-0">
                   <CardContent className="p-1 w-full h-full">
                     <div className="relative h-full w-full">
                       <Image
@@ -54,7 +53,7 @@ export default function ImageSlider({
                         priority={index === 0}
                         sizes={"100vw"}
                         fill
-                        className="transition-transform group-hover:scale-105 rounded-sm object-cover object-center"
+                        className="transition-transform group-hover:scale-105 object-cover object-center"
                       />
                       <div className="absolute left-4 top-2">
                         <Badge

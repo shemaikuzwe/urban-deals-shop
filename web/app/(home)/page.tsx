@@ -1,26 +1,26 @@
 import HomeCard from "@/components/home/home-card";
+import { Hero } from "@/components/home/hero";
 import { ProductCardSkeleton } from "@/components/skeltons/product-card-skeleton";
-import ImageSlider from "@/components/ui/img-slider";
-import { getProducts } from "@/lib/action/server";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import { getProducts } from "@/lib/action/server";
 
 export default function Page() {
-  const products = getProducts();
+  const product = getProducts();
   return (
-    <main className="px-14 flex flex-col gap-5">
-      <ImageSlider productsPromise={products} />
-      <Suspense fallback={<ProductCardSkeleton />}>
-        <HomeCard name="Featured" viewAll={false} />
-      </Suspense>
-      <Suspense fallback={<ProductCardSkeleton />}>
-        <HomeCard name="Latest" />
-      </Suspense>
+    <main className="flex flex-col w-full min-h-screen">
+      <Hero productPromise={product} />
+      <div className="space-y-12 pb-20">
+        <Suspense fallback={<ProductCardSkeleton />}>
+          <HomeCard name="Featured" viewAll={false} />
+        </Suspense>
+        <Suspense fallback={<ProductCardSkeleton />}>
+          <HomeCard name="Latest" />
+        </Suspense>
+      </div>
     </main>
   );
 }
 export const metadata: Metadata = {
   title: "Home",
-  description:
-    "At Urban Deals Shop, we design, sew, and sell high-quality clothes made with passion and precision. Whether you want modern fashion, traditional wear, or custom-made designs.",
 };

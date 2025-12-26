@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-
-const poppins = Poppins({ subsets: ["latin"], weight: ["400"] });
+import { Inter } from "next/font/google";
 
 export const metadata: Metadata = {
   title: {
@@ -14,6 +13,7 @@ export const metadata: Metadata = {
   description: "Urban Deals Shop – Where Creativity Meets Quality",
   keywords: ["fashion", "rwanda", "Urban Deals Shop", "clothes"],
 };
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={poppins.className}>
+      <body className={` ${inter.className} font-sans antialiased`}>
         <ThemeProvider
           attribute={"class"}
           disableTransitionOnChange
