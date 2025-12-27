@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Twitter, Github, Linkedin, Globe } from "lucide-react";
 import { GitHubStars } from "./github-stars";
 import { unstable_cacheLife as cacheLife } from "next/cache";
+import LoginForm from "../auth/login-form";
 
 export async function Footer() {
   const date = await getCurentYear();
@@ -46,20 +47,18 @@ export async function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/login"
-                  className="text-base text-gray-500 hover:text-gray-900"
-                >
-                  Login
-                </Link>
+                <LoginForm>
+                  <span className="text-base text-gray-500 hover:text-gray-900">
+                    Login
+                  </span>
+                </LoginForm>
               </li>
               <li>
-                <Link
-                  href="/login"
-                  className="text-base text-gray-500 hover:text-gray-900"
-                >
-                  Create Account
-                </Link>
+                <LoginForm>
+                  <span>
+                    Create Account
+                  </span>
+                </LoginForm>
               </li>
             </ul>
           </div>
@@ -153,6 +152,6 @@ export async function Footer() {
 }
 async function getCurentYear() {
   "use cache";
-  cacheLife("max")
+  cacheLife("max");
   return new Date().getFullYear();
 }

@@ -11,9 +11,9 @@ import {
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import type { User } from "next-auth";
 import { LogIn } from "lucide-react";
 import { auth } from "@/app/auth";
+import LoginForm from "../auth/login-form";
 
 export default async function User() {
   const session = await auth();
@@ -25,7 +25,10 @@ export default async function User() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Avatar className="h-10 w-10 cursor-pointer bg-muted">
-              <AvatarImage src={user.image ?? ""} alt={user.name ?? "User avatar"} />
+              <AvatarImage
+                src={user.image ?? ""}
+                alt={user.name ?? "User avatar"}
+              />
               <AvatarFallback>
                 {user.name?.slice(0, 2).toUpperCase() ?? "U"}
               </AvatarFallback>
@@ -42,10 +45,12 @@ export default async function User() {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <form action={async () => {
-                'use server';
-                await signOut();
-              }}>
+              <form
+                action={async () => {
+                  "use server";
+                  await signOut();
+                }}
+              >
                 <Button
                   className="w-full"
                   size="sm"
@@ -59,12 +64,12 @@ export default async function User() {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Button asChild variant="ghost">
-          <Link href="/login" className="flex items-center gap-2">
+        <LoginForm>
+          <Button variant="ghost">
             <LogIn className="h-4 w-4" />
             <span>Login</span>
-          </Link>
-        </Button>
+          </Button>
+        </LoginForm>
       )}
     </div>
   );

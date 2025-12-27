@@ -4,7 +4,7 @@ import {
   FormStatus,
   updateProfileState,
 } from "@/lib/types/types";
-import { auth } from "@/app/auth";
+import { auth, signIn } from "@/app/auth";
 import { OrderState } from "../types/types";
 import {
   changePasswordShema,
@@ -21,12 +21,15 @@ import sendContactEmail from "../email/contact";
 import Stripe from "stripe";
 import { redirect } from "next/navigation";
 
+export async function login(provider: "google" | "github") {
+  await signIn(provider);
+}
 export async function addOrder(
   prevState: OrderState | undefined,
-  formData: FormData
+  formData: FormData,
 ): Promise<OrderState | undefined> {
   const validate = createOrderSchema.safeParse(
-    Object.fromEntries(formData.entries())
+    Object.fromEntries(formData.entries()),
   );
   if (!validate.success) {
     return {
@@ -70,12 +73,12 @@ export async function addOrder(
 
 export async function changePassword(
   prevState: ChangePasswordState | undefined,
-  formData: FormData
+  formData: FormData,
 ): Promise<ChangePasswordState | undefined> {
   const session = await auth();
   const userId = session?.user?.id as string;
   const validate = changePasswordShema.safeParse(
-    Object.fromEntries(formData.entries())
+    Object.fromEntries(formData.entries()),
   );
   if (!validate.success) {
     return {
@@ -138,7 +141,7 @@ const find_password = async (id: string, pass: string) => {
 
 export async function updateProfile(
   prevState: updateProfileState | undefined,
-  formData: FormData
+  formData: FormData,
 ): Promise<updateProfileState | undefined> {
   const session = await auth();
   const userId = session?.user?.id as string;
@@ -178,7 +181,7 @@ export async function updateProfile(
 }
 export async function sendMessage(
   prevState: FormStatus | undefined,
-  formData: FormData
+  formData: FormData,
 ): Promise<FormStatus> {
   try {
     const validate = z

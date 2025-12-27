@@ -1,12 +1,7 @@
 import Link from "next/link";
-import {  Home, TriangleAlert } from "lucide-react";
+import { Home, TriangleAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Metadata } from "next";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
@@ -48,7 +43,7 @@ export default async function Page({ searchParams }: Props) {
                     variant={"outline"}
                     className="w-full max-w-sm"
                   >
-                    <Link href="/login">Login Again</Link>
+                    <Link href="/?login=true">Login Again</Link>
                   </Button>
                 </div>
               </div>

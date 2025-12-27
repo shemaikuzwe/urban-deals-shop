@@ -14,27 +14,31 @@ import { CartItem } from "./cart-item";
 import { addOrder } from "@/lib/action/action";
 import { Badge } from "../ui/badge";
 import { useCart } from "@/lib/store";
-import { Alert,  AlertTitle } from "../ui/alert";
+import { Alert, AlertTitle } from "../ui/alert";
+import { useSession } from "next-auth/react";
+import LoginForm from "../auth/login-form";
 
 export default function Cart() {
   const { cart, removeAll } = useCart();
   const [totalPrice, setTotalPrice] = useState(0);
   const [state, action, isPending] = useActionState(addOrder, undefined);
+  const { status } = useSession();
   useEffect(() => {
     setTotalPrice(
       cart.reduce(
         (acc: number, curr: { price: number; quantity: number }) =>
           (acc += curr.price * curr.quantity),
-        0
-      )
+        0,
+      ),
     );
   }, [cart]);
-  useEffect(() => {
-    if (state?.status == "success") handleRemoveAll();
-  }, [state?.status]);
   const handleRemoveAll = () => {
     removeAll();
   };
+  useEffect(() => {
+    if (state?.status === "success") handleRemoveAll();
+  }, [state?.status]);
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -67,7 +71,7 @@ export default function Cart() {
             </Alert>
           )}
           <div className="flex justify-end items-end">
-            {cart.length != 0 && (
+            {cart.length !== 0 && (
               <Delete
                 className="text-destructive cursor-pointer"
                 onClick={handleRemoveAll}
@@ -85,25 +89,29 @@ export default function Cart() {
             </div>
           )}
         </div>
-        {cart.length != 0 && (
+        {cart.length !== 0 && (
           <form
             className="flex flex-col justify-start gap-2 items-start"
             action={action}
           >
-
             <input type="hidden" name="totalPrice" value={totalPrice} />
             <input type="hidden" name="cart" value={JSON.stringify(cart)} />
             <span className="font-bold text-black">
               Total Price :{totalPrice.toLocaleString()} Rwf
             </span>
-            
-            <Button
-              disabled={isPending}
-              className="w-full disabled:cursor-not-allowed"
-              type="submit"
-            >
-              {isPending ? "Ordering" : "Procced TO Order"}
-            </Button>
+            {status === "authenticated" ? (
+              <Button
+                disabled={isPending}
+                className="w-full disabled:cursor-not-allowed"
+                type="submit"
+              >
+                {isPending ? "Ordering" : "Procced to Order"}
+              </Button>
+            ) : (
+              <LoginForm>
+                <Button className="w-full">Login to order</Button>
+              </LoginForm>
+            )}
           </form>
         )}
       </SheetContent>

@@ -26,8 +26,8 @@ const {
     }),
   ],
   pages: {
-    signIn: "/login",
-    error: "/login/error",
+    signIn: "/",
+    error: "/error",
   },
   session: {
     strategy: "jwt",
@@ -45,14 +45,14 @@ const {
       session.user.role = token.role;
       return session;
     },
-    async authorized({ auth, request: { nextUrl } }) {
-      const isLoggedIn = !!auth?.user;
-      const isOnLogin = nextUrl.pathname.startsWith("/login");
-      if (isOnLogin && isLoggedIn) {
-        return Response.redirect(new URL("/", nextUrl));
-      }
-      return true;
-    },
+    // async authorized({ auth, request: { nextUrl } }) {
+    //   const isLoggedIn = !!auth?.user;
+    //   const isOnLogin = nextUrl.pathname.startsWith("/");
+    //   if (isOnLogin && isLoggedIn) {
+    //     return Response.redirect(new URL("/", nextUrl));
+    //   }
+    //   return true;
+    // },
   },
 });
 const auth = cache(isAuth);

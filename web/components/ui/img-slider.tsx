@@ -44,7 +44,7 @@ export default function ImageSlider({
                 key={product.id}
                 className="p-0 h-full w-full group relative  hover:shadow-lg transition-all  border-0 cursor-pointer"
               >
-                <Card className="p-0 h-full w-full rounded-full border-0">
+                <Card className="p-0 h-full w-full border-0">
                   <CardContent className="p-1 w-full h-full">
                     <div className="relative h-full w-full">
                       <Image
