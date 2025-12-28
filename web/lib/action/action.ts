@@ -65,7 +65,10 @@ export async function addOrder(
       buyerId: userId,
       products: cart,
     },
-    payment_method_types: ["card", "paypal"],
+    payment_method_types: [
+      "card",
+      // "paypal", does not rwf
+    ],
     // shipping_address_collection: {
     //    allowed_countries:["RW"]
     // },

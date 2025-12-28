@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin 'tailwindcss-animate';
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -106,21 +106,16 @@
 
 @layer base {
   :root {
-    /* CLEAN LUXURY (Light Mode) - Blue Edition */
     --background: 0 0% 100%;
-    /* Pure White */
     --foreground: 222 47% 11%;
-    /* Deep Navy Black */
 
     --card: 210 40% 98%;
-    /* Very faint blue-white */
     --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
     --primary: 217 91% 60%;
-    /* Vibrant Blue */
     --primary-foreground: 0 0% 98%;
 
     --secondary: 210 40% 96%;
@@ -128,9 +123,8 @@
 
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
-
+ 
     --accent: 210 40% 96%;
-    /* Soft Blue */
     --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84.2% 60.2%;
@@ -139,7 +133,6 @@
     --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: 217 91% 60%;
-    /* Matching Primary */
 
     --radius: 0.75rem;
 
@@ -160,21 +153,17 @@
   }
 
   .dark {
-    /* TECH NOIR (Dark Mode) - Cyan/Electric Blue Edition */
     --background: 222 47% 6%;
-    /* Deepest Navy/Black */
     --foreground: 210 40% 98%;
-    /* Ice White */
 
     --card: 222 47% 8%;
-    /* Dark Navy */
     --card-foreground: 210 40% 98%;
 
     --popover: 222 47% 6%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 217 91% 60%;
-    /* Vibrant Blue */
+
     --primary-foreground: 0 0% 98%;
 
     --secondary: 217 32% 17%;
@@ -183,9 +172,8 @@
     --muted: 217 32% 17%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 190 100% 50%;
-    /* Cyan Accent */
-    --accent-foreground: 222 47% 11%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;

@@ -22,14 +22,14 @@ export default async function User() {
     <div>
       {user ? (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Avatar className="h-10 w-10 cursor-pointer bg-muted">
+          <DropdownMenuTrigger>
+            <Avatar>
               <AvatarImage
-                src={user.image ?? ""}
+                // src={user.image ?? ""}
                 alt={user.name ?? "User avatar"}
               />
               <AvatarFallback>
-                {user.name?.slice(0, 2).toUpperCase() ?? "U"}
+                {user?.name?.slice(0, 2).toUpperCase() ?? "U"}
               </AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>

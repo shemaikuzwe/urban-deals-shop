@@ -16,7 +16,6 @@ import { useTransition } from "react";
 import Logo from "../ui/logo";
 import { Input } from "../ui/input";
 import { signIn } from "@/lib/auth/auth-client";
-import { logIn } from "@/lib/action/action";
 
 export function LoginCard({
   setIsOpen,
@@ -25,9 +24,9 @@ export function LoginCard({
 }) {
   const [isPending, startTransition] = useTransition();
   const handleSignIn = async (provider: "google" | "github") => {
-    // startTransition(async () => {
-    await logIn();
-    // });
+    startTransition(async () => {
+      await signIn.social({ provider });
+    });
   };
   return (
     <Card className="overflow-hidden border-none  w-full bg-card shadow-2xl">

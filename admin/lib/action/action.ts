@@ -279,6 +279,9 @@ export async function addOrder(
   redirect(stripeSession.url!);
 }
 
+
+// This will be implemented with better auth
+
 export async function changePassword(
   prevState: ChangePasswordState | undefined,
   formData: FormData,
@@ -300,15 +303,17 @@ export async function changePassword(
     confirmPassword: cpassword,
     currentPassword: password,
   } = validate.data;
-  if (newPassword == cpassword) {
-    if (await find_password(userId, password)) {
+  if (newPassword === cpassword) {
+    const isFound=await find_password(userId,password)
+    if (isFound) {
+      const hashedPassword = bcrypt.hashSync(newPassword, 10);
       try {
         await db.user.update({
           where: {
             id: userId,
           },
           data: {
-            password: newPassword,
+            password: hashedPassword,
           },
         });
         {

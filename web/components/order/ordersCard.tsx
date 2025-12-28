@@ -1,27 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
-import { Order } from "@/lib/types/types";
+import { useState } from "react";
+import type { Order } from "@/lib/types/types";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { CheckCircle, ChevronDown, ChevronUp, Clock } from "lucide-react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "../ui/collapsible";
 import { Button } from "../ui/button";
-interface Props{
-  order:Order
+interface Props {
+  order: Order;
 }
-const OrdersCard = ({order}:Props) => {
-  const { products, total_price, date, status } = order;
+const OrdersCard = ({ order }: Props) => {
+  const { products, totalPrice, createdAt, status } = order;
   const [showProds, setShowProds] = useState(false);
 
   return (
     <Card className="w-full rounded-md">
       <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
         <time className="text-sm text-muted-foreground">
-          {date.toLocaleString()}
+          {createdAt.toLocaleString()}
         </time>
-        <Badge variant={status=="COMPLETED" ? "default" : "secondary"} className="h-6">
-          {status ==="COMPLETED" ? (
+        <Badge
+          variant={status === "COMPLETED" ? "default" : "secondary"}
+          className="h-6"
+        >
+          {status === "COMPLETED" ? (
             <CheckCircle className="mr-1 h-3 w-3" />
           ) : (
             <Clock className="mr-1 h-3 w-3" />
@@ -37,7 +44,7 @@ const OrdersCard = ({order}:Props) => {
                 Products ({products.length})
               </p>
               <p className="font-medium">
-                Total Price: {total_price.toLocaleString()} RWF
+                Total Price: {totalPrice.toLocaleString()} RWF
               </p>
             </div>
             <CollapsibleTrigger asChild>
@@ -61,9 +68,9 @@ const OrdersCard = ({order}:Props) => {
                   >
                     <div className="space-y-1">
                       <p className="text-sm font-medium leading-none">
-                      {product.quantity} {product.name}
+                        {product.quantity} {product.name}
                       </p>
-                       <Badge>{product.size}</Badge>
+                      <Badge>{product.size}</Badge>
                     </div>
                     <p className="text-sm font-medium">
                       {product.price.toLocaleString()} RWF
