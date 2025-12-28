@@ -1,4 +1,4 @@
-import { Size, Status } from "@prisma/client";
+import { Size, Status } from "@/prisma/generated/prisma/enums";
 
 export type ProductState = {
   errors?: {

@@ -1,7 +1,7 @@
 import { getRelatedProducts } from "@/lib/action/server";
-import { Category } from "@prisma/client";
-import React from "react";
 import ProductsGrids from "@/components/products/products-grid";
+import { Category } from "@/prisma/generated/prisma/enums";
+
 interface Props {
   type: Category;
   id: string;

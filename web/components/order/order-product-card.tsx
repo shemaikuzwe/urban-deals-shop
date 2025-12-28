@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { Size } from "@prisma/client";
+import { Size } from "@/prisma/generated/prisma/enums";
 
 interface Props {
   product: { name: string; price: number; quantity: number; size: Size };

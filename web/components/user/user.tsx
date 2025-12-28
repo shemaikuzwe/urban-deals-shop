@@ -12,11 +12,10 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { LogIn } from "lucide-react";
 import LoginForm from "../auth/login-form";
-import { getSession } from "@/lib/auth";
-import { signOut } from "@/lib/auth/auth-client";
+import { getSession, signOut } from "@/lib/auth";
 
 export default async function User() {
-  const session = await getSession()
+  const session = await getSession();
   const user = session?.user;
 
   return (
@@ -47,6 +46,7 @@ export default async function User() {
             <DropdownMenuItem>
               <form
                 action={async () => {
+                  "use server";
                   await signOut();
                 }}
               >

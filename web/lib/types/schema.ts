@@ -1,7 +1,7 @@
 import { z } from "zod";
 const fileSchema = z
   .instanceof(File)
-  .refine((file) => file.size == 0 || file.type.startsWith("image/"), {
+  .refine((file) => file.size === 0 || file.type.startsWith("image/"), {
     message: "File type not supported",
   });
 const Category = z.enum(["T_SHIRT", "PANTS", "SHORTS", "SHOES", "OTHER"]);

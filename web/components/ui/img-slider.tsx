@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Suspense, use, useState } from "react";
-import type { Product } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
+import type { Product } from "@/prisma/generated/prisma/client";
 
 export default function ImageSlider({
   productsPromise,

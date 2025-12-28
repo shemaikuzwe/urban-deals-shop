@@ -2,15 +2,26 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { headers } from "next/headers";
-import { PrismaClient } from "@prisma/client";
+import { db } from "../db";
 
-const prisma = new PrismaClient();
 const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL,
-  database: prismaAdapter(prisma, {
-    provider: "mysql",
+  database: prismaAdapter(db, {
+    provider: "postgresql",
     debugLogs: process.env.NODE_ENV === "development",
   }),
+  account: {
+    accountLinking: {
+      trustedProviders: [
+        "google",
+        "github",
+        "apple",
+        "gitlab",
+        "email-password",
+      ],
+    },
+    skipStateCookieCheck: true,
+  },
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -31,4 +42,5 @@ const signOut = async () =>
 
 const getSession = async () =>
   await auth.api.getSession({ headers: await headers() });
+
 export { auth, signIn, signOut, getSession };

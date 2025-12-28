@@ -23,9 +23,10 @@ import { auth, signIn } from "../auth";
 import { headers } from "next/headers";
 
 export async function logIn() {
-  const { redirect, url } = await signIn("google");
-  console.log("red", redirect);
-  console.log("url", url);
+  const { redirect: isRedirect, url } = await signIn("google");
+  if (isRedirect && url) {
+    redirect(url);
+  }
 }
 export async function addOrder(
   prevState: OrderState | undefined,
@@ -40,7 +41,8 @@ export async function addOrder(
       message: "validation error",
     };
   }
-  const userId = (await auth())?.user.id as string;
+  const session = await auth.api.getSession({ headers: await headers() });
+  const userId = session?.user.id;
   if (!userId) throw new Error("User not found");
   const { totalPrice: amount, cart } = validate.data;
 

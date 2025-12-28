@@ -1,15 +1,14 @@
-
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "./generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model Product {
-  id          String   @id @db.Uuid @default(uuid())
+  id          String   @id @default(uuid()) @db.Uuid
   name        String
   price       Int
   description String
@@ -22,8 +21,8 @@ model Product {
 }
 
 model Order {
-  id          String   @id @db.Uuid @default(uuid())
-  userId      String   @db.Uuid
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String
   products    Json[]
   total_price Int
   status      Status   @default(PENDING)
@@ -33,10 +32,10 @@ model Order {
 }
 
 model User {
-  id            String    @id @default(uuid()) @db.Uuid
+  id            String    @id
   name          String?
   email         String?   @unique
-  emailVerified DateTime?
+  emailVerified Boolean?
   image         String?
   password      String?
   role          Role      @default(USER)
@@ -50,35 +49,23 @@ model User {
 }
 
 model Account {
-  userId            String   @db.Uuid
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  accountId             String    @db.Text
-  providerId            String    @db.Text
-  accessToken           String?   @db.Text
-  refreshToken          String?   @db.Text
-  idToken               String?   @db.Text
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
-  password              String?   @db.Text
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
 
-  @@id([provider, providerAccountId])
-  @@index([userId(length: 191)])
   @@map("account")
 }
-
 enum Status {
   PENDING
   COMPLETED
@@ -120,7 +107,7 @@ model Session {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([token])
-  @@index([userId(length: 191)])
+  @@index([userId])
   @@map("session")
 }
 
@@ -132,6 +119,6 @@ model Verification {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  @@index([identifier(length: 191)])
+  @@index([identifier])
   @@map("verification")
 }

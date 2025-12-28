@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import ImageSlider from "../ui/img-slider";
-import type { Product } from "@prisma/client";
+import { Product } from "@/prisma/generated/prisma/client";
 
 export function Hero({
   productPromise,

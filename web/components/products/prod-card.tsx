@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Product, Size } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import { Item } from "@/lib/types/types";
 import { useCart } from "@/lib/store";
 import { Separator } from "../ui/separator";
+import { Size } from "@/prisma/generated/prisma/enums";
+import { Product } from "@/prisma/generated/prisma/client";
 
 interface Props {
   product: Product;

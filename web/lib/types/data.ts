@@ -1,4 +1,4 @@
-import { Category, Size } from "@prisma/client";
+import { Category, Size } from "@/prisma/generated/prisma/enums";
 import { LayoutDashboard, ShoppingCart, Package, Users } from "lucide-react";
 export const categories: Category[] = [
   "T_SHIRT",

@@ -1,5 +1,5 @@
+import { Product } from "@/prisma/generated/prisma/client";
 import { ProductCard } from "./product-card";
-import { Product } from "@prisma/client";
 interface Props {
   products?: Product[];
 }
@@ -13,7 +13,7 @@ export default function ProductsGrid({ products }: Props) {
             No products available
           </p>
         ) : (
-          products?.map((product, index) => (
+          products?.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))
         )}

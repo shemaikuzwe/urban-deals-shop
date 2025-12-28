@@ -1,15 +1,16 @@
 "use client";
-import { Order, Status } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import OrdersCard from "@/components/order/ordersCard";
-import { Check, CheckCircle, Package } from "lucide-react";
+import { Check, Package } from "lucide-react";
 import { OrderUser } from "@/lib/action/server";
 import { useSearchParams } from "next/navigation";
 import { useCart } from "@/lib/store";
 import { Alert, AlertDescription } from "../ui/alert";
 import { motion } from "framer-motion";
+import { Status } from "@/prisma/generated/prisma/enums";
+import { Order } from "@/prisma/generated/prisma/client";
 
 export default function Orders({ order }: { order: OrderUser }) {
   const searchParams = useSearchParams();
