@@ -14,11 +14,11 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useSession } from "next-auth/react";
 import {  updateProfile } from "@/lib/action/action";
 import { Alert, AlertTitle } from "../ui/alert";
 import { cn } from "@/lib/utils";
 import ThemeSelector from "../providers/theme-selector";
+import { useSession } from "@/lib/auth/auth-client";
 
 // interface UserProfileProps {
 //   orders: Promise<number>;

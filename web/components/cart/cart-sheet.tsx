@@ -15,21 +15,21 @@ import { addOrder } from "@/lib/action/action";
 import { Badge } from "../ui/badge";
 import { useCart } from "@/lib/store";
 import { Alert, AlertTitle } from "../ui/alert";
-import { useSession } from "next-auth/react";
 import LoginForm from "../auth/login-form";
+import { useSession } from "@/lib/auth/auth-client";
 
 export default function Cart() {
   const { cart, removeAll } = useCart();
   const [totalPrice, setTotalPrice] = useState(0);
   const [state, action, isPending] = useActionState(addOrder, undefined);
-  const { status } = useSession();
+  const { data: session } = useSession();
   useEffect(() => {
     setTotalPrice(
       cart.reduce(
         (acc: number, curr: { price: number; quantity: number }) =>
           (acc += curr.price * curr.quantity),
-        0,
-      ),
+        0
+      )
     );
   }, [cart]);
   const handleRemoveAll = () => {
@@ -99,7 +99,7 @@ export default function Cart() {
             <span className="font-bold text-black">
               Total Price :{totalPrice.toLocaleString()} Rwf
             </span>
-            {status === "authenticated" ? (
+            {session ? (
               <Button
                 disabled={isPending}
                 className="w-full disabled:cursor-not-allowed"

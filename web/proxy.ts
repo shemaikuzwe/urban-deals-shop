@@ -1,6 +1,15 @@
-import { auth } from "@/app/auth";
+import { NextRequest, NextResponse } from "next/server";
+import { auth } from "./lib/auth";
 
-export default auth;
+export default async function proxy(request: NextRequest) {
+  const session = await auth.api.getSession({ headers: request.headers });
+  const isLoggedIn = !!session;
+  const isOnHome = request.nextUrl.pathname === "/";
+  if (!isLoggedIn && !isOnHome) {
+    return NextResponse.redirect(new URL("/", request.nextUrl));
+  }
+  return NextResponse.next();
+}
 export const config = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params

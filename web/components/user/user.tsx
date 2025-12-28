@@ -8,15 +8,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuItem,
 } from "../ui/dropdown-menu";
-import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { LogIn } from "lucide-react";
-import { auth } from "@/app/auth";
 import LoginForm from "../auth/login-form";
+import { getSession } from "@/lib/auth";
+import { signOut } from "@/lib/auth/auth-client";
 
 export default async function User() {
-  const session = await auth();
+  const session = await getSession()
   const user = session?.user;
 
   return (
@@ -47,7 +47,6 @@ export default async function User() {
             <DropdownMenuItem>
               <form
                 action={async () => {
-                  "use server";
                   await signOut();
                 }}
               >

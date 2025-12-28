@@ -14,8 +14,9 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTransition } from "react";
 import Logo from "../ui/logo";
-import { login } from "@/lib/action/action";
 import { Input } from "../ui/input";
+import { signIn } from "@/lib/auth/auth-client";
+import { logIn } from "@/lib/action/action";
 
 export function LoginCard({
   setIsOpen,
@@ -23,10 +24,10 @@ export function LoginCard({
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [isPending, startTransition] = useTransition();
-  const handleSignIn = (provider: "google" | "github") => {
-    startTransition(async () => {
-      await login(provider);
-    });
+  const handleSignIn = async (provider: "google" | "github") => {
+    // startTransition(async () => {
+    await logIn();
+    // });
   };
   return (
     <Card className="overflow-hidden border-none  w-full bg-card shadow-2xl">
@@ -145,8 +146,7 @@ export function LoginCard({
                 Urban Deals Shop
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Discover the best products, delivered straight
-                to your home.
+                Discover the best products, delivered straight to your home.
               </p>
             </div>
 
@@ -170,7 +170,8 @@ export function LoginCard({
                 <div>
                   <h3 className="font-semibold">Secure Payment</h3>
                   <p className="text-sm text-muted-foreground">
-                    Shop with confidence knowing your transactions are protected.
+                    Shop with confidence knowing your transactions are
+                    protected.
                   </p>
                 </div>
               </div>

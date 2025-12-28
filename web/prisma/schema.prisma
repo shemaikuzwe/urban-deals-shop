@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -43,6 +44,9 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   orders        Order[]
+  sessions      Session[]
+
+  @@map("user")
 }
 
 model Account {
@@ -61,7 +65,18 @@ model Account {
   updatedAt         DateTime @updatedAt
   user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  accountId             String    @db.Text
+  providerId            String    @db.Text
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
+  idToken               String?   @db.Text
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  password              String?   @db.Text
+
   @@id([provider, providerAccountId])
+  @@index([userId(length: 191)])
+  @@map("account")
 }
 
 enum Status {
@@ -91,4 +106,32 @@ enum Size {
   M
   L
   XL
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?  @db.Text
+  userAgent String?  @db.Text
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId(length: 191)])
+  @@map("session")
+}
+
+model Verification {
+  id         String   @id
+  identifier String   @db.Text
+  value      String   @db.Text
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier(length: 191)])
+  @@map("verification")
 }

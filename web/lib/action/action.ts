@@ -4,7 +4,6 @@ import {
   FormStatus,
   updateProfileState,
 } from "@/lib/types/types";
-import { auth, signIn } from "@/app/auth";
 import { OrderState } from "../types/types";
 import {
   changePasswordShema,
@@ -20,9 +19,13 @@ import { z } from "zod";
 import sendContactEmail from "../email/contact";
 import Stripe from "stripe";
 import { redirect } from "next/navigation";
+import { auth, signIn } from "../auth";
+import { headers } from "next/headers";
 
-export async function login(provider: "google" | "github") {
-  await signIn(provider);
+export async function logIn() {
+  const { redirect, url } = await signIn("google");
+  console.log("red", redirect);
+  console.log("url", url);
 }
 export async function addOrder(
   prevState: OrderState | undefined,
@@ -75,7 +78,9 @@ export async function changePassword(
   prevState: ChangePasswordState | undefined,
   formData: FormData,
 ): Promise<ChangePasswordState | undefined> {
-  const session = await auth();
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
   const userId = session?.user?.id as string;
   const validate = changePasswordShema.safeParse(
     Object.fromEntries(formData.entries()),
@@ -92,7 +97,7 @@ export async function changePassword(
     confirmPassword: cpassword,
     currentPassword: password,
   } = validate.data;
-  if (newPassword == cpassword) {
+  if (newPassword === cpassword) {
     if (await find_password(userId, password)) {
       try {
         await db.user.update({
@@ -143,7 +148,9 @@ export async function updateProfile(
   prevState: updateProfileState | undefined,
   formData: FormData,
 ): Promise<updateProfileState | undefined> {
-  const session = await auth();
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
   const userId = session?.user?.id as string;
   const validate = UpdateUserProfileSchema.safeParse({
     email: formData.get("email"),
