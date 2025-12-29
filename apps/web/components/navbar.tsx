@@ -1,22 +1,25 @@
 import Link from "next/link";
 import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+} from "@urban-deals-shop/ui/components/navigation-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@urban-deals-shop/ui/components/sheet";
 import { Home } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
-import Cart from "../cart/cart-sheet";
+
 import { Suspense } from "react";
-import SearchForm from "./search";
-import ThemeToggle from "../providers/theme-toggle";
-import Logo from "./logo";
+import SearchForm from "@urban-deals-shop/ui/components/search";
+
+import Logo from "@urban-deals-shop/ui/components/logo";
 import { MenuBadge } from "./menu";
-import UserSkelton from "../skeltons/user-skelton";
-import User from "../user/user";
+
+import Cart from "./cart/cart-sheet";
+import User from "./user/user";
+import ThemeToggle from "./providers/theme-toggle";
+import UserSkelton from "./skeltons/user-skelton";
 
 const links = [
   { name: "Home", href: "/", icon: <Home className="h-5 w-5" /> },

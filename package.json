@@ -13,10 +13,10 @@
     "db:push": "turbo run db:push",
     "db:studio": "turbo run db:studio",
     "db:seed": "turbo run db:seed",
-    "dev:admin": "turbo run dev --filter=admin",
-    "dev:web": "turbo run dev --filter=web",
-    "start:admin": "turbo run start --filter=admin",
-    "start:web": "turbo run start --filter=web",
+    "dev:admin": "turbo run dev --filter=@urban-deals-shop/admin",
+    "dev:web": "turbo run dev --filter=@urban-deals-shop/web",
+    "start:admin": "turbo run start --filter=@urban-deals-shop/admin",
+    "start:web": "turbo run start --filter=@urban-deals-shop/web",
     "start": "turbo run start"
   },
   "devDependencies": {

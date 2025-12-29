@@ -10,14 +10,19 @@
     "clean": "rm -rf  node_modules",
     "format": "prettier --write \"**/*.{ts,md}\""
   },
+
   "dependencies": {
     "@prisma/client": "^7.2.0",
     "@prisma/adapter-pg": "^7.2.0",
     "pg": "^8.16.3",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3" 
   },
   "devDependencies": {
     "prisma": "^7.2.0"
+  },
+  "exports":{
+    ".":"./src/index.ts",
+    "./generated/prisma/*": "./src/generated/prisma/*.ts"
   },
   "packageManager": "pnpm@10.23.0"
 }

@@ -2,8 +2,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Button } from "../ui/button";
-import ImageSlider from "../ui/img-slider";
+import { Button } from "@urban-deals-shop/ui/components/button";
+import ImageSlider from "@urban-deals-shop/ui/components/img-slider";
 import { Product } from "@/prisma/generated/prisma/client";
 
 export function Hero({

@@ -16,6 +16,6 @@
     "skipLibCheck": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
   },
-  "include": ["src"],
+  "include": ["src", "../../apps/web/components/cart"],
   "exclude": ["node_modules", "dist"],
 }

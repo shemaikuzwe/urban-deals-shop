@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Card, CardContent, CardHeader, CardTitle } from "@urban-deals-shop/ui/components/card"
+import { Separator } from "@urban-deals-shop/ui/components/separator"
+import { Skeleton } from "@urban-deals-shop/ui/components/skeleton"
 
 export default function ChartSkeleton() {
   return (

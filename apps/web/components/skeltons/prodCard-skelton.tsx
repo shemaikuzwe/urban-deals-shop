@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, CardContent } from "../ui/card";
-import { Skeleton } from "../ui/skeleton";
+import { Card, CardContent } from "@urban-deals-shop/ui/components/card";
+import { Skeleton } from "@urban-deals-shop/ui/components/skeleton";
 import ProductGridSkelton from "./product-grid";
 
 export default function ProdCardSkelton() {

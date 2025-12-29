@@ -1,4 +1,4 @@
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "@urban-deals-shop/ui/components/skeleton";
 
 export default function UserSkelton() {
   return (

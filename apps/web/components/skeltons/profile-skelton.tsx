@@ -1,5 +1,5 @@
-import { Skeleton } from "@/components/ui/skeleton"
-import { Card, CardContent } from "@/components/ui/card"
+import { Skeleton } from "@urban-deals-shop/ui/components/skeleton"
+import { Card, CardContent } from "@urban-deals-shop/ui/components/card"
 import { Mail, User, Package } from 'lucide-react'
 
 export default function ProfileSkeleton() {

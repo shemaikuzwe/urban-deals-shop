@@ -1,6 +1,6 @@
 "use client"
 import { useTheme } from "next-themes";
-import { Switch } from "../ui/switch";
+import { Switch } from "@urban-deals-shop/ui/components/switch";
 import {  useState } from "react";
 
 export default function ThemeToggle() {

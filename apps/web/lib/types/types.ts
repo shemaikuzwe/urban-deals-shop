@@ -1,4 +1,6 @@
-import { Size, Status } from "@/prisma/generated/prisma/enums";
+import { Size } from "@urban-deals-shop/db/generated/prisma/enums";
+import { Status } from "better-auth";
+
 
 export type ProductState = {
   errors?: {

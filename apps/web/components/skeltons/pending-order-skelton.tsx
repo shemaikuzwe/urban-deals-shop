@@ -1,6 +1,6 @@
 import React from "react";
 import { MoveRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import {
   Card,
   CardHeader,

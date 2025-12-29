@@ -1,9 +1,9 @@
-import { Button } from "../ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import Link from "next/link";
 import { getFeaturedProducts, getLatestProducts } from "@/lib/action/action";
 import { ProductCard } from "../products/product-card";
 import { ArrowRight } from "lucide-react";
-import { NoProducts } from "../ui/no-products";
+import { NoProducts } from "@urban-deals-shop/ui/components/no-products";
 
 interface Props {
   name: "Featured" | "Latest";

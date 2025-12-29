@@ -3,7 +3,7 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty";
+} from "./empty";
 import { ShoppingCartIcon } from "lucide-react";
 
 export function NoProducts() {

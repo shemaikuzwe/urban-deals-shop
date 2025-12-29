@@ -7,14 +7,14 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../ui/sheet";
+} from "@urban-deals-shop/ui/components/sheet";
 import { CheckCircle2Icon, Delete, FileText, ShoppingCart } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import { CartItem } from "./cart-item";
 import { addOrder } from "@/lib/action/action";
-import { Badge } from "../ui/badge";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
 import { useCart } from "@/lib/store";
-import { Alert, AlertTitle } from "../ui/alert";
+import { Alert, AlertTitle } from "@urban-deals-shop/ui/components/alert";
 import LoginForm from "../auth/login-form";
 import { useSession } from "@/lib/auth/auth-client";
 

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Home, TriangleAlert } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Metadata } from "next";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";

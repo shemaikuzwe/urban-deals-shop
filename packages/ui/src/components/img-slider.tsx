@@ -1,18 +1,25 @@
-import { type CarouselApi } from "@/components/ui/carousel";
+import { type CarouselApi } from "@/components/carousel";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "./card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from "./carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Suspense, use, useState } from "react";
-import { Badge } from "@/components/ui/badge";
+import { Badge} from "./badge";
 import { useRouter } from "next/navigation";
-import type { Product } from "@/prisma/generated/prisma/client";
+
+type Product = {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  description: string;
+};
 
 export default function ImageSlider({
   productsPromise,

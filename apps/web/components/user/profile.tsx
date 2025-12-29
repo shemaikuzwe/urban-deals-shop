@@ -1,9 +1,9 @@
 "use client";
 import { useState, useActionState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { User, Mail, Package, Lock } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { User, Mail } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@urban-deals-shop/ui/components/avatar";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import {
   Card,
   CardContent,
@@ -11,11 +11,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {  updateProfile } from "@/lib/action/action";
-import { Alert, AlertTitle } from "../ui/alert";
+} from "@urban-deals-shop/ui/components/card";
+import { Input } from "@urban-deals-shop/ui/components/input";
+import { Label } from "@urban-deals-shop/ui/components/label";
+import { updateProfile } from "@/lib/action/action";
+import { Alert, AlertTitle } from "@urban-deals-shop/ui/components/alert";
 import { cn } from "@/lib/utils";
 import ThemeSelector from "../providers/theme-selector";
 import { useSession } from "@/lib/auth/auth-client";
@@ -54,7 +54,6 @@ export default function Profile() {
               <CardDescription>{user?.email!}</CardDescription>
             </div>
           </div>
-          
         </CardHeader>
         <CardContent>
           <motion.div
@@ -79,7 +78,7 @@ export default function Profile() {
                         aria-live="polite"
                         className="mt-2 text-destructive"
                         key={error}
-                     >
+                      >
                         {error}
                       </span>
                     ))}
@@ -134,7 +133,7 @@ export default function Profile() {
                     Edit Profile
                   </Button>
                 )}
-                
+
                 {/* <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="outline">
@@ -234,8 +233,8 @@ export default function Profile() {
           </motion.div>
         </CardContent>
         <CardFooter>
-        <ThemeSelector/>
-          </CardFooter>
+          <ThemeSelector />
+        </CardFooter>
       </Card>
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 export default function Pagination({ pages }: { pages: number[] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const pathname = usePathname();
@@ -27,9 +27,8 @@ export default function Pagination({ pages }: { pages: number[] }) {
   }, [currentPage]);
 
   return (
- 
     <div
-     className={
+      className={
         "inline-flex -space-x-px rounded-md shadow-sm gap-2 text-white mx-auto mt-5"
       }
     >
@@ -59,6 +58,5 @@ export default function Pagination({ pages }: { pages: number[] }) {
         Next
       </Button>
     </div>
-
   );
 }

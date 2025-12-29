@@ -10,7 +10,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../ui/collapsible";
-import { Button } from "../ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 interface Props {
   order: Order;
 }

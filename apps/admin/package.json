@@ -6,7 +6,8 @@
     "dev": "next dev --port 5000",
     "build": "next build",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "next start",
+    "clean":"rm -rf .next  node_modules"
   },
   "dependencies": {
     "@urban-deals-shop/ui": "workspace:*",

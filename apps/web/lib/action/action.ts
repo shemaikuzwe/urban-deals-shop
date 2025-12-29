@@ -1,26 +1,26 @@
 "use server";
-import {
+import type {
   ChangePasswordState,
   FormStatus,
   updateProfileState,
 } from "@/lib/types/types";
-import { OrderState } from "../types/types";
+import type { OrderState } from "../types/types";
 import {
   changePasswordShema,
   createOrderSchema,
   UpdateUserProfileSchema,
 } from "../types/schema";
-import { db } from "../db";
+import { db } from "@urban-deals-shop/db";
 import {
   unstable_cacheTag as cacheTag,
   unstable_cacheLife as cacheLife,
 } from "next/cache";
 import { z } from "zod";
-import sendContactEmail from "../email/contact";
 import Stripe from "stripe";
 import { redirect } from "next/navigation";
 import { auth, signIn } from "../auth";
 import { headers } from "next/headers";
+import sendContactEmail from "@urban-deals-shop/ui/email/contact";
 
 export async function logIn() {
   const { redirect: isRedirect, url } = await signIn("google");
@@ -46,7 +46,7 @@ export async function addOrder(
   if (!userId) throw new Error("User not found");
   const { totalPrice: amount, cart } = validate.data;
 
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
   const stripeSession = await stripe.checkout.sessions.create({
     line_items: [
@@ -76,7 +76,9 @@ export async function addOrder(
     success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/orders?success=order created successfully`,
     cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   });
-  redirect(stripeSession.url!);
+  if (stripeSession.url) {
+    redirect(stripeSession.url);
+  }
 }
 
 export async function changePassword(

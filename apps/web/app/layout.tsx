@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@urban-deals-shop/ui/globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Inter } from "next/font/google";
 

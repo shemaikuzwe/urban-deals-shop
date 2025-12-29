@@ -3,14 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Plus, Minus } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
+import { Button } from "@urban-deals-shop/ui/components/button";
+import { Card, CardContent, CardFooter } from "@urban-deals-shop/ui/components/card";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
+import { Input } from "@urban-deals-shop/ui/components/input";
 import { cn } from "@/lib/utils";
 import { Item } from "@/lib/types/types";
 import { useCart } from "@/lib/store";
-import { Separator } from "../ui/separator";
+import { Separator } from "@urban-deals-shop/ui/components/separator";
 import { Size } from "@/prisma/generated/prisma/enums";
 import { Product } from "@/prisma/generated/prisma/client";
 

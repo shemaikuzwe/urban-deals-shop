@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
 import { useRouter } from "next/navigation";
 import { Product } from "@/prisma/generated/prisma/client";
 

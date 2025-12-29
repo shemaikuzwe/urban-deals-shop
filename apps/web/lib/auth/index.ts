@@ -1,8 +1,8 @@
 //  Add server only
+import { db } from "@urban-deals-shop/db";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { headers } from "next/headers";
-import { db } from "../db";
 
 const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL,

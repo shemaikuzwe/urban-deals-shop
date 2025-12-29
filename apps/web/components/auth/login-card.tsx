@@ -9,12 +9,12 @@ import {
   Mail,
   ShoppingCart,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@urban-deals-shop/ui/components/input";
+import { Separator } from "@urban-deals-shop/ui/components/separator";
+import { Card, CardContent } from "@urban-deals-shop/ui/components/card";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import { useTransition } from "react";
-import Logo from "../ui/logo";
-import { Input } from "../ui/input";
+import Logo from "@urban-deals-shop/ui/components/logo";
 import { signIn } from "@/lib/auth/auth-client";
 
 export function LoginCard({

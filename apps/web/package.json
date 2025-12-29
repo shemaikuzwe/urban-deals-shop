@@ -1,5 +1,5 @@
 {
-  "name": "urban-deals-shop",
+  "name": "@urban-deals-shop/web",
   "version": "2.1.0",
   "private": true,
   "type": "module",
@@ -7,7 +7,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "next start",
+    "clean":"rm -rf .next  node_modules"
   },
   "dependencies": {
     "@urban-deals-shop/ui": "workspace:*",
@@ -17,8 +18,6 @@
     "better-auth": "^1.4.9",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
-    "embla-carousel-autoplay": "^8.5.1",
-    "embla-carousel-react": "^8.5.1",
     "framer-motion": "^12.0.0",
     "lucide-react": "^0.474.0",
     "next": "16.0.0-canary.4",
@@ -26,7 +25,6 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "stripe": "^17.5.0",
-    "use-debounce": "^10.0.6",
     "zod": "^3.24.1",
     "zustand": "^5.0.2"
   },
