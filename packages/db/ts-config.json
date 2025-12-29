@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths":{
+      "@/*":["src/*"]
+    },
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

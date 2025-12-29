@@ -42,4 +42,5 @@ next-env.d.ts
 certificates
 
 .vscode
-# .ai
+.ai
+.turbo

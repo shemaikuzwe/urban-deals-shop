@@ -1,0 +1,11 @@
+import sendMail from "./send";
+import  type { Order } from "../types/types";
+import NewOrderEmail from "./emails/new-order";
+
+export default async function sendOrderEmail(order: Order) {
+  await sendMail(
+    <NewOrderEmail {...order} />,
+    "Urban Deals Shop",
+    `New Order by ${order.userNames}`,
+  );
+}

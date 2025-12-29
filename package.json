@@ -1,0 +1,33 @@
+{
+  "name": "urban-deals-shop",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "db:generate": "turbo run db:generate",
+    "db:push": "turbo run db:push",
+    "db:studio": "turbo run db:studio",
+    "db:seed": "turbo run db:seed",
+    "dev:admin": "turbo run dev --filter=admin",
+    "dev:web": "turbo run dev --filter=web",
+    "start:admin": "turbo run start --filter=admin",
+    "start:web": "turbo run start --filter=web",
+    "start": "turbo run start"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.0",
+    "prettier": "3.4.2",
+    "@biomejs/biome": "2.2.0",
+    "turbo": "2.5.0",
+    "typescript": "^5.6.3"
+  },
+  "packageManager": "pnpm@10.23.0",
+  "engines": {
+    "node": ">=20"
+  }
+}
