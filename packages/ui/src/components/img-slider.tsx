@@ -1,16 +1,16 @@
-import { type CarouselApi } from "@/components/carousel";
+import { type CarouselApi } from "@urban-deals-shop/ui/components/carousel";
 import Image from "next/image";
-import { Card, CardContent } from "./card";
+import { Card, CardContent } from "@urban-deals-shop/ui/components/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "./carousel";
+} from "@urban-deals-shop/ui/components/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Suspense, use, useState } from "react";
-import { Badge} from "./badge";
+import { Badge} from "@urban-deals-shop/ui/components/badge";
 import { useRouter } from "next/navigation";
 
 type Product = {

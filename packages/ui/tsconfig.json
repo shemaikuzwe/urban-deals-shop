@@ -3,8 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@urban-deals-shop/ui/*": ["./src/*"],
-      "@/*": ["./src/*"],
+      "@urban-deals-shop/ui/*": ["./src/*"]
     },
     "target": "ES2022",
     "module": "ES2022",

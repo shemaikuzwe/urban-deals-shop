@@ -1,6 +1,6 @@
 "use client";
 import Form from "next/form";
-import { Input } from "./input";
+import { Input } from "@urban-deals-shop/ui/components/input";
 import { useDebouncedCallback } from "use-debounce";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
