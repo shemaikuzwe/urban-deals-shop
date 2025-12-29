@@ -2,8 +2,8 @@
 
 import { ArrowLeft } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Button } from "@urban-deals-shop/ui/components/button";
+import { SidebarTrigger } from "@urban-deals-shop/ui/components/sidebar";
 import { useRouter } from "next/navigation";
 import ThemeToggle from "../providers/theme-toggle";
 import User from "../user/admin-avatar";

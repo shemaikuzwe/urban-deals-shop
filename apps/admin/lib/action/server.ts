@@ -1,10 +1,10 @@
 import "server-only";
-import { db } from "@/lib/db";
-import { ChartData, Session, TOrder } from "@/lib/types/types";
+import { db } from "@urban-deals-shop/db";
 import { unstable_cacheTag as cacheTag, revalidateTag } from "next/cache";
-import { Category } from "@prisma/client";
 import { cookies } from "next/headers";
 import * as jose from "jose";
+import { ChartData, Session, TOrder } from "../types/types";
+import { Category } from "@urban-deals-shop/db/generated/prisma/enums";
 
 export async function auth(): Promise<Session> {
   try {

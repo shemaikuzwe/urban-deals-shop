@@ -7,8 +7,7 @@
     "db:push": "prisma db push && prisma generate",
     "db:studio": "prisma studio",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf  node_modules",
-    "format": "prettier --write \"**/*.{ts,md}\""
+    "clean": "rm -rf  node_modules"
   },
 
   "dependencies": {

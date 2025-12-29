@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import { Order } from "@/lib/types/types";
-import { Card, CardContent, CardHeader } from "../ui/card";
-import { Badge } from "../ui/badge";
+import { useState } from "react";
+import type { Order } from "@/lib/types/types";
+import { Card, CardContent, CardHeader } from "@urban-deals-shop/ui/components/card";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
 import { CheckCircle, ChevronDown, ChevronUp, Clock } from "lucide-react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible";
-import { Button } from "../ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@urban-deals-shop/ui/components/collapsible";
+import { Button } from "@urban-deals-shop/ui/components/button";
 interface Props{
   order:Order
 }
@@ -20,7 +20,7 @@ const OrdersCard = ({order}:Props) => {
         <time className="text-sm text-muted-foreground">
           {date.toLocaleString()}
         </time>
-        <Badge variant={status=="COMPLETED" ? "default" : "secondary"} className="h-6">
+        <Badge variant={status==="COMPLETED" ? "default" : "secondary"} className="h-6">
           {status ==="COMPLETED" ? (
             <CheckCircle className="mr-1 h-3 w-3" />
           ) : (

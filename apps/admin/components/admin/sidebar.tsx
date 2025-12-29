@@ -9,7 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from "@urban-deals-shop/ui/components/sidebar";
 import { links } from "@/lib/types/data";
 import { logout } from "@/lib/action/action";
 import { LogOutIcon } from "lucide-react";

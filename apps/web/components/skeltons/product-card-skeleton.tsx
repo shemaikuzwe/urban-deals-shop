@@ -1,8 +1,6 @@
 import {
   Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
+  CardContent
 } from "@urban-deals-shop/ui/components/card";
 import { Skeleton } from "@urban-deals-shop/ui/components/skeleton";
 

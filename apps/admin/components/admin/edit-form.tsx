@@ -1,11 +1,11 @@
 "use client";
-import { Product } from "@prisma/client";
+import { Product } from "@urban-deals-shop/db/generated/prisma/models";
 import React, { useState } from "react";
 import Image from "next/image";
 import { useActionState, useRef } from "react";
 import InputGroup from "@/components/auth/inputGroup";
 import { editProduct } from "@/lib/action/action";
-import { Button } from "@/components/ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import {
   Select,
   SelectContent,
@@ -14,11 +14,12 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@urban-deals-shop/ui/components/select";
 import { categories } from "@/lib/types/data";
-import { Label } from "../ui/label";
-import { Alert, AlertTitle } from "../ui/alert";
-import { cn } from "@/lib/utils";
+import { Label } from "@urban-deals-shop/ui/components/label";
+import { Alert, AlertTitle } from "@urban-deals-shop/ui/components/alert";
+import { cn } from "@urban-deals-shop/ui/lib/utils";
+
 
 interface Props {
   product: Product;

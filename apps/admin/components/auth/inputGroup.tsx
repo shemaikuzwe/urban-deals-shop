@@ -1,4 +1,4 @@
-import { Input } from "../ui/input";
+import { Input } from "@urban-deals-shop/ui/components/input";
 
 export default function InputGroup({
   type,

@@ -14,7 +14,6 @@ import {
   productSchema,
   UpdateUserProfileSchema,
 } from "../types/schema";
-import { db } from "../db";
 import { z } from "zod";
 import { auth, getProduct } from "@/lib/action/server";
 import {
@@ -30,7 +29,9 @@ const AddProduct = productSchema.omit({ id: true });
 
 import { UTApi } from "uploadthing/server";
 import { getKeyFromUrl } from "../utils";
-import { Status } from "@prisma/client";
+import { db } from "@urban-deals-shop/db";
+import { Status } from "@urban-deals-shop/db/generated/prisma/enums";
+
 
 const utapi = new UTApi({
   // ...options,

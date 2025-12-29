@@ -1,8 +1,8 @@
 "use client"
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Card, CardContent } from "@urban-deals-shop/ui/components/card"
+import { Label } from "@urban-deals-shop/ui/components/label"
+import { RadioGroup, RadioGroupItem } from "@urban-deals-shop/ui/components/radio-group"
 import { useTheme } from "next-themes"
 
 export default function ThemeSelector() {

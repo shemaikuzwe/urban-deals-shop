@@ -1,5 +1,7 @@
-import { db } from "@/lib/db";
+
 import bcrypt from "bcryptjs";
+import { db } from "@urban-deals-shop/db";
+
 
 async function seed() {
   console.log("start seed");
@@ -12,6 +14,7 @@ async function seed() {
       email,
       password: hashPassword,
       name: "Admin",
+      id: crypto.randomUUID(),
     },
   });
 }

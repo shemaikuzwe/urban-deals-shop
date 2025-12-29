@@ -1,4 +1,4 @@
-import { AvatarFallback, Avatar, AvatarImage } from "@/components/ui/avatar";
+import { AvatarFallback, Avatar, AvatarImage } from "@urban-deals-shop/ui/components/avatar";
 import {
   TableCell,
   Table,
@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableCaption,
   TableRow,
-} from "@/components/ui/table";
+} from "@urban-deals-shop/ui/components/table";
 
 import {getAllUsers} from "@/lib/action/server";
 export default async function Page() {

@@ -7,7 +7,7 @@ import { Button } from "@urban-deals-shop/ui/components/button";
 import { Card, CardContent, CardFooter } from "@urban-deals-shop/ui/components/card";
 import { Badge } from "@urban-deals-shop/ui/components/badge";
 import { Input } from "@urban-deals-shop/ui/components/input";
-import { cn } from "@/lib/utils";
+import { cn } from "@urban-deals-shop/ui/lib/utils";
 import { Item } from "@/lib/types/types";
 import { useCart } from "@/lib/store";
 import { Separator } from "@urban-deals-shop/ui/components/separator";

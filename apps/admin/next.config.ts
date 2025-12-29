@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
       { hostname: "cmx55brlhb.ufs.sh", protocol: "https" },
     ],
   },
+  transpilePackages: ["@urban-deals-shop/ui","@urban-deals-shop/db"]
 };
 
 export default nextConfig;

@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Products from "./products";
 import Categories from "@/components/products/categories";
 import { Suspense } from "react";

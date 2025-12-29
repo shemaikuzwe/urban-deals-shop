@@ -1,11 +1,12 @@
-import { ProdCard } from "@/components/products/prod-card";
+
 import RelatedProduct from "@/components/products/related-product";
 import ProductGridSkelton from "@/components/skeltons/product-grid";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Separator } from "@urban-deals-shop/ui/components/separator";
+import { Skeleton } from "@urban-deals-shop/ui/components/skeleton";
 import { getProduct } from "@/lib/action/server";
 import { notFound } from "next/navigation";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
+import { ProdCard } from "@/components/products/prod-card";
 
 export default async function page({
   params,

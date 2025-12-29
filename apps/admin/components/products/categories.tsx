@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Label } from "../ui/label";
-import { Checkbox } from "../ui/checkbox";
+import { Label } from "@urban-deals-shop/ui/components/label";
+import { Checkbox } from "@urban-deals-shop/ui/components/checkbox";
 import { categories } from "@/lib/types/data";
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 

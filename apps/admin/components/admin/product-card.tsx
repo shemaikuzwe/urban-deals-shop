@@ -2,26 +2,27 @@
 import Image from "next/image";
 import { Pencil, Trash2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card";
+} from "@urban-deals-shop/ui/components/card";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Badge } from "@/components/ui/badge";
-import { Product } from "@prisma/client";
+} from "@urban-deals-shop/ui/components/tooltip";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
+
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import DeleteDialog from "./delete-dialog";
-import { Checkbox } from "../ui/checkbox";
+import { Checkbox } from "@urban-deals-shop/ui/components/checkbox";
 import { updateFeatured } from "@/lib/action/action";
 import { useFormStatus } from "react-dom";
+import { Product } from "@urban-deals-shop/db/generated/prisma/client";
 
 export function ProductCard({ product }: { product: Product }) {
   const router = useRouter();

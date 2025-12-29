@@ -1,15 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card } from "@/components/ui/card";
-import OrdersCard from "@/components/order/ordersCard";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@urban-deals-shop/ui/components/tabs";
+import { Card } from "@urban-deals-shop/ui/components/card";
 import { Check, Package } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { useCart } from "@/lib/store";
-import { Alert, AlertDescription } from "../ui/alert";
+import { Alert, AlertDescription } from "@urban-deals-shop/ui/components/alert";
 import { motion } from "framer-motion";
-import { Status } from "@/prisma/generated/prisma/enums";
-import { Order } from "@/prisma/generated/prisma/client";
+import { Order, Status } from "@urban-deals-shop/db/generated/prisma/client";
+import { useCart } from "@/lib/store";
+import OrdersCard from "./ordersCard";
+
+
 
 export default function Orders({ order }: { order: Order[] }) {
   const searchParams = useSearchParams();
@@ -91,7 +92,6 @@ export default function Orders({ order }: { order: Order[] }) {
               ) : (
                 <div className="grid gap-4">
                   {orders.map((order: Order) => (
-                    //@ts-ignore
                     <OrdersCard key={order.id} order={order} />
                   ))}
                 </div>

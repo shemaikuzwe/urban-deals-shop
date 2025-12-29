@@ -1,4 +1,5 @@
-import { Size, Status } from "@prisma/client";
+import { Size, Status } from "@urban-deals-shop/db/generated/prisma/enums";
+
 
 export type LoginState = {
   errors?: {

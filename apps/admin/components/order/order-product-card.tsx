@@ -1,5 +1,4 @@
-import { Badge } from "@/components/ui/badge";
-import { Size } from "@prisma/client";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
 
 interface Props {
   product: { name: string; price: number; quantity: number; size: Size };

@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import { ProductCard } from "./product-card";
-import { Product } from "@prisma/client";
+import { Product } from "@urban-deals-shop/db/generated/prisma/client";
 import Link from "next/link";
-import { use } from "react";
-import { NoProducts } from "../ui/no-products";
+import { NoProducts } from "@urban-deals-shop/ui/components/no-products";
 
 export default async function ProductsGrid({
   productsPromise,

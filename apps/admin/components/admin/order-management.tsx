@@ -1,7 +1,7 @@
 "use client";
 
 import { use, useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@urban-deals-shop/ui/components/tabs";
 import {
   Table,
   TableBody,
@@ -9,17 +9,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@urban-deals-shop/ui/components/table";
 import { RefreshCcwIcon } from "lucide-react";
 import { Item } from "@/lib/types/types";
 import OrderCard from "./order-card";
 import { OrderUser } from "@/lib/action/server";
-import { Status } from "@prisma/client";
 import StatusChange from "../order/status-change";
-import { ScrollArea } from "../ui/scroll-area";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { Button } from "../ui/button";
+import { ScrollArea } from "@urban-deals-shop/ui/components/scroll-area";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@urban-deals-shop/ui/components/tooltip";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import { refreshOrders } from "@/lib/action/action";
+import { Status } from "@urban-deals-shop/db/generated/prisma/enums";
 
 interface Props {
   ordersPromise: Promise<OrderUser>;

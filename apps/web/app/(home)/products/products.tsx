@@ -1,6 +1,6 @@
 import Pagination from "@/components/products/pagination";
 import ProductsGrids from "@/components/products/products-grid";
-import { NoProducts } from "@/components/ui/no-products";
+import { NoProducts } from "@urban-deals-shop/ui/components/no-products";
 import { getProducts } from "@/lib/action/server";
 export default async function Products({
   page,

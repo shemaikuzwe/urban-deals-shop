@@ -1,7 +1,6 @@
-import React from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent, CardHeader } from "@urban-deals-shop/ui/components/card";
+import { Separator } from "@urban-deals-shop/ui/components/separator";
+import { Skeleton } from "@urban-deals-shop/ui/components/skeleton";
 
 function DashboardCardSkeleton() {
   return (

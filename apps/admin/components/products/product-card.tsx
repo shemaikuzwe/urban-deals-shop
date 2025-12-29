@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-import { Product, Size } from "@prisma/client";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
 import { useRouter } from "next/navigation";
+import type{ Product } from "@urban-deals-shop/db/generated/prisma/client";
 
 interface Props {
   product: Product;

@@ -2,8 +2,8 @@
 import { useState, useActionState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { User, Mail, Package, Lock } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@urban-deals-shop/ui/components/avatar";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import {
   Card,
   CardContent,
@@ -11,14 +11,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@urban-deals-shop/ui/components/card";
+import { Input } from "@urban-deals-shop/ui/components/input";
+import { Label } from "@urban-deals-shop/ui/components/label";
 import { updateProfile } from "@/lib/action/action";
-import { Alert, AlertTitle } from "../ui/alert";
-import { cn } from "@/lib/utils";
+import { Alert, AlertTitle } from "@urban-deals-shop/ui/components/alert";
 import ThemeSelector from "../providers/theme-selector";
 import { useSession } from "../providers/session-provider";
+import { cn } from "@urban-deals-shop/ui/lib/utils";
 
 // interface UserProfileProps {
 //   orders: Promise<number>;

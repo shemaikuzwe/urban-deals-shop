@@ -1,5 +1,5 @@
 import ProductsGrid from "@/components/products/products-grid";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@urban-deals-shop/ui/components/skeleton";
 
 export default function Loading() {
   return (

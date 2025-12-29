@@ -1,5 +1,6 @@
-import { Badge } from "@/components/ui/badge";
-import { Size } from "@/prisma/generated/prisma/enums";
+import { Size } from "@urban-deals-shop/db/generated/prisma/enums";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
+
 
 interface Props {
   product: { name: string; price: number; quantity: number; size: Size };

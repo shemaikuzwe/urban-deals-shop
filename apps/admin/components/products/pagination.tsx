@@ -1,7 +1,7 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 export default function Pagination({ pages }: { pages: number[] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const pathname = usePathname();
@@ -10,7 +10,7 @@ export default function Pagination({ pages }: { pages: number[] }) {
   const handlePage = (page: number) => {
     const params = new URLSearchParams(searchparams);
     params.set("page", page.toString());
-    if (page == 1) {
+    if (page === 1) {
       params.delete("page");
     }
     replace(`${pathname}?${params.toString()}`);
@@ -43,7 +43,7 @@ export default function Pagination({ pages }: { pages: number[] }) {
       {pages.map((page, index) => (
         <Button
           key={index}
-          disabled={currentPage == index + 1}
+          disabled={currentPage === index + 1}
           onClick={() => setCurrentPage(page)}
           className="disabled:opacity-70 disabled:cursor-not-allowed"
         >
@@ -52,7 +52,7 @@ export default function Pagination({ pages }: { pages: number[] }) {
       ))}
 
       <Button
-        disabled={currentPage == pages.length}
+        disabled={currentPage === pages.length}
         onClick={handleNext}
         className=" disabled:opacity-70 disabled:cursor-not-allowed"
       >

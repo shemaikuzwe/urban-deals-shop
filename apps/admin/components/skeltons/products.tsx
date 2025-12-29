@@ -1,4 +1,4 @@
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "@urban-deals-shop/ui/components/skeleton";
 import { ProductCardSkeleton } from "./product-card-skeleton";
 
 export default function ProductSkelton() {

@@ -1,6 +1,5 @@
 "use client";
-import { Avatar, AvatarImage } from "../ui/avatar";
-import { AvatarFallback } from "@radix-ui/react-avatar";
+import { Avatar, AvatarImage,AvatarFallback } from "@urban-deals-shop/ui/components/avatar";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -8,9 +7,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuItem,
-} from "../ui/dropdown-menu";
+} from "@urban-deals-shop/ui/components/dropdown-menu";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import { useSession } from "../providers/session-provider";
 import { logout } from "@/lib/action/action";
 import UserSkelton from "../skeltons/user-skelton";

@@ -6,11 +6,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "../ui/button";
-import { Product } from "@prisma/client";
+} from "@urban-deals-shop/ui/components/dialog";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import { useRouter } from "next/navigation";
 import { deleteProduct } from "@/lib/action/action";
+import type { Product } from "@urban-deals-shop/db/generated/prisma/client";
 
 export default function DeleteDialog({
   isOpen,

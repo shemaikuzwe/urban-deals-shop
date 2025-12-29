@@ -1,18 +1,19 @@
-import React from "react";
+"use client";
+
 import { MoveRight, PackageSearch } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
   CardFooter,
-} from "@/components/ui/card";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
+} from "@urban-deals-shop/ui/components/card";
+import { Avatar, AvatarFallback } from "@urban-deals-shop/ui/components/avatar";
+import { Separator } from "@urban-deals-shop/ui/components/separator";
 import Link from "next/link";
 import { getPendingOrders } from "@/lib/action/server";
-import { AvatarImage } from "@radix-ui/react-avatar";
+import { AvatarImage } from "@urban-deals-shop/ui/components/avatar";
 
 export default async function PendingOrders() {
   const orders = await getPendingOrders();
@@ -32,7 +33,6 @@ export default async function PendingOrders() {
                   <AvatarImage src={order?.user?.image ?? ""} />
                   <AvatarFallback>
                     {order?.user?.name ||
-                      order?.names ||
                       ""
                         .split(" ")
                         .map((n) => n[0])
@@ -43,14 +43,11 @@ export default async function PendingOrders() {
                 <div className="flex-1 space-y-1">
                   <div className="text-sm flex-col gap-2 leading-none">
                     <p className="font-medium mb-2">
-                      {order.user?.name || order.names}
+                      {order.user?.name }
                     </p>
                     <p className="font-normal mb-2">
-                      {order?.user?.email || order?.phoneNumber}
+                      {order?.user?.email }
                     </p>
-                    {order.address && (
-                      <p className="font-normal">{order.address}</p>
-                    )}
                   </div>
                   <p className="text-xs text-muted-foreground">
                     {order.date.toLocaleDateString()}

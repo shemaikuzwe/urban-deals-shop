@@ -1,6 +1,6 @@
 "use client";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@urban-deals-shop/ui/components/card";
 import {
   ChartConfig,
   ChartContainer,
@@ -8,10 +8,10 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
-import { Separator } from "@/components/ui/separator";
+} from "@urban-deals-shop/ui/components/chart";
+import { Separator } from "@urban-deals-shop/ui/components/separator";
 import { use } from "react";
-import { ChartData } from "@/lib/types/types";
+import type { ChartData } from "@/lib/types/types";
 export default function Chart({
   dataPromise,
 }: {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FileQuestion, Home } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button"
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@urban-deals-shop/ui/components/card";
 
 export default function NotFound() {
   return (

@@ -1,14 +1,14 @@
 import Link from "next/link";
-import {  Home, TriangleAlert } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { TriangleAlert } from "lucide-react";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@urban-deals-shop/ui/components/card";
 import { Metadata } from "next";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@urban-deals-shop/ui/components/alert";
 
 export const metadata: Metadata = {
   title: "Error",

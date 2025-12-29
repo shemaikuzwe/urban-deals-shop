@@ -1,16 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import type { Order } from "@/lib/types/types";
-import { Card, CardContent, CardHeader } from "../ui/card";
-import { Badge } from "../ui/badge";
+import { Card, CardContent, CardHeader } from "@urban-deals-shop/ui/components/card";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
 import { CheckCircle, ChevronDown, ChevronUp, Clock } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../ui/collapsible";
+} from "@urban-deals-shop/ui/components/collapsible";
 import { Button } from "@urban-deals-shop/ui/components/button";
+import { Order } from "@/lib/types/types";
 interface Props {
   order: Order;
 }

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useActionState, useRef } from "react";
 import InputGroup from "@/components/auth/inputGroup";
 import { addProduct } from "@/lib/action/action";
-import { Button } from "@/components/ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import {
   Select,
   SelectContent,
@@ -13,12 +13,12 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@urban-deals-shop/ui/components/select";
 import { categories } from "@/lib/types/data";
-import { Label } from "../ui/label";
-import { Alert, AlertTitle } from "../ui/alert";
-import { cn } from "@/lib/utils";
+import { Label } from "@urban-deals-shop/ui/components/label";
+import { Alert, AlertTitle } from "@urban-deals-shop/ui/components/alert";
 import { ImageUp } from "lucide-react";
+import { cn } from "@urban-deals-shop/ui/lib/utils";
 
 export default function AddForm() {
   const fileInputRef = useRef<HTMLInputElement>(null);

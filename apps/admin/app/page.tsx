@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@urban-deals-shop/ui/components/card";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

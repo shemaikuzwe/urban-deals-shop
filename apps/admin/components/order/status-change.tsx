@@ -1,12 +1,12 @@
 import { CheckCircle, Clock, XCircle } from "lucide-react";
-import { Badge } from "../ui/badge";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Status } from "@prisma/client";
+} from "@urban-deals-shop/ui/components/dropdown-menu";
+
 import { updateStatus } from "@/lib/action/action";
 
 interface Props {

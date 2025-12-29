@@ -1,5 +1,5 @@
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Card, CardContent, CardFooter, CardHeader } from "@urban-deals-shop/ui/components/card"
+import { Skeleton } from "@urban-deals-shop/ui/components/skeleton"
 
 export function ProductCardSkeleton() {
   return (

@@ -1,14 +1,13 @@
-import React from "react";
 import { MoveRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@urban-deals-shop/ui/components/button";
 import {
   Card,
   CardHeader,
   CardContent,
   CardFooter,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
+} from "@urban-deals-shop/ui/components/card";
+import { Separator } from "@urban-deals-shop/ui/components/separator";
+import { Skeleton } from "@urban-deals-shop/ui/components/skeleton";
 
 export default function PendingDepositsSkeleton() {
   return (

@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import {
   LucideIcon,
   DollarSign,
@@ -7,8 +6,7 @@ import {
   ShoppingCart,
   TrendingUp,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@urban-deals-shop/ui/components/card";
 
 interface DashboardCardProps {
   label: string;

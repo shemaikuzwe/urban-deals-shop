@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { Home, TriangleAlert } from "lucide-react";
+import {  TriangleAlert } from "lucide-react";
 import { Button } from "@urban-deals-shop/ui/components/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@urban-deals-shop/ui/components/card";
 import { Metadata } from "next";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@urban-deals-shop/ui/components/alert";
 
 export const metadata: Metadata = {
   title: "Error",
@@ -16,7 +16,7 @@ interface Props {
 export default async function Page({ searchParams }: Props) {
   const { error } = await searchParams;
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background p-4">
+    <div className="flex  items-center justify-center min-h-screen bg-background p-4">
       <Card className="w-full max-w-lg mx-auto rounded-md">
         <CardHeader className="text-center">
           <CardTitle className="text-4xl font-bold text-primary mb-2">

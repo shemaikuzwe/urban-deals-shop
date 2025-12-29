@@ -1,13 +1,12 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { CardContent, CardFooter } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@urban-deals-shop/ui/components/button";
+import { CardContent, CardFooter } from "@urban-deals-shop/ui/components/card";
+import { Input } from "@urban-deals-shop/ui/components/input";
+import { Label } from "@urban-deals-shop/ui/components/label";
 import { login } from "@/lib/action/action";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
-import Logo from "../admin/logo";
 
 export function LoginPage() {
   const [state, dispatch, isPending] = useActionState(login, undefined);

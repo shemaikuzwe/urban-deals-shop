@@ -16,9 +16,9 @@ import { Input } from "@urban-deals-shop/ui/components/input";
 import { Label } from "@urban-deals-shop/ui/components/label";
 import { updateProfile } from "@/lib/action/action";
 import { Alert, AlertTitle } from "@urban-deals-shop/ui/components/alert";
-import { cn } from "@/lib/utils";
 import ThemeSelector from "../providers/theme-selector";
 import { useSession } from "@/lib/auth/auth-client";
+import { cn } from "@urban-deals-shop/ui/lib/utils";
 
 // interface UserProfileProps {
 //   orders: Promise<number>;
@@ -34,7 +34,7 @@ export default function Profile() {
   const session = useSession();
   const user = session?.data?.user;
   useEffect(() => {
-    if (state?.status == "success") {
+    if (state?.status === "success") {
       setIsEditing(false);
     }
   }, [state?.status]);

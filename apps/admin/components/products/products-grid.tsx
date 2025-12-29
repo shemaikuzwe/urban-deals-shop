@@ -1,5 +1,5 @@
 import { ProductCard } from "./product-card";
-import { Product } from "@prisma/client";
+import type { Product } from "@urban-deals-shop/db/generated/prisma/client";
 interface Props {
   products?: Product[];
 }

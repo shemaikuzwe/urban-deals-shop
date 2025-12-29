@@ -3,15 +3,15 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp} from "lucide-react";
 import { format } from "date-fns";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
+import { Button } from "@urban-deals-shop/ui/components/button";
+import { Card, CardContent, CardHeader } from "@urban-deals-shop/ui/components/card";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { Order } from "@/lib/types/types";
+} from "@urban-deals-shop/ui/components/collapsible";
+import { Order } from "@urban-deals-shop/db/generated/prisma/client";
 
 interface OrderCardProps {
   order: Order;
