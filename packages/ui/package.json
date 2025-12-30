@@ -2,9 +2,12 @@
   "name": "@urban-deals-shop/ui",
   "version": "1.0.0",
   "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "clean": "rm -rf .turbo node_modules",
-    "mail:dev": "email dev"
+    "clean": "rm -rf .turbo node_modules dist",
+    "mail:dev": "email dev",
+    "build":"tsup"
   },
   "peerDependencies": {
     "@types/react": ">=19",
@@ -59,16 +62,19 @@
   },
   "devDependencies": {
     "react-email": "3.0.2",
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "^4.0.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.7.2"
+
   },
   "exports": {
-    "./globals.css": "./src/styles/globals.css",
+    "./globals.css": "./dist/styles/globals.css",
     "./postcss.config": "./postcss.config.mjs",
-    "./lib/*": "./src/lib/*.ts",
-    "./components/*": "./src/components/*.tsx",
-    "./hooks/*": "./src/hooks/*.ts",
-    "./hooks": "./src/hooks/index.ts",
-    "./email/*": "./src/email/*.tsx"
+    "./lib/*": "./dist/lib/*.js",
+    "./components/*": "./dist/components/*.js",
+    "./hooks/*": "./dist/hooks/*.js",
+    "./hooks": "./dist/hooks/index.js",
+    "./email/*": "./dist/email/*.js"
   },
   "packageManager": "pnpm@10.18.3"
 }

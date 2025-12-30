@@ -5,3 +5,11 @@ export type Item = {
   name: string;
   size: string;
 };
+
+export type Order = {
+  userNames: string;
+  createdAt: Date;
+  phoneNumber: string;
+  products: Item[];
+  totalPrice: number;
+};

@@ -9,7 +9,7 @@ import { Row } from "@react-email/row";
 import { Text } from "@react-email/text";
 import { Column } from "@react-email/column";
 import { Button } from "@react-email/button";
-import type { Item } from "@/lib/types";
+import { Item } from "@urban-deals-shop/ui/lib/types";
 
 interface Props {
   userNames: string;

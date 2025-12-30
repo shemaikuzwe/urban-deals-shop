@@ -19,6 +19,9 @@ export default async function sendMail(
     const resend = new Resend(process.env.RESEND_API_KEY);
     const from = process.env.MAIL_FROM;
     const to = process.env.MAIL_TO;
+    if (!to || !from) {
+      throw new Error("MAIL_TO or MAIL_FROM is not defined");
+    }
     const res = await resend.emails.send({
       to: [to],
       from: from,
