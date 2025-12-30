@@ -1,5 +1,4 @@
-import { Size } from "@urban-deals-shop/db/generated/prisma/enums";
-import { Status } from "better-auth";
+import { Size, Status } from "@urban-deals-shop/db/generated/prisma/enums";
 
 
 export type ProductState = {
@@ -37,7 +36,7 @@ export type TOrder = {
 };
 export type OrderState = {
   status: "success" | "error";
-  message?:string
+  message?: string
 };
 export type ChangePasswordState = OrderState & {
   errors?: {

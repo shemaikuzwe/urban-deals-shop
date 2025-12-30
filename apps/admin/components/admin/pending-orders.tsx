@@ -1,5 +1,3 @@
-"use client";
-
 import { MoveRight, PackageSearch } from "lucide-react";
 import { Button } from "@urban-deals-shop/ui/components/button";
 import {
@@ -42,12 +40,8 @@ export default async function PendingOrders() {
                 </Avatar>
                 <div className="flex-1 space-y-1">
                   <div className="text-sm flex-col gap-2 leading-none">
-                    <p className="font-medium mb-2">
-                      {order.user?.name }
-                    </p>
-                    <p className="font-normal mb-2">
-                      {order?.user?.email }
-                    </p>
+                    <p className="font-medium mb-2">{order.user?.name}</p>
+                    <p className="font-normal mb-2">{order?.user?.email}</p>
                   </div>
                   <p className="text-xs text-muted-foreground">
                     {order.date.toLocaleDateString()}

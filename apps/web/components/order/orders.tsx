@@ -1,22 +1,25 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@urban-deals-shop/ui/components/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@urban-deals-shop/ui/components/tabs";
 import { Card } from "@urban-deals-shop/ui/components/card";
 import { Check, Package } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Alert, AlertDescription } from "@urban-deals-shop/ui/components/alert";
 import { motion } from "framer-motion";
-import { Order, Status } from "@urban-deals-shop/db/generated/prisma/client";
+import { Status } from "@urban-deals-shop/db/generated/prisma/enums";
+import type { OrderModel as Order } from "@urban-deals-shop/db/generated/prisma/models";
 import { useCart } from "@/lib/store";
 import OrdersCard from "./ordersCard";
-
-
 
 export default function Orders({ order }: { order: Order[] }) {
   const searchParams = useSearchParams();
   const success = searchParams.get("success");
-  console.log(success);
-
+ 
   const [isOpen, setOpen] = useState(false);
   const { removeAll } = useCart();
 
