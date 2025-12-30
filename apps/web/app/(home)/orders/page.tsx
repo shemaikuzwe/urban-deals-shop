@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import OrdersContent from "@/app/(home)/orders/orders";
 import { Metadata } from "next";
+import OrdersContent from "./orders";
 export const metadata: Metadata = {
   title: "Orders",
   description: "Orders page",
