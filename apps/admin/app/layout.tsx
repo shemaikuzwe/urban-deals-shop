@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "@urban-deals-shop/ui/globals.css"
+import "@urban-deals-shop/ui/globals.css";
+import React from "react";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SessionProvider } from "@/components/providers/session-provider";
 import { Toaster } from "sonner";

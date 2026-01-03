@@ -7,7 +7,9 @@ export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <div className="flex gap-2 h-full w-full min-h-screen ">
-        <DashSidebar />
+        {/* <div className="w-240"> */}
+            <DashSidebar />
+        {/* </div> */}
         <main className="w-full flex flex-col h-full">
           <Header />
           {children}

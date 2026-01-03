@@ -19,7 +19,7 @@ export default async function ProductsGrid({
         ))}
       </div>
       {products.length > 0 && (
-        <Button className="" size="lg" asChild>
+        <Button asChild>
           <Link href={"/admin/products/new"}>Add new Product</Link>
         </Button>
       )}

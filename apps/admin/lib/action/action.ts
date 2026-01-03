@@ -1,5 +1,5 @@
 "use server";
-import {
+import type {
   ChangePasswordState,
   LoginState,
   ProductState,
@@ -7,7 +7,6 @@ import {
 } from "@/lib/types/types";
 import { revalidateTag, revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { OrderState } from "../types/types";
 import {
   changePasswordShema,
   fileSchema,
@@ -16,11 +15,6 @@ import {
 } from "../types/schema";
 import { z } from "zod";
 import { auth, getProduct } from "@/lib/action/server";
-import {
-  unstable_cacheTag as cacheTag,
-  unstable_cacheLife as cacheLife,
-} from "next/cache";
-import Stripe from "stripe";
 import bcrypt from "bcryptjs";
 import * as jose from "jose";
 import { cookies } from "next/headers";
@@ -30,8 +24,7 @@ const AddProduct = productSchema.omit({ id: true });
 import { UTApi } from "uploadthing/server";
 import { getKeyFromUrl } from "../utils";
 import { db } from "@urban-deals-shop/db";
-import { Status } from "@urban-deals-shop/db/generated/prisma/enums";
-
+import type { Status } from "@urban-deals-shop/db/generated/prisma/enums";
 
 const utapi = new UTApi({
   // ...options,
@@ -58,7 +51,7 @@ export async function login(
         status: "error",
       };
     }
-    const user = await db.user.findUnique({
+    const user = await db.admin.findUnique({
       where: {
         email: validate.data.email,
       },
@@ -198,10 +191,12 @@ export async function editProduct(
   const prod = await getProduct(id);
 
   let imagePath = prod?.image;
-  if (image && image.size) {
+  if (image?.size) {
     imagePath = await uploadProduct(image);
   }
-  await deleteProd(prod?.image!);
+  if (prod?.image) {
+    await deleteProd(prod?.image);
+  }
   await db.product.update({
     where: {
       id: id,
@@ -241,48 +236,6 @@ async function deleteProd(url: string) {
   }
 }
 
-export async function addOrder(
-  prevState: OrderState | undefined,
-  formData: FormData,
-): Promise<OrderState | undefined> {
-  const cart = formData.get("cart") as string;
-  const totalPrice = formData.get("totalPrice") as string;
-  const userId = (await auth())?.data?.id;
-  if (!userId) throw new Error("User not found");
-  const amount = parseInt(totalPrice);
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
-  const stripeSession = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price_data: {
-          currency: "rwf",
-          unit_amount: amount,
-          product_data: {
-            name: "Order",
-          },
-        },
-        quantity: 1,
-      },
-    ],
-    metadata: {
-      buyerId: userId,
-      products: cart,
-    },
-    payment_method_types: ["card", "paypal"],
-    // shipping_address_collection: {
-    //    allowed_countries:["RW"]
-    // },
-    mode: "payment",
-    success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/orders?success=order created successfully`,
-    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
-  });
-  redirect(stripeSession.url!);
-}
-
-
-// This will be implemented with better auth
-
 export async function changePassword(
   prevState: ChangePasswordState | undefined,
   formData: FormData,
@@ -299,59 +252,46 @@ export async function changePassword(
       errors: validate.error.flatten().fieldErrors,
     };
   }
-  const {
-    newPassword,
-    confirmPassword: cpassword,
-    currentPassword: password,
-  } = validate.data;
-  if (newPassword === cpassword) {
-    const isFound=await find_password(userId,password)
-    if (isFound) {
-      const hashedPassword = bcrypt.hashSync(newPassword, 10);
-      try {
-        await db.user.update({
-          where: {
-            id: userId,
-          },
-          data: {
-            password: hashedPassword,
-          },
-        });
-        {
-          return { status: "success", message: "password changed" };
-        }
-      } catch (e) {
-        return {
-          status: "error",
-          message: "password not changed",
-        };
-      }
-    }
+  const { newPassword, currentPassword: password } = validate.data;
+
+  const user = await db.admin.findUnique({
+    where: { id: userId },
+  });
+  if (!user?.password) {
     return {
+      message: "No password found",
       status: "error",
-      message: "invalid current password",
+      errors: {
+        currentPassword: ["No password found"],
+      },
     };
   }
+  const isValid = bcrypt.compare(password, user?.password);
+  if (!isValid) {
+    return {
+      message: "Password invalid",
+      status: "error",
+      errors: {
+        currentPassword: ["Password Invalid"],
+      },
+    };
+  }
+  const hashedPassword = bcrypt.hashSync(newPassword, 10);
+
+  await db.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      password: hashedPassword,
+    },
+  });
+
   return {
     status: "error",
     message: "invalid current password",
   };
 }
-const find_password = async (id: string, pass: string) => {
-  const psw = await db.user.findFirst({
-    where: {
-      AND: [
-        {
-          id: id,
-        },
-        {
-          password: pass,
-        },
-      ],
-    },
-  });
-  return !!psw;
-};
 
 export async function updateProfile(
   prevState: updateProfileState | undefined,
@@ -373,7 +313,7 @@ export async function updateProfile(
   const { email, fullName } = validate.data;
 
   try {
-    await db.user.update({
+    await db.admin.update({
       where: {
         id: userId,
       },
@@ -387,39 +327,12 @@ export async function updateProfile(
       message: "Profile updated",
     };
   } catch (err) {
+    console.log("error", err);
     return {
       status: "error",
       message: "Something went wrong",
     };
   }
-}
-
-export async function getSearchProducts(search: string) {
-  const products = await db.product.findMany({
-    where: {
-      OR: [{ name: { contains: search } }],
-    },
-  });
-  return products;
-}
-
-export async function getFeaturedProducts() {
-  "use cache";
-
-  const products = await db.product.findMany({
-    where: { isFeatured: true },
-  });
-  return products;
-}
-
-export async function getLatestProducts() {
-  "use cache";
-  cacheTag("products");
-  const products = await db.product.findMany({
-    take: 4,
-    orderBy: { id: "desc" },
-  });
-  return products;
 }
 
 export async function updateFeatured(

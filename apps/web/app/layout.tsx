@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: "Urban Deals Shop",
   },
   description: "Urban Deals Shop – Where Creativity Meets Quality",
-  keywords: ["fashion", "rwanda", "Urban Deals Shop", "clothes"],
+  keywords: ["fashion", "Urban Deals Shop", "clothes"],
 };
 const inter = Inter({ subsets: ["latin"] });
 

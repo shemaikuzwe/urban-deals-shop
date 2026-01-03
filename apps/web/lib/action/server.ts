@@ -1,7 +1,7 @@
 import "server-only";
 import { db } from "@urban-deals-shop/db";
 import type { TOrder } from "@/lib/types/types";
-import { unstable_cacheTag as cacheTag, revalidateTag } from "next/cache";
+import { cacheTag, revalidateTag } from "next/cache";
 import { Category } from "@urban-deals-shop/db/generated/prisma/enums";
 
 export async function getProducts() {

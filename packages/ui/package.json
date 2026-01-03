@@ -7,7 +7,8 @@
   "scripts": {
     "clean": "rm -rf .turbo node_modules dist",
     "mail:dev": "email dev",
-    "build":"tsup"
+    "build": "tsup",
+    "build:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles/globals.css"
   },
   "peerDependencies": {
     "@types/react": ">=19",
@@ -64,11 +65,11 @@
     "react-email": "3.0.2",
     "tailwindcss": "^4.0.0",
     "tsup": "^8.5.1",
-    "typescript": "^5.7.2"
-
+    "typescript": "^5.7.2",
+    "@tailwindcss/cli": "^4.1.5"
   },
   "exports": {
-    "./globals.css": "./dist/styles/globals.css",
+    "./globals.css": "./src/styles/globals.css",
     "./postcss.config": "./postcss.config.mjs",
     "./lib/*": "./dist/lib/*.js",
     "./components/*": "./dist/components/*.js",

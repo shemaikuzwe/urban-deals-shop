@@ -16,7 +16,9 @@ import { LogOutIcon } from "lucide-react";
 import Logo from "./logo";
 export function DashSidebar() {
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" 
+    // className="w-64"
+    >
       <SidebarHeader className="p-2 border-b-border">
         <Logo />
       </SidebarHeader>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Twitter, Github, Linkedin, Globe } from "lucide-react";
 import { GitHubStars } from "./github-stars";
-import { unstable_cacheLife as cacheLife } from "next/cache";
+import { cacheLife } from "next/cache";
 import LoginForm from "../auth/login-form";
 
 export async function Footer() {

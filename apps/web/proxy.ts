@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "./lib/auth";
 
-
-const publicRoutes=["/","/products"]
 export default async function proxy(request: NextRequest) {
+  const publicRoutes = ["/", "/products"];
   const session = await auth.api.getSession({ headers: request.headers });
   const isLoggedIn = !!session;
   const isOnPublicRoute = publicRoutes.includes(request.nextUrl.pathname);
@@ -20,5 +19,4 @@ export const config = {
     // Always run for API routes
     "/(api|trpc)(.*)",
   ],
-  runtime: "nodejs",
 };

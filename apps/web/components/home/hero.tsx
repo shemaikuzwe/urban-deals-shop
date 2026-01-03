@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@urban-deals-shop/ui/components/button";
 import ImageSlider from "@urban-deals-shop/ui/components/img-slider";
-import { Product } from "@/prisma/generated/prisma/client";
 
 export function Hero({
   productPromise,
@@ -27,21 +26,20 @@ export function Hero({
             transition={{ duration: 0.8 }}
             className="flex flex-col gap-6"
           >
-            <h1 className="text-4xl md:text-5xl font-bold ">
+            <h1 className="text-2xl md:text-4xl font-bold ">
               Redefine Your <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
-                Digital Style
+                Shopping Experience
               </span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
-              Experience the fusion of high-street fashion and digital
-              aesthetics. Premium quality, exclusive drops, and designs that
-              speak louder than words.
+              Premium designs, limited collections, and a refined shopping
+              experience built for modern style lovers.
             </p>
 
             <div className="flex flex-wrap gap-4 mt-4">
-              <Button size="lg" variant="glow" className="rounded-full" asChild>
+              <Button size="lg" variant="glow" className="rounded-full bg-amber-200" asChild>
                 <Link href="/products">
                   Shop Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
