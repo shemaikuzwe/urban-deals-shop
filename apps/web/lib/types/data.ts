@@ -1,0 +1,35 @@
+import { Category, Size } from "@urban-deals-shop/db/generated/prisma/enums";
+import { LayoutDashboard, ShoppingCart, Package, Users } from "lucide-react";
+export const categories: Category[] = [
+  "T_SHIRT",
+  "PANTS",
+  "SHORTS",
+  "SHOES",
+  "OTHER",
+  "SUITS",
+  "SHIRTS",
+];
+export const size: Size[] = ["S", "XS", "M", "XL", "L"];
+
+export const links = [
+  {
+    name: "Dashboard",
+    icon: LayoutDashboard,
+    href: "/admin",
+  },
+  {
+    name: "Products",
+    icon: ShoppingCart,
+    href: "/admin/products",
+  },
+  {
+    name: "Orders",
+    icon: Package,
+    href: "/admin/orders",
+  },
+  {
+    name: "Users",
+    icon: Users,
+    href: "/admin/products",
+  },
+] as const;

@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Product {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String
+  price       Int
+  description String
+  type        Category @default(OTHER)
+  size        Size     @default(M)
+  image       String
+  isFeatured  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+  createdById String?  @db.Uuid
+  createdBy   Admin?    @relation(fields: [createdById], references: [id])
+}
+
+model Order {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String
+  products    Json[]
+  total_price Int
+  status      Status   @default(PENDING)
+  date        DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt   DateTime @default(now())
+}
+
+model User {
+  id            String    @id
+  name          String?
+  email         String?   @unique
+  emailVerified Boolean?
+  image         String?
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  accounts      Account[]
+  orders        Order[]
+  sessions      Session[]
+
+  @@map("user")
+}
+
+model Admin {
+  id              String     @id @default(uuid()) @db.Uuid
+  name            String
+  email           String    @unique
+  image           String?
+  password        String
+  createdProducts Product[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  @@map("account")
+}
+
+enum Status {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum Category {
+  SHORTS
+  PANTS
+  T_SHIRT
+  SHOES
+  OTHER
+  SUITS
+  SHIRTS
+}
+
+enum Size {
+  XS
+  S
+  M
+  L
+  XL
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?  @db.Text
+  userAgent String?  @db.Text
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Verification {
+  id         String   @id
+  identifier String   @db.Text
+  value      String   @db.Text
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}

@@ -40,7 +40,3 @@ next-env.d.ts
 #gitpod
 .gitpod.yml
 certificates
-
-.vscode
-.ai
-.turbo

@@ -1,8 +1,0 @@
-{
-  "extends": "next",
-  "rules": {
-    "valid-typeof":"warn",
-    "@typescript-eslint/no-explicit-any":"off"
-    
-  }
-}
