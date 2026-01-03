@@ -2,42 +2,26 @@
   "$schema": "https://turborepo.com/schema.json",
   "tasks": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env*"
-      ],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**",
-        "dist/**"
-      ],
-      "env": [
-        "NODE_ENV",
-        "NEXT_PUBLIC_*"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
+      "env": ["NODE_ENV", "NEXT_PUBLIC_*"]
     },
     "lint": {
-      "dependsOn": [
-        "^lint"
-      ]
+      "dependsOn": ["^lint"]
     },
     "check-types": {
-      "dependsOn": [
-        "^check-types"
-      ]
+      "dependsOn": ["^check-types"]
     },
     "dev": {
       "cache": false,
       "persistent": true
     },
-    "dev:web":{
+    "dev:web": {
       "cache": false,
       "persistent": true
     },
-     "dev:admin":{
+    "dev:admin": {
       "cache": false,
       "persistent": true
     },
@@ -54,8 +38,5 @@
       "cache": false
     }
   },
-  "globalEnv": [
-    "NODE_ENV" ,
-    "NEXT_PUBLIC_*"
-  ]
+  "globalDependencies": [".env*"]
 }
