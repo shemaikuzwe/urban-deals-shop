@@ -6,8 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev --skip-generate",
-    "db:push": "prisma db push && prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf  node_modules dist",

@@ -9,8 +9,8 @@ async function seed() {
     console.log("Existing the program");
     return;
   }
-  const email = "admin@urban-deals.shop";
-  const password = await bcrypt.hash("admin", 10);
+  const email = process.env.DEFAULT_EMAIL!;
+  const password = await bcrypt.hash(process.env.DEFAULT_PASSWORD!, 10);
   await db.admin.create({
     data: {
       email,

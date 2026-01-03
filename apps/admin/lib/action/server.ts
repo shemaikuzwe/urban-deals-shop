@@ -1,6 +1,6 @@
 import "server-only";
 import { db } from "@urban-deals-shop/db";
-import { unstable_cacheTag as cacheTag, revalidateTag } from "next/cache";
+import { cacheTag, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import * as jose from "jose";
 import { ChartData, Session, TOrder } from "../types/types";
@@ -25,7 +25,7 @@ export async function auth(): Promise<Session> {
       data: payload as any,
     };
   } catch (err) {
-    console.error("error:",err)
+    console.error("error:", err);
     return {
       status: "un_authenticated",
       data: null,
@@ -168,7 +168,7 @@ export async function getChartData() {
       ([product, orderSet]) => ({
         product,
         orders: orderSet.size,
-      }),
+      })
     );
 
     return chartData;

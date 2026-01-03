@@ -263,7 +263,7 @@ export type ProductWhereInput = {
   isFeatured?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
-  createdById?: Prisma.StringNullableFilter<"Product"> | string | null
+  createdById?: Prisma.UuidNullableFilter<"Product"> | string | null
   createdBy?: Prisma.XOR<Prisma.AdminNullableScalarRelationFilter, Prisma.AdminWhereInput> | null
 }
 
@@ -296,7 +296,7 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   isFeatured?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
-  createdById?: Prisma.StringNullableFilter<"Product"> | string | null
+  createdById?: Prisma.UuidNullableFilter<"Product"> | string | null
   createdBy?: Prisma.XOR<Prisma.AdminNullableScalarRelationFilter, Prisma.AdminWhereInput> | null
 }, "id">
 
@@ -333,7 +333,7 @@ export type ProductScalarWhereWithAggregatesInput = {
   isFeatured?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
-  createdById?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
+  createdById?: Prisma.UuidNullableWithAggregatesFilter<"Product"> | string | null
 }
 
 export type ProductCreateInput = {
@@ -633,7 +633,7 @@ export type ProductScalarWhereInput = {
   isFeatured?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
-  createdById?: Prisma.StringNullableFilter<"Product"> | string | null
+  createdById?: Prisma.UuidNullableFilter<"Product"> | string | null
 }
 
 export type ProductCreateManyCreatedByInput = {

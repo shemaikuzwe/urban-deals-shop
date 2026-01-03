@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
-  experimental: {
-    cacheComponents: true,
-  },
+  cacheComponents: true,
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -14,8 +12,7 @@ const nextConfig: NextConfig = {
       },
       { hostname: "cmx55brlhb.ufs.sh", protocol: "https" },
     ],
-  },
-  transpilePackages: ["@urban-deals-shop/ui","@urban-deals-shop/db"]
+  }
 };
 
 export default nextConfig;

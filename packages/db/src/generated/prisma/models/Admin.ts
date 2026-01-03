@@ -191,7 +191,7 @@ export type AdminWhereInput = {
   AND?: Prisma.AdminWhereInput | Prisma.AdminWhereInput[]
   OR?: Prisma.AdminWhereInput[]
   NOT?: Prisma.AdminWhereInput | Prisma.AdminWhereInput[]
-  id?: Prisma.StringFilter<"Admin"> | string
+  id?: Prisma.UuidFilter<"Admin"> | string
   name?: Prisma.StringFilter<"Admin"> | string
   email?: Prisma.StringFilter<"Admin"> | string
   image?: Prisma.StringNullableFilter<"Admin"> | string | null
@@ -243,7 +243,7 @@ export type AdminScalarWhereWithAggregatesInput = {
   AND?: Prisma.AdminScalarWhereWithAggregatesInput | Prisma.AdminScalarWhereWithAggregatesInput[]
   OR?: Prisma.AdminScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AdminScalarWhereWithAggregatesInput | Prisma.AdminScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"Admin"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"Admin"> | string
   name?: Prisma.StringWithAggregatesFilter<"Admin"> | string
   email?: Prisma.StringWithAggregatesFilter<"Admin"> | string
   image?: Prisma.StringNullableWithAggregatesFilter<"Admin"> | string | null
@@ -253,7 +253,7 @@ export type AdminScalarWhereWithAggregatesInput = {
 }
 
 export type AdminCreateInput = {
-  id: string
+  id?: string
   name: string
   email: string
   image?: string | null
@@ -264,7 +264,7 @@ export type AdminCreateInput = {
 }
 
 export type AdminUncheckedCreateInput = {
-  id: string
+  id?: string
   name: string
   email: string
   image?: string | null
@@ -297,7 +297,7 @@ export type AdminUncheckedUpdateInput = {
 }
 
 export type AdminCreateManyInput = {
-  id: string
+  id?: string
   name: string
   email: string
   image?: string | null
@@ -378,7 +378,7 @@ export type AdminUpdateOneWithoutCreatedProductsNestedInput = {
 }
 
 export type AdminCreateWithoutCreatedProductsInput = {
-  id: string
+  id?: string
   name: string
   email: string
   image?: string | null
@@ -388,7 +388,7 @@ export type AdminCreateWithoutCreatedProductsInput = {
 }
 
 export type AdminUncheckedCreateWithoutCreatedProductsInput = {
-  id: string
+  id?: string
   name: string
   email: string
   image?: string | null
