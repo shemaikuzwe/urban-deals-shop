@@ -62,11 +62,11 @@
     "use-debounce": "^10.0.6"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
     "react-email": "3.0.2",
     "tailwindcss": "^4.0.0",
     "tsup": "^8.5.1",
-    "typescript": "^5.7.2",
-    "@tailwindcss/cli": "^4.1.5"
+    "typescript": "^5.7.2"
   },
   "exports": {
     "./globals.css": "./src/styles/globals.css",

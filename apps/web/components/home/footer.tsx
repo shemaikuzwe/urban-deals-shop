@@ -55,7 +55,7 @@ export async function Footer() {
               </li>
               <li>
                 <LoginForm>
-                  <span>
+                  <span className="text-base text-gray-500 hover:text-gray-900">
                     Create Account
                   </span>
                 </LoginForm>

@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@urban-deals-shop/ui/components/button";
 import ImageSlider from "@urban-deals-shop/ui/components/img-slider";
+import { Product } from "@urban-deals-shop/db/generated/prisma/client";
 
 export function Hero({
   productPromise,
@@ -12,11 +13,7 @@ export function Hero({
 }) {
   return (
     <section className="relative overflow-hidden w-full min-h-[85vh] flex items-center bg-background">
-      {/* Background Gradients */}
-      <div className="absolute top-0 -left-4 w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
-      <div className="absolute top-0 -right-4 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
-      <div className="absolute -bottom-32 left-20 w-96 h-96 bg-cyan-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
-
+    
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
@@ -28,7 +25,7 @@ export function Hero({
           >
             <h1 className="text-2xl md:text-4xl font-bold ">
               Redefine Your <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
+              <span className="text-transparent bg-clip-text bg-primary">
                 Shopping Experience
               </span>
             </h1>
@@ -39,19 +36,12 @@ export function Hero({
             </p>
 
             <div className="flex flex-wrap gap-4 mt-4">
-              <Button size="lg" variant="glow" className="rounded-full bg-amber-200" asChild>
+              <Button size="lg" variant="glow" className="rounded-full" asChild>
                 <Link href="/products">
                   Shop Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-full border-2"
-                asChild
-              >
-                <Link href="/products">View Products</Link>
-              </Button>
+              
             </div>
 
             <div className="mt-8 flex items-center gap-4 text-sm text-muted-foreground">

@@ -11,10 +11,7 @@ import {
   UpdateUserProfileSchema,
 } from "../types/schema";
 import { db } from "@urban-deals-shop/db";
-import {
-  unstable_cacheTag as cacheTag,
-  unstable_cacheLife as cacheLife,
-} from "next/cache";
+import { cacheTag, cacheLife } from "next/cache";
 import { z } from "zod";
 import Stripe from "stripe";
 import { redirect } from "next/navigation";
@@ -30,10 +27,10 @@ export async function logIn() {
 }
 export async function addOrder(
   prevState: OrderState | undefined,
-  formData: FormData,
+  formData: FormData
 ): Promise<OrderState | undefined> {
   const validate = createOrderSchema.safeParse(
-    Object.fromEntries(formData.entries()),
+    Object.fromEntries(formData.entries())
   );
   if (!validate.success) {
     return {
@@ -83,14 +80,14 @@ export async function addOrder(
 
 export async function changePassword(
   prevState: ChangePasswordState | undefined,
-  formData: FormData,
+  formData: FormData
 ): Promise<ChangePasswordState | undefined> {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
   const userId = session?.user?.id as string;
   const validate = changePasswordShema.safeParse(
-    Object.fromEntries(formData.entries()),
+    Object.fromEntries(formData.entries())
   );
   if (!validate.success) {
     return {
@@ -153,7 +150,7 @@ const find_password = async (id: string, pass: string) => {
 
 export async function updateProfile(
   prevState: updateProfileState | undefined,
-  formData: FormData,
+  formData: FormData
 ): Promise<updateProfileState | undefined> {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -195,13 +192,12 @@ export async function updateProfile(
 }
 export async function sendMessage(
   prevState: FormStatus | undefined,
-  formData: FormData,
+  formData: FormData
 ): Promise<FormStatus> {
   try {
     const validate = z
       .object({
         email: z
-          .string({ message: "Invalid Email" })
           .email({ message: "Invalid Email" }),
         message: z
           .string({ message: "Invalid Message" })
@@ -216,7 +212,7 @@ export async function sendMessage(
     if (!validate.success) {
       return {
         status: "error",
-        message: validate.error.errors[0].message,
+        message: z.treeifyError(validate.error).errors[0],
       };
     }
     const { email, message, name } = validate.data;
