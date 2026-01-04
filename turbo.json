@@ -19,7 +19,8 @@
         "BETTER_AUTH_URL",
         "STRIPE_SECRET_KEY",
         "STRIPE_WEBHOOK_SECRET",
-        "UPLOADTHING_TOKEN"
+        "UPLOADTHING_TOKEN",
+        "AUTH_SECRET"
       ]
     },
     "lint": {
