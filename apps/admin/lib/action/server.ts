@@ -1,6 +1,6 @@
 import "server-only";
 import { db } from "@urban-deals-shop/db";
-import { cacheTag, revalidateTag } from "next/cache";
+import { unstable_cacheTag as cacheTag, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import * as jose from "jose";
 import { ChartData, Session, TOrder } from "../types/types";

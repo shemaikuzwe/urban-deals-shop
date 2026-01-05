@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
-  cacheComponents: true,
+  experimental: {
+    cacheComponents: true,
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -12,7 +14,7 @@ const nextConfig: NextConfig = {
       },
       { hostname: "cmx55brlhb.ufs.sh", protocol: "https" },
     ],
-  }
+  },
 };
 
 export default nextConfig;
