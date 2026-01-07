@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import {Geist } from "next/font/google";
+import { Geist } from "next/font/google";
 import "@urban-deals-shop/ui/globals.css";
 import React from "react";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { SessionProvider } from "@/components/providers/session-provider";
 import { Toaster } from "sonner";
 
-const geist= Geist({ subsets: ["latin"], weight: ["400","600"] });
+const geist = Geist({ subsets: ["latin"], weight: ["400", "600"] });
 
 export const metadata: Metadata = {
   title: {
@@ -23,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geist.className} antialiased`} >
+      <body className={`${geist.className} antialiased`}>
         <ThemeProvider
           attribute={"class"}
           disableTransitionOnChange
@@ -31,7 +30,7 @@ export default function RootLayout({
           enableSystem
         >
           <Toaster />
-          <SessionProvider>{children}</SessionProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>

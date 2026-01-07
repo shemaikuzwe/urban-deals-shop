@@ -11,13 +11,13 @@ import {
   SidebarMenuItem,
 } from "@urban-deals-shop/ui/components/sidebar";
 import { links } from "@/lib/types/data";
-import { logout } from "@/lib/action/action";
-import { LogOutIcon } from "lucide-react";
 import Logo from "./logo";
+import LogOut from "./logout";
 export function DashSidebar() {
   return (
-    <Sidebar collapsible="icon" 
-    // className="w-64"
+    <Sidebar
+      collapsible="icon"
+      // className="w-64"
     >
       <SidebarHeader className="p-2 border-b-border">
         <Logo />
@@ -42,11 +42,7 @@ export function DashSidebar() {
       </SidebarContent>
       <SidebarFooter className="py-2 w-full border-t-border  mt-auto border-none">
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton onClick={logout}>
-              <LogOutIcon /> LogOut
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          <LogOut />
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>

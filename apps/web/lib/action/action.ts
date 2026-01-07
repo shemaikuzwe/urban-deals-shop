@@ -1,23 +1,21 @@
 "use server";
 import type {
-  ChangePasswordState,
   FormStatus,
   updateProfileState,
 } from "@/lib/types/types";
 import type { OrderState } from "../types/types";
 import {
-  changePasswordShema,
   createOrderSchema,
   UpdateUserProfileSchema,
 } from "../types/schema";
 import { db } from "@urban-deals-shop/db";
-import { cacheTag, cacheLife } from "next/cache";
+import { cacheLife } from "next/cache";
 import { z } from "zod";
 import Stripe from "stripe";
 import { redirect } from "next/navigation";
-import { auth, signIn } from "../auth";
 import { headers } from "next/headers";
 import sendContactEmail from "@urban-deals-shop/ui/email/contact";
+import { auth, signIn } from "@urban-deals-shop/auth";
 
 export async function logIn() {
   const { redirect: isRedirect, url } = await signIn("google");
@@ -77,76 +75,6 @@ export async function addOrder(
     redirect(stripeSession.url);
   }
 }
-
-export async function changePassword(
-  prevState: ChangePasswordState | undefined,
-  formData: FormData
-): Promise<ChangePasswordState | undefined> {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-  const userId = session?.user?.id as string;
-  const validate = changePasswordShema.safeParse(
-    Object.fromEntries(formData.entries())
-  );
-  if (!validate.success) {
-    return {
-      status: "error",
-      message: "Please fill in all fields",
-      errors: validate.error.flatten().fieldErrors,
-    };
-  }
-  const {
-    newPassword,
-    confirmPassword: cpassword,
-    currentPassword: password,
-  } = validate.data;
-  if (newPassword === cpassword) {
-    if (await find_password(userId, password)) {
-      try {
-        await db.user.update({
-          where: {
-            id: userId,
-          },
-          data: {
-            password: newPassword,
-          },
-        });
-        {
-          return { status: "success", message: "password changed" };
-        }
-      } catch (e) {
-        return {
-          status: "error",
-          message: "password not changed",
-        };
-      }
-    }
-    return {
-      status: "error",
-      message: "invalid current password",
-    };
-  }
-  return {
-    status: "error",
-    message: "invalid current password",
-  };
-}
-const find_password = async (id: string, pass: string) => {
-  const psw = await db.user.findFirst({
-    where: {
-      AND: [
-        {
-          id: id,
-        },
-        {
-          password: pass,
-        },
-      ],
-    },
-  });
-  return !!psw;
-};
 
 export async function updateProfile(
   prevState: updateProfileState | undefined,
@@ -247,7 +175,7 @@ export async function getSearchProducts(search: string) {
 
 export async function getFeaturedProducts() {
   "use cache";
-
+  cacheLife("minutes")
   const products = await db.product.findMany({
     where: { isFeatured: true },
   });
@@ -256,7 +184,7 @@ export async function getFeaturedProducts() {
 
 export async function getLatestProducts() {
   "use cache";
-  cacheTag("products");
+  cacheLife("minutes")
   const products = await db.product.findMany({
     take: 4,
     orderBy: { id: "desc" },

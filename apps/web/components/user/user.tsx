@@ -11,7 +11,7 @@ import Link from "next/link";
 import { Button } from "@urban-deals-shop/ui/components/button";
 import { LogIn } from "lucide-react";
 import LoginForm from "../auth/login-form";
-import { getSession, signOut } from "@/lib/auth";
+import { getSession,signOut } from "@urban-deals-shop/auth";
 
 export default async function User() {
   const session = await getSession();

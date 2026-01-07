@@ -1,7 +1,9 @@
 //  Add server only
 import { db } from "@urban-deals-shop/db";
 import { betterAuth } from "better-auth";
+import { toNextJsHandler } from "better-auth/next-js";
 import { prismaAdapter } from "better-auth/adapters/prisma";
+import { admin } from "better-auth/plugins";
 import { headers } from "next/headers";
 
 const auth = betterAuth({
@@ -10,6 +12,15 @@ const auth = betterAuth({
     provider: "postgresql",
     debugLogs: process.env.NODE_ENV === "development",
   }),
+  user: {
+    additionalFields: {
+      role: {
+        type: "string",
+        input: false,
+      },
+    },
+  },
+  plugins: [admin()],
   account: {
     accountLinking: {
       trustedProviders: [
@@ -22,6 +33,12 @@ const auth = betterAuth({
     },
     skipStateCookieCheck: true,
   },
+  emailAndPassword: {
+    enabled: true,
+    disableSignUp: true,
+    minPasswordLength: 5,
+  },
+
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -39,7 +56,7 @@ const signIn = async (provider: "google" | "github") =>
       provider,
     },
   });
-const signOut = async () =>
+ const signOut = async () =>
   await auth.api.signOut({
     headers: await headers(),
   });
@@ -47,4 +64,4 @@ const signOut = async () =>
 const getSession = async () =>
   await auth.api.getSession({ headers: await headers() });
 
-export { auth, signIn, signOut, getSession };
+export { auth, signIn, signOut, getSession, toNextJsHandler };

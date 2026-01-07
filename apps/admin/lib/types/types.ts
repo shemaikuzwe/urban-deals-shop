@@ -1,23 +1,5 @@
 import { Size, Status } from "@urban-deals-shop/db/generated/prisma/enums";
 
-
-export type LoginState = {
-  errors?: {
-    email?: string[];
-    password?: string[];
-  };
-  message?: string;
-  status: "success" | "error";
-};
-export interface Session {
-  data: {
-    id: string;
-    email: string;
-    name: string;
-  } | null;
-  status: "authenticated" | "un_authenticated" | "pending";
-}
-
 export type ProductState = {
   errors?: {
     id?: string[];
@@ -55,21 +37,11 @@ export type OrderState = {
   status: "success" | "error";
   message: string;
 };
-export type ChangePasswordState = OrderState & {
-  errors?: {
-    currentPassword?: string[];
-    newPassword?: string[];
-    confirmPassword?: string[];
-  };
-};
 export type updateProfileState = OrderState & {
   errors?: {
     email?: string[];
     fullName?: string[];
   };
-};
-export type LoginError = {
-  message: string;
 };
 export type Item = {
   id: string;

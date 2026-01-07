@@ -55,11 +55,6 @@ export type Order = Prisma.OrderModel
  */
 export type User = Prisma.UserModel
 /**
- * Model Admin
- * 
- */
-export type Admin = Prisma.AdminModel
-/**
  * Model Account
  * 
  */

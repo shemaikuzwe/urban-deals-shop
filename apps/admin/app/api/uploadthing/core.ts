@@ -1,13 +1,14 @@
+import { getSession } from "@urban-deals-shop/auth";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
-import { auth as authUser } from "@/lib/action/server";
+
 const f = createUploadthing({
   errorFormatter: (error) => {
     throw new UploadThingError(error.message);
   },
 });
 const auth = (req: Request) => {
-  const user = authUser();
+  const user = getSession();
   return user;
 };
 
@@ -23,8 +24,8 @@ export const ourFileRouter = {
     },
   })
     .middleware(async ({ req }) => {
-      const user = await auth(req);
-      const userId = user?.data?.id;
+      const session = await auth(req);
+      const userId = session?.user?.id;
       if (!userId)
         throw new UploadThingError("Please login to upload attachments.");
       return { userId: userId };

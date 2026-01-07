@@ -1,23 +1,17 @@
 "use server";
 import type {
-  ChangePasswordState,
-  LoginState,
   ProductState,
   updateProfileState,
 } from "@/lib/types/types";
 import { revalidateTag, revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import {
-  changePasswordShema,
   fileSchema,
   productSchema,
   UpdateUserProfileSchema,
 } from "../types/schema";
 import { z } from "zod";
-import { auth, getProduct } from "@/lib/action/server";
-import bcrypt from "bcryptjs";
-import * as jose from "jose";
-import { cookies } from "next/headers";
+import { getProduct } from "@/lib/action/server";
 
 const AddProduct = productSchema.omit({ id: true });
 
@@ -25,96 +19,12 @@ import { UTApi } from "uploadthing/server";
 import { getKeyFromUrl } from "../utils";
 import { db } from "@urban-deals-shop/db";
 import type { Status } from "@urban-deals-shop/db/generated/prisma/enums";
+import { auth } from "@urban-deals-shop/auth";
 
 const utapi = new UTApi({
   // ...options,
 });
 
-export async function login(
-  prevState: LoginState | undefined,
-  formData: FormData,
-): Promise<LoginState> {
-  try {
-    const validate = z
-      .object({
-        email: z
-          .string({ invalid_type_error: "Invalid email" })
-          .email({ message: "Invalid email" }),
-        password: z
-          .string({ invalid_type_error: "Invalid password" })
-          .min(3, { message: "Password must be at least 3 characters" }),
-      })
-      .safeParse(Object.fromEntries(formData.entries()));
-    if (!validate.success) {
-      return {
-        errors: validate.error.flatten().fieldErrors,
-        status: "error",
-      };
-    }
-    const user = await db.admin.findUnique({
-      where: {
-        email: validate.data.email,
-      },
-    });
-    if (!user)
-      return {
-        status: "error",
-        errors: {
-          email: ["Invalid credentials"],
-        },
-      };
-    const isValid = await bcrypt.compare(
-      validate.data.password,
-      user.password ?? "",
-    );
-    if (!isValid)
-      return {
-        status: "error",
-        errors: {
-          email: ["Invalid credentials"],
-        },
-      };
-    const secretKey = process.env.AUTH_SECRET;
-    if (!secretKey) {
-      return {
-        status: "error",
-        message: "Something went wrong",
-      };
-    }
-    const key = jose.base64url.decode(secretKey!);
-    const token = await new jose.SignJWT({
-      id: user.id,
-      email: user.email,
-      sub: user.id,
-      createdAt: user.createdAt,
-      name: user.name,
-    })
-      .setProtectedHeader({ alg: "HS256" })
-      .setIssuedAt()
-      .setExpirationTime("7d")
-      .sign(key);
-    const cookieStore = await cookies();
-    cookieStore.set("auth_token", token, {
-      path: "/",
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
-    return { status: "success", message: "Login successful" };
-  } catch (err) {
-    console.error(err);
-    return {
-      status: "error",
-      message: "Login failed",
-    };
-  }
-}
-export async function logout() {
-  const cookieStore = await cookies();
-  cookieStore.delete("auth_token");
-  redirect("/");
-}
 export async function refreshOrders() {
   revalidateTag("orders", "max");
   revalidatePath("/admin/orders");
@@ -236,69 +146,12 @@ async function deleteProd(url: string) {
   }
 }
 
-export async function changePassword(
-  prevState: ChangePasswordState | undefined,
-  formData: FormData,
-): Promise<ChangePasswordState | undefined> {
-  const session = await auth();
-  const userId = session?.data?.id as string;
-  const validate = changePasswordShema.safeParse(
-    Object.fromEntries(formData.entries()),
-  );
-  if (!validate.success) {
-    return {
-      status: "error",
-      message: "Please fill in all fields",
-      errors: validate.error.flatten().fieldErrors,
-    };
-  }
-  const { newPassword, currentPassword: password } = validate.data;
-
-  const user = await db.admin.findUnique({
-    where: { id: userId },
-  });
-  if (!user?.password) {
-    return {
-      message: "No password found",
-      status: "error",
-      errors: {
-        currentPassword: ["No password found"],
-      },
-    };
-  }
-  const isValid = bcrypt.compare(password, user?.password);
-  if (!isValid) {
-    return {
-      message: "Password invalid",
-      status: "error",
-      errors: {
-        currentPassword: ["Password Invalid"],
-      },
-    };
-  }
-  const hashedPassword = bcrypt.hashSync(newPassword, 10);
-
-  await db.user.update({
-    where: {
-      id: userId,
-    },
-    data: {
-      password: hashedPassword,
-    },
-  });
-
-  return {
-    status: "error",
-    message: "invalid current password",
-  };
-}
-
 export async function updateProfile(
   prevState: updateProfileState | undefined,
   formData: FormData,
 ): Promise<updateProfileState | undefined> {
-  const session = await auth();
-  const userId = session.data?.id as string;
+  const session = await auth.api.getSession();
+  const userId = session?.user.id as string;
   const validate = UpdateUserProfileSchema.safeParse({
     email: formData.get("email"),
     fullName: formData.get("fullName"),
@@ -313,7 +166,7 @@ export async function updateProfile(
   const { email, fullName } = validate.data;
 
   try {
-    await db.admin.update({
+    await db.user.update({
       where: {
         id: userId,
       },
@@ -334,7 +187,6 @@ export async function updateProfile(
     };
   }
 }
-
 export async function updateFeatured(
   prevState: { status: boolean } | undefined,
   formData: FormData,

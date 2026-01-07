@@ -10,9 +10,8 @@ import {
 } from "@urban-deals-shop/ui/components/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Suspense, use, useState } from "react";
-import { Badge} from "@urban-deals-shop/ui/components/badge";
+import { Badge } from "@urban-deals-shop/ui/components/badge";
 import { useRouter } from "next/navigation";
-
 type Product = {
   id: string;
   name: string;

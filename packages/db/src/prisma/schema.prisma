@@ -18,8 +18,8 @@ model Product {
   isFeatured  Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt
-  createdById String?  @db.Uuid
-  createdBy   Admin?    @relation(fields: [createdById], references: [id])
+  createdById String?  
+  createdBy   User?    @relation(fields: [createdById], references: [id])
 }
 
 model Order {
@@ -33,31 +33,30 @@ model Order {
   createdAt   DateTime @default(now())
 }
 
-model User {
-  id            String    @id
-  name          String?
-  email         String?   @unique
-  emailVerified Boolean?
-  image         String?
-  password      String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  accounts      Account[]
-  orders        Order[]
-  sessions      Session[]
-
-  @@map("user")
+enum UserRole {
+  user
+  admin
 }
 
-model Admin {
-  id              String     @id @default(uuid()) @db.Uuid
-  name            String
-  email           String    @unique
+model User {
+  id              String    @id
+  name            String?
+  role            UserRole  @default(user)
+  email           String?   @unique
+  emailVerified   Boolean?
   image           String?
-  password        String
-  createdProducts Product[]
+  password        String?
+  banned          Boolean?
+  banReason       String?
+  banExpires      DateTime?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+  accounts        Account[]
+  orders          Order[]
+  sessions        Session[]
+  createdProducts Product[]
+
+  @@map("user")
 }
 
 model Account {
@@ -104,15 +103,16 @@ enum Size {
 }
 
 model Session {
-  id        String   @id
-  expiresAt DateTime
-  token     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  ipAddress String?  @db.Text
-  userAgent String?  @db.Text
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id             String   @id
+  expiresAt      DateTime
+  token          String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  impersonatedBy String?
+  ipAddress      String?  @db.Text
+  userAgent      String?  @db.Text
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([token])
   @@index([userId])

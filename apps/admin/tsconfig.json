@@ -16,17 +16,22 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    // "plugins": [
+    //   {
+    //     "name": "next"
+    //   }
+    // ],
     "paths": {
       "@/*": [
         "./*"
       ]
     },
-    "target": "ES2017"
+    "target": "ES2017",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",

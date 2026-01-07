@@ -1,9 +1,9 @@
+import { getSession } from "@urban-deals-shop/auth";
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "./lib/action/server";
 
 export default async function proxy(req: NextRequest) {
-  const session = await auth();
-  const isLoggedIn = session.status === "authenticated";
+  const session = await getSession();
+  const isLoggedIn = !!session?.user;
   if (isLoggedIn && req.nextUrl.pathname === "/") {
     return NextResponse.redirect(new URL("/admin", req.nextUrl));
   } else if (!isLoggedIn && req.nextUrl.pathname.startsWith("/admin")) {

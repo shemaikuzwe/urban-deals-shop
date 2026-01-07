@@ -16,7 +16,7 @@ import { Badge } from "@urban-deals-shop/ui/components/badge";
 import { useCart } from "@/lib/store";
 import { Alert, AlertTitle } from "@urban-deals-shop/ui/components/alert";
 import LoginForm from "../auth/login-form";
-import { useSession } from "@/lib/auth/auth-client";
+import { useSession } from "@urban-deals-shop/auth/client";
 
 export default function Cart() {
   const { cart, removeAll } = useCart();

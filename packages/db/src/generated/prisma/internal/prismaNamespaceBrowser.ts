@@ -54,7 +54,6 @@ export const ModelName = {
   Product: 'Product',
   Order: 'Order',
   User: 'User',
-  Admin: 'Admin',
   Account: 'Account',
   Session: 'Session',
   Verification: 'Verification'
@@ -109,28 +108,19 @@ export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof Or
 export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  role: 'role',
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
   password: 'password',
+  banned: 'banned',
+  banReason: 'banReason',
+  banExpires: 'banExpires',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-export const AdminScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  email: 'email',
-  image: 'image',
-  password: 'password',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
 
 
 export const AccountScalarFieldEnum = {
@@ -158,6 +148,7 @@ export const SessionScalarFieldEnum = {
   token: 'token',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  impersonatedBy: 'impersonatedBy',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
   userId: 'userId'

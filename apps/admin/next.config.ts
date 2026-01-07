@@ -1,8 +1,7 @@
 import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
-  experimental: {
-    cacheComponents: true,
-  },
+  cacheComponents: true,
+
   typescript: {
     ignoreBuildErrors: true,
   },

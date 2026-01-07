@@ -1,6 +1,7 @@
 import { getOrderById } from "@/lib/action/server";
 import Orders from "@/components/order/orders";
-import { getSession } from "@/lib/auth";
+import { getSession } from "@urban-deals-shop/auth";
+
 export default async function OrdersContent() {
   const session = await getSession();
   const userId: string | undefined = session?.user?.id;

@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     NextResponse.json("Invalid webhook", { status: 500 });
   }
 
-  if (event?.type == "checkout.session.completed") {
+  if (event?.type === "checkout.session.completed") {
     console.log("Checkout session completed");
     const { amount_total, metadata } = event.data.object;
     // const city=shipping_details?.address?.city;

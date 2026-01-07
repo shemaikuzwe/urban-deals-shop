@@ -2,7 +2,11 @@
 import { useState, useActionState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { User, Mail, Package, Lock } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@urban-deals-shop/ui/components/avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@urban-deals-shop/ui/components/avatar";
 import { Button } from "@urban-deals-shop/ui/components/button";
 import {
   Card,
@@ -17,22 +21,15 @@ import { Label } from "@urban-deals-shop/ui/components/label";
 import { updateProfile } from "@/lib/action/action";
 import { Alert, AlertTitle } from "@urban-deals-shop/ui/components/alert";
 import ThemeSelector from "../providers/theme-selector";
-import { useSession } from "../providers/session-provider";
 import { cn } from "@urban-deals-shop/ui/lib/utils";
-
-// interface UserProfileProps {
-//   orders: Promise<number>;
-// }
+import { useSession } from "@urban-deals-shop/auth/client";
 
 export default function Profile() {
   const [state, action1, pending] = useActionState(updateProfile, undefined);
-  // const [status, action2, isPending] = useActionState(
-  //   changePassword,
-  //   undefined
-  // );
+
   const [isEditing, setIsEditing] = useState(false);
-  const session = useSession();
-  const user = session?.data;
+  const { data, isPending } = useSession();
+  if (isPending) return null;
   useEffect(() => {
     if (state?.status == "success") {
       setIsEditing(false);
@@ -44,14 +41,14 @@ export default function Profile() {
         <CardHeader>
           <div className="flex items-center space-x-4">
             <Avatar className="h-20 w-20">
-              <AvatarImage src={""} alt={user?.name!} />
+              <AvatarImage src={""} alt={data?.user?.name} />
               <AvatarFallback>
-                {user?.name!.slice(0, 2).toUpperCase()}
+                {data?.user?.name?.slice(0, 2).toUpperCase()}
               </AvatarFallback>
             </Avatar>
             <div>
-              <CardTitle className="text-2xl">{user?.name!}</CardTitle>
-              <CardDescription>{user?.email!}</CardDescription>
+              <CardTitle className="text-2xl">{data?.user?.name!}</CardTitle>
+              <CardDescription>{data?.user?.email!}</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -69,7 +66,7 @@ export default function Profile() {
                   <Input
                     id="fullName"
                     name="fullName"
-                    defaultValue={user?.name!}
+                    defaultValue={data?.user?.name}
                     readOnly={!isEditing}
                   />
                   {state?.errors?.fullName &&
@@ -92,7 +89,7 @@ export default function Profile() {
                     id="email"
                     name="email"
                     type="email"
-                    defaultValue={user?.email!}
+                    defaultValue={data?.user?.email}
                     readOnly={!isEditing}
                   />
                   {state?.errors?.email &&
@@ -133,101 +130,6 @@ export default function Profile() {
                     Edit Profile
                   </Button>
                 )}
-
-                {/* <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="outline">
-                      <Lock />
-                      Change Password
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Change Password</DialogTitle>
-                      <DialogDescription>
-                        Enter your current password and a new password to change
-                        it.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <form className="space-y-4" action={action2}>
-                      <div>
-                        <Label htmlFor="currentPassword">
-                          Current Password
-                        </Label>
-                        <Input
-                          id="currentPassword"
-                          name="currentPassword"
-                          type="password"
-                          placeholder="Enter current password"
-                        />
-                        {status?.errors?.currentPassword &&
-                          status.errors.currentPassword.map((error) => (
-                            <span
-                              aria-live="polite"
-                              className="mt-2 text-destructive"
-                               key={error}
-                             >
-                              {error}
-                            </span>
-                          ))}
-                      </div>
-                      <div>
-                        <Label htmlFor="newPassword">New Password</Label>
-                        <Input
-                          id="newPassword"
-                          name="newPassword"
-                          type="password"
-                          placeholder="Enter new password"
-                        />
-                        {status?.errors?.newPassword &&
-                          status.errors.newPassword.map((error) => (
-                            <span
-                              aria-live="polite"
-                              className="mt-2 text-destructive"
-                             key={error}
-                           >
-                              {error}
-                            </span>
-                          ))}
-                      </div>
-                      <div>
-                        <Label htmlFor="confirmPassword">
-                          Confirm New Password
-                        </Label>
-                        <Input
-                          id="confirmPassword"
-                          name="confirmPassword"
-                          type="password"
-                          aria-label="confirmPassword-error"
-                          placeholder="confirm password"
-                        />
-                        {status?.errors?.confirmPassword &&
-                          status.errors.confirmPassword.map((error) => (
-                            <span
-                              aria-live="polite"
-                              className="mt-2 text-destructive"
-                              key={error}
-                            >
-                              {error}
-                            </span>
-                          ))}
-                      </div>
-                      <Button type="submit" disabled={isPending}>
-                        {isPending ? "Updating..." : "Update Password"}
-                      </Button>
-                      {status?.message && (
-                        <Alert
-                          className={cn({
-                            "text-green-400": status.status === "success",
-                            "text-destructive": status.status === "error",
-                          })}
-                        >
-                          <AlertTitle>{status.message}</AlertTitle>
-                        </Alert>
-                      )}
-                    </form>
-                  </DialogContent>
-                </Dialog> */}
               </div>
             </form>
           </motion.div>

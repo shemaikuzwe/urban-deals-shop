@@ -12,7 +12,7 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <header className="sticky top-0 z-10 h-16 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky pt-2 top-0 z-10 h-16 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-full items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <SidebarTrigger />
@@ -20,7 +20,7 @@ export default function Header() {
             <ArrowLeft className="h-3 w-3" />
           </Button>
         </div>
-        <div className="flex items-center gap-2 h-full">
+        <div className="flex items-center justify-center gap-2 h-full">
           <ThemeToggle />
           <User />
         </div>

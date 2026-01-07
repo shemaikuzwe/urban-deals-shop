@@ -1,37 +1,9 @@
 import "server-only";
 import { db } from "@urban-deals-shop/db";
-import { unstable_cacheTag as cacheTag, revalidateTag } from "next/cache";
-import { cookies } from "next/headers";
-import * as jose from "jose";
-import { ChartData, Session, TOrder } from "../types/types";
+import { cacheTag, revalidateTag } from "next/cache";
+import { ChartData, TOrder } from "../types/types";
 import { Category } from "@urban-deals-shop/db/generated/prisma/enums";
 
-export async function auth(): Promise<Session> {
-  try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("auth_token");
-    if (!token) {
-      return {
-        status: "un_authenticated",
-        data: null,
-      };
-    }
-    const jwtKey = jose.base64url.decode(process.env.AUTH_SECRET!);
-    const { payload } = await jose.jwtVerify(token.value, jwtKey, {
-      algorithms: ["HS256"],
-    });
-    return {
-      status: "authenticated",
-      data: payload as any,
-    };
-  } catch (err) {
-    console.error("error:", err);
-    return {
-      status: "un_authenticated",
-      data: null,
-    };
-  }
-}
 export async function getProducts() {
   "use cache";
   cacheTag("products");

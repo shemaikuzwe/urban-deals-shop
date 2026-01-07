@@ -18,26 +18,13 @@ const productSchema = z.object({
   }),
 });
 
-const changePasswordShema = z
-  .object({
-    currentPassword: z
-      .string()
-      .min(3, { message: "This Passsword is not strong" }),
-    newPassword: z.string().min(3, { message: "This password is not strong" }),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.confirmPassword !== data.currentPassword, {
-    message: "Password mismatch",
-    path: ["confirmPassword"],
-  });
+const loginSchema = z.object({
+  email: z.string().email({ message: "Invalid email" }),
+  password: z.string().min(5, { message: "This password is not strong" }),
+});
 
 const UpdateUserProfileSchema = z.object({
   email: z.string().email({ message: "Invalid email" }),
   fullName: z.string().min(5, { message: "Enter your full names" }),
 });
-export {
-  productSchema,
-  changePasswordShema,
-  UpdateUserProfileSchema,
-  fileSchema,
-};
+export { productSchema, UpdateUserProfileSchema, fileSchema, loginSchema };

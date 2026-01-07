@@ -17,8 +17,8 @@ import { Label } from "@urban-deals-shop/ui/components/label";
 import { updateProfile } from "@/lib/action/action";
 import { Alert, AlertTitle } from "@urban-deals-shop/ui/components/alert";
 import ThemeSelector from "../providers/theme-selector";
-import { useSession } from "@/lib/auth/auth-client";
 import { cn } from "@urban-deals-shop/ui/lib/utils";
+import { useSession } from "@urban-deals-shop/auth/client";
 
 // interface UserProfileProps {
 //   orders: Promise<number>;

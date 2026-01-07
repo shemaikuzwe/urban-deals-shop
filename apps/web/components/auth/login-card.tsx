@@ -2,7 +2,6 @@
 import {
   ChevronLeft,
   ShieldCheck,
-  Sparkles,
   Truck,
   Loader2,
   Github,
@@ -13,9 +12,9 @@ import { Input } from "@urban-deals-shop/ui/components/input";
 import { Separator } from "@urban-deals-shop/ui/components/separator";
 import { Card, CardContent } from "@urban-deals-shop/ui/components/card";
 import { Button } from "@urban-deals-shop/ui/components/button";
-import { useTransition } from "react";
+import React, { useTransition } from "react";
 import Logo from "@urban-deals-shop/ui/components/logo";
-import { signIn } from "@/lib/auth/auth-client";
+import { signIn } from "@urban-deals-shop/auth/client";
 
 export function LoginCard({
   setIsOpen,

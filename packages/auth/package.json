@@ -1,0 +1,30 @@
+{
+  "name": "@urban-deals-shop/auth",
+  "version": "0.0.0",
+  "description": "Auth package for Urban Deals Shop",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "scripts": {
+    "clean": "rm -rf  node_modules dist",
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./client": "./dist/auth-client.js"
+  },
+  "dependencies": {
+    "@urban-deals-shop/db": "workspace:*",
+    "better-auth": "^1.4.9"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "peerDependencies": {
+    "next": ">=16"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,18 +1,19 @@
 import "server-only";
 import { db } from "@urban-deals-shop/db";
+import type { Category } from "@urban-deals-shop/db/generated/prisma/enums";
+import { cacheLife } from "next/dist/server/use-cache/cache-life";
 import type { TOrder } from "@/lib/types/types";
-import { cacheTag, revalidateTag } from "next/cache";
-import { Category } from "@urban-deals-shop/db/generated/prisma/enums";
+import { revalidateTag } from "next/cache";
 
 export async function getProducts() {
   "use cache";
-  cacheTag("products");
+  cacheLife("minutes");
   return db.product.findMany();
 }
 
 export async function getProduct(id: string) {
   "use cache";
-  cacheTag("products");
+  cacheLife("minutes");
   return db.product.findFirst({
     where: {
       id: id,
@@ -20,33 +21,9 @@ export async function getProduct(id: string) {
   });
 }
 
-export async function getOrders() {
-  "use cache";
-  cacheTag("orders");
-  const orders = await db.order.findMany({
-    include: {
-      user: true,
-    },
-  });
-  return orders;
-}
-export type OrderUser = Awaited<ReturnType<typeof getOrders>>;
-export async function getAllUsers() {
-  "use cache";
-
-  return await db.user.findMany({
-    include: { orders: true },
-    orderBy: {
-      orders: {
-        _count: "desc",
-      },
-    },
-  });
-}
-
 export async function getOrderById(id: string | undefined) {
   "use cache";
-  cacheTag("orders");
+  cacheLife("minutes");
   return await db.order.findMany({
     where: {
       userId: id,
@@ -64,38 +41,6 @@ export async function getUserOrders(userId: string) {
     },
   });
 }
-
-export async function getUser(email: string, password: string) {
-  const user = await db.user.findFirst({
-    where: {
-      AND: [
-        {
-          email: email,
-        },
-        {
-          password: password,
-        },
-      ],
-    },
-  });
-  if (!user) return null;
-  return user;
-}
-
-export async function getPendingOrders() {
-  "use cache";
-  cacheTag("orders");
-  return await db.order.findMany({
-    where: {
-      status: "PENDING",
-    },
-    include: {
-      user: true,
-    },
-    take: 5,
-  });
-}
-
 export async function addOrder(order: TOrder) {
   await db.order.create({
     data: {
@@ -109,7 +54,7 @@ export async function addOrder(order: TOrder) {
 
 export async function getRelatedProducts(type: Category, id: string) {
   "use cache";
-  cacheTag("products");
+  cacheLife("minutes");
   return await db.product.findMany({
     where: {
       type: type,

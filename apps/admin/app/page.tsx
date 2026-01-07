@@ -7,16 +7,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@urban-deals-shop/ui/components/card";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = { 
   title: "Login",
   description: "Urban Deals Shop ",
 };
 export default function LoginForm() {
   return (
     <div className="flex min-h-screen justify-center  p-4">
-      <Card className="w-full max-w-md h-120 sm:mt-20 mt-14 ">
+      <Card className="w-full max-w-md h-130  sm:mt-20 mt-14 ">
         <CardHeader className="space-y-1">
           <div className="flex justify-center items-center">
             <Logo />
