@@ -14,7 +14,7 @@
     "components": "@/components",
     "hooks": "@/hooks",
     "lib": "@/lib",
-    "ui": "@workspace/ui/components",
-    "utils": "@workspace/ui/lib/utils"
+    "ui": "@urban-deals-shop/ui/components",
+    "utils": "@urban-deals-shop/ui/lib/utils"
   }
 }

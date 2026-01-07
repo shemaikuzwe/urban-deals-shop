@@ -24,6 +24,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "@urban-deals-shop/ui/*": [
+        "../../packages/ui/src/*"
       ]
     },
     "target": "ES2017"

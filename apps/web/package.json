@@ -11,6 +11,7 @@
     "clean": "rm -rf .next  node_modules"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "@urban-deals-shop/auth": "workspace:*",
     "@urban-deals-shop/db": "workspace:*",
     "@urban-deals-shop/ui": "workspace:*",
@@ -36,9 +37,7 @@
     "@types/react-dom": "^19.0.2",
     "eslint": "^9.17.0",
     "eslint-config-next": "15.1.6",
-    "postcss": "^8.5.1",
     "prettier": "^3.4.2",
-    "tailwindcss": "^4.0.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   }
