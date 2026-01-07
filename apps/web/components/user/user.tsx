@@ -1,4 +1,8 @@
-import { Avatar, AvatarImage,AvatarFallback } from "@urban-deals-shop/ui/components/avatar";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@urban-deals-shop/ui/components/avatar";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -11,7 +15,8 @@ import Link from "next/link";
 import { Button } from "@urban-deals-shop/ui/components/button";
 import { LogIn } from "lucide-react";
 import LoginForm from "../auth/login-form";
-import { getSession,signOut } from "@urban-deals-shop/auth";
+import { getSession, signOut } from "@urban-deals-shop/auth";
+import { refresh } from "next/cache";
 
 export default async function User() {
   const session = await getSession();
@@ -46,7 +51,10 @@ export default async function User() {
               <form
                 action={async () => {
                   "use server";
-                  await signOut();
+                  const res = await signOut();
+                  if (res.success) {
+                    refresh();
+                  }
                 }}
               >
                 <Button

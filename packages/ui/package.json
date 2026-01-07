@@ -71,8 +71,8 @@
   "exports": {
     "./globals.css": "./src/styles/globals.css",
     "./postcss.config": "./postcss.config.mjs",
-    "./lib/*": "./src/lib/*.js",
-    "./components/*": "./src/components/*.js",
+    "./lib/*": "./dist/lib/*.js",
+    "./components/*": "./dist/components/*.js",
     "./hooks/*": "./dist/hooks/*.js",
     "./email/*": "./dist/email/*.js"
   },
