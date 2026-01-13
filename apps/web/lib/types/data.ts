@@ -1,4 +1,4 @@
-import { Category, Size } from "@urban-deals-shop/db/generated/prisma/enums";
+import { Category, Size } from "@urban-deals-shop/db";
 import { LayoutDashboard, ShoppingCart, Package, Users } from "lucide-react";
 export const categories: Category[] = [
   "T_SHIRT",

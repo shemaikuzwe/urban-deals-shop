@@ -11,8 +11,8 @@ import { cn } from "@urban-deals-shop/ui/lib/utils";
 import { Item } from "@/lib/types/types";
 import { useCart } from "@/lib/store";
 import { Separator } from "@urban-deals-shop/ui/components/separator";
-import { Size } from "@/prisma/generated/prisma/enums";
-import { Product } from "@/prisma/generated/prisma/client";
+import { Size } from "@urban-deals-shop/db";
+import { Product } from "@urban-deals-shop/db";
 
 interface Props {
   product: Product;

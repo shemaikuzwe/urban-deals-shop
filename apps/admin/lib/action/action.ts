@@ -18,7 +18,7 @@ const AddProduct = productSchema.omit({ id: true });
 import { UTApi } from "uploadthing/server";
 import { getKeyFromUrl } from "../utils";
 import { db } from "@urban-deals-shop/db";
-import type { Status } from "@urban-deals-shop/db/generated/prisma/enums";
+import type { Status } from "@urban-deals-shop/db";
 import { auth } from "@urban-deals-shop/auth";
 
 const utapi = new UTApi({

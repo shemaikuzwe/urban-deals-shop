@@ -2,7 +2,7 @@ import "server-only";
 import { db } from "@urban-deals-shop/db";
 import { cacheTag, revalidateTag } from "next/cache";
 import { ChartData, TOrder } from "../types/types";
-import { Category } from "@urban-deals-shop/db/generated/prisma/enums";
+import { Category } from "@urban-deals-shop/db";
 
 export async function getProducts() {
   "use cache";

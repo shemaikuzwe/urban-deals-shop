@@ -1,4 +1,4 @@
-import { Size } from "@urban-deals-shop/db/generated/prisma/enums";
+import { Size } from "@urban-deals-shop/db";
 import { Badge } from "@urban-deals-shop/ui/components/badge";
 
 

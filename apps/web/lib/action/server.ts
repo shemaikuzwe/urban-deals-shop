@@ -1,6 +1,6 @@
 import "server-only";
 import { db } from "@urban-deals-shop/db";
-import type { Category } from "@urban-deals-shop/db/generated/prisma/enums";
+import type { Category } from "@urban-deals-shop/db";
 import { cacheLife } from "next/dist/server/use-cache/cache-life";
 import type { TOrder } from "@/lib/types/types";
 import { revalidateTag } from "next/cache";

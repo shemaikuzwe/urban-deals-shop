@@ -1,4 +1,4 @@
-import { Size, Status } from "@urban-deals-shop/db/generated/prisma/enums";
+import { Size, Status } from "@urban-deals-shop/db";
 
 
 export type ProductState = {

@@ -19,7 +19,7 @@ import { ScrollArea } from "@urban-deals-shop/ui/components/scroll-area";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@urban-deals-shop/ui/components/tooltip";
 import { Button } from "@urban-deals-shop/ui/components/button";
 import { refreshOrders } from "@/lib/action/action";
-import { Status } from "@urban-deals-shop/db/generated/prisma/enums";
+import { Status } from "@urban-deals-shop/db";
 
 interface Props {
   ordersPromise: Promise<OrderUser>;

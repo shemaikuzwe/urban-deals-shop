@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Badge } from "@urban-deals-shop/ui/components/badge";
 import { useRouter } from "next/navigation";
-import type{ Product } from "@urban-deals-shop/db/generated/prisma/client";
+import type{ Product } from "@urban-deals-shop/db";
 
 interface Props {
   product: Product;

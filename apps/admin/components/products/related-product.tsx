@@ -1,6 +1,6 @@
 import { getRelatedProducts } from "@/lib/action/server";
 import ProductsGrids from "@/components/products/products-grid";
-import { Category } from "@urban-deals-shop/db/generated/prisma/enums";
+import { Category } from "@urban-deals-shop/db";
 interface Props {
   type: Category;
   id: string;

@@ -1,6 +1,6 @@
 import { Button } from "@urban-deals-shop/ui/components/button";
 import { ProductCard } from "./product-card";
-import { Product } from "@urban-deals-shop/db/generated/prisma/client";
+import { Product } from "@urban-deals-shop/db";
 import Link from "next/link";
 import { NoProducts } from "@urban-deals-shop/ui/components/no-products";
 

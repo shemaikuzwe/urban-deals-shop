@@ -22,7 +22,7 @@ import DeleteDialog from "./delete-dialog";
 import { Checkbox } from "@urban-deals-shop/ui/components/checkbox";
 import { updateFeatured } from "@/lib/action/action";
 import { useFormStatus } from "react-dom";
-import { Product } from "@urban-deals-shop/db/generated/prisma/client";
+import { Product } from "@urban-deals-shop/db";
 
 export function ProductCard({ product }: { product: Product }) {
   const router = useRouter();

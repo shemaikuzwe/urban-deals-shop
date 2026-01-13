@@ -19,7 +19,7 @@ import { categories } from "@/lib/types/data";
 import { Label } from "@urban-deals-shop/ui/components/label";
 import { Alert, AlertTitle } from "@urban-deals-shop/ui/components/alert";
 import { cn } from "@urban-deals-shop/ui/lib/utils";
-import { Product } from "@urban-deals-shop/db/generated/prisma/client";
+import { Product } from "@urban-deals-shop/db";
 
 
 interface Props {

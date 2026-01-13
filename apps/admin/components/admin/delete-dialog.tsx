@@ -10,7 +10,7 @@ import {
 import { Button } from "@urban-deals-shop/ui/components/button";
 import { useRouter } from "next/navigation";
 import { deleteProduct } from "@/lib/action/action";
-import type { Product } from "@urban-deals-shop/db/generated/prisma/client";
+import type { Product } from "@urban-deals-shop/db";
 
 export default function DeleteDialog({
   isOpen,

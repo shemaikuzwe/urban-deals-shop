@@ -11,7 +11,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@urban-deals-shop/ui/components/collapsible";
-import { Order } from "@urban-deals-shop/db/generated/prisma/client";
+import { Order } from "@urban-deals-shop/db";
 
 interface OrderCardProps {
   order: Order;

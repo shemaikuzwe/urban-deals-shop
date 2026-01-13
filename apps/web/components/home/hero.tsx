@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@urban-deals-shop/ui/components/button";
 import ImageSlider from "@urban-deals-shop/ui/components/img-slider";
-import { Product } from "@urban-deals-shop/db/generated/prisma/client";
+import { Product } from "@urban-deals-shop/db";
 
 export function Hero({
   productPromise,

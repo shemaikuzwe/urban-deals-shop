@@ -11,7 +11,7 @@ import { Check, Package } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Alert, AlertDescription } from "@urban-deals-shop/ui/components/alert";
 import { motion } from "framer-motion";
-import { Status } from "@urban-deals-shop/db/generated/prisma/enums";
+import { Status } from "@urban-deals-shop/db";
 import type { OrderModel as Order } from "@urban-deals-shop/db/generated/prisma/models";
 import { useCart } from "@/lib/store";
 import OrdersCard from "./ordersCard";

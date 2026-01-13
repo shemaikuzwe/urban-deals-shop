@@ -1,4 +1,4 @@
-import { Size } from "@urban-deals-shop/db/generated/prisma/enums";
+import { Size } from "@urban-deals-shop/db";
 import { LayoutDashboard, ShoppingCart, Package } from "lucide-react";
 export const categories = [
   "T_SHIRT",

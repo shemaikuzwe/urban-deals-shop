@@ -1,4 +1,4 @@
-import { Product } from "@/prisma/generated/prisma/client";
+import { Product } from "@urban-deals-shop/db";
 import { ProductCard } from "./product-card";
 interface Props {
   products?: Product[];
