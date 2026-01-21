@@ -11,15 +11,14 @@ import { Check, Package } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Alert, AlertDescription } from "@urban-deals-shop/ui/components/alert";
 import { motion } from "framer-motion";
-import { Status } from "@urban-deals-shop/db";
-import type { OrderModel as Order } from "@urban-deals-shop/db/generated/prisma/models";
+import { Order, Status } from "@urban-deals-shop/db";
 import { useCart } from "@/lib/store";
 import OrdersCard from "./ordersCard";
 
 export default function Orders({ order }: { order: Order[] }) {
   const searchParams = useSearchParams();
   const success = searchParams.get("success");
- 
+
   const [isOpen, setOpen] = useState(false);
   const { removeAll } = useCart();
 

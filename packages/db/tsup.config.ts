@@ -6,6 +6,5 @@ export default defineConfig({
   dts: true,
   clean: true,
   sourcemap: process.env.NODE_ENV !== "production",
-  tsconfig: "./tsconfig.json",
   external: ["@prisma/adapter-pg", "@prisma/client"],
 });

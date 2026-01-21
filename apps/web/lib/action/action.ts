@@ -1,21 +1,15 @@
 "use server";
-import type {
-  FormStatus,
-  updateProfileState,
-} from "@/lib/types/types";
+import type { FormStatus, updateProfileState } from "@/lib/types/types";
 import type { OrderState } from "../types/types";
-import {
-  createOrderSchema,
-  UpdateUserProfileSchema,
-} from "../types/schema";
+import { createOrderSchema, UpdateUserProfileSchema } from "../types/schema";
 import { db } from "@urban-deals-shop/db";
 import { cacheLife } from "next/cache";
 import { z } from "zod";
-import Stripe from "stripe";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import sendContactEmail from "@urban-deals-shop/ui/email/contact";
 import { auth, signIn } from "@urban-deals-shop/auth";
+import { checkoutOrder } from "./order";
 
 export async function logIn() {
   const { redirect: isRedirect, url } = await signIn("google");
@@ -25,10 +19,10 @@ export async function logIn() {
 }
 export async function addOrder(
   prevState: OrderState | undefined,
-  formData: FormData
+  formData: FormData,
 ): Promise<OrderState | undefined> {
   const validate = createOrderSchema.safeParse(
-    Object.fromEntries(formData.entries())
+    Object.fromEntries(formData.entries()),
   );
   if (!validate.success) {
     return {
@@ -40,45 +34,15 @@ export async function addOrder(
   const userId = session?.user.id;
   if (!userId) throw new Error("User not found");
   const { totalPrice: amount, cart } = validate.data;
-
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
-
-  const stripeSession = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price_data: {
-          currency: "rwf",
-          unit_amount: amount,
-          product_data: {
-            name: "Order",
-          },
-        },
-        quantity: 1,
-      },
-    ],
-    metadata: {
-      buyerId: userId,
-      products: cart,
-    },
-    payment_method_types: [
-      "card",
-      // "paypal", does not rwf
-    ],
-    // shipping_address_collection: {
-    //    allowed_countries:["RW"]
-    // },
-    mode: "payment",
-    success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/orders?success=order created successfully`,
-    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
-  });
-  if (stripeSession.url) {
+  const stripeSession = await checkoutOrder(amount, userId, cart);
+  if (stripeSession?.url) {
     redirect(stripeSession.url);
   }
 }
 
 export async function updateProfile(
   prevState: updateProfileState | undefined,
-  formData: FormData
+  formData: FormData,
 ): Promise<updateProfileState | undefined> {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -120,13 +84,12 @@ export async function updateProfile(
 }
 export async function sendMessage(
   prevState: FormStatus | undefined,
-  formData: FormData
+  formData: FormData,
 ): Promise<FormStatus> {
   try {
     const validate = z
       .object({
-        email: z
-          .email({ message: "Invalid Email" }),
+        email: z.email({ message: "Invalid Email" }),
         message: z
           .string({ message: "Invalid Message" })
           .min(3, { message: "Invalid message" })
@@ -175,7 +138,7 @@ export async function getSearchProducts(search: string) {
 
 export async function getFeaturedProducts() {
   "use cache";
-  cacheLife("minutes")
+  cacheLife("minutes");
   const products = await db.product.findMany({
     where: { isFeatured: true },
   });
@@ -184,7 +147,7 @@ export async function getFeaturedProducts() {
 
 export async function getLatestProducts() {
   "use cache";
-  cacheLife("minutes")
+  cacheLife("minutes");
   const products = await db.product.findMany({
     take: 4,
     orderBy: { id: "desc" },
