@@ -11,7 +11,18 @@ import { Check, Package } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Alert, AlertDescription } from "@urban-deals-shop/ui/components/alert";
 import { motion } from "framer-motion";
-import { Order, Status } from "@urban-deals-shop/db";
+
+type OrderStatus = "PENDING" | "COMPLETED" | "FAILED";
+
+interface Order {
+  id: string;
+  userId: string;
+  products: any[];
+  total_price: number;
+  status: OrderStatus;
+  date: Date;
+  createdAt: Date;
+}
 import { useCart } from "@/lib/store";
 import OrdersCard from "./ordersCard";
 
@@ -22,10 +33,10 @@ export default function Orders({ order }: { order: Order[] }) {
   const [isOpen, setOpen] = useState(false);
   const { removeAll } = useCart();
 
-  const [items, setItems] = useState<Status>(Status.PENDING);
+  const [items, setItems] = useState<OrderStatus>("PENDING");
   const [orders, setOrders] = useState(order);
 
-  const handleStatusChange = (status: Status) => {
+  const handleStatusChange = (status: OrderStatus) => {
     setItems(status);
   };
   useEffect(() => {
@@ -33,10 +44,10 @@ export default function Orders({ order }: { order: Order[] }) {
       removeAll();
       setOpen(true);
     }
-  }, [success]);
+  }, [success, removeAll]);
   useEffect(() => {
     let filtered = order;
-    if (items !== Status.PENDING) {
+    if (items !== "PENDING") {
       filtered = order.filter((order) => order.status === items);
     }
     setOrders(filtered);
@@ -46,19 +57,19 @@ export default function Orders({ order }: { order: Order[] }) {
     <div className="container mx-auto px-4 py-6 max-w-4xl">
       <Card className="p-6 rounded-md">
         <Tabs
-          defaultValue={Status.PENDING}
+          defaultValue="PENDING"
           className="w-full"
-          onValueChange={(value) => handleStatusChange(value as Status)}
+          onValueChange={(value) => handleStatusChange(value as OrderStatus)}
         >
           <TabsList className="grid w-full grid-cols-3 max-w-xl mx-auto mb-6">
-            {[Status.COMPLETED, Status.PENDING, Status.FAILED].map((status) => (
+            {["COMPLETED", "PENDING", "FAILED"].map((status) => (
               <TabsTrigger key={status} value={status} className="capitalize">
                 {status.toLowerCase()}
               </TabsTrigger>
             ))}
           </TabsList>
 
-          {[Status.COMPLETED, Status.PENDING, Status.FAILED].map((status) => (
+          {["COMPLETED", "PENDING", "FAILED"].map((status) => (
             <TabsContent key={status} value={status}>
               {isOpen && (
                 <motion.div

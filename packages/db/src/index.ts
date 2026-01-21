@@ -1,6 +1,7 @@
+import "dotenv/config";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../generated/prisma/client";
-import "dotenv/config";
+
 export * from "../generated/prisma/client";
 export * from "../generated/prisma/internal/prismaNamespace";
 export * from "../generated/prisma/enums";
