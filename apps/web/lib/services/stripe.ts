@@ -1,4 +1,4 @@
-import { Config, Data, Effect } from "effect";
+import { Config, Data, Effect, Either } from "effect";
 import Stripe from "stripe";
 import { NextRequest } from "next/server";
 import { TOrder } from "../types/types";
@@ -10,6 +10,7 @@ class StripeError extends Data.TaggedError("StripeError")<{
 
 class ParseError extends Data.TaggedError("ParseError")<{
   message: string;
+  cause?: unknown;
 }> {}
 
 const impl = Effect.gen(function* () {
@@ -63,8 +64,8 @@ const impl = Effect.gen(function* () {
       Effect.gen(function* () {
         const body = yield* Effect.tryPromise({
           try: () => request.text(),
-          catch: () =>
-            new ParseError({ message: "Failed to parse request body" }),
+          catch: (error) =>
+            new ParseError({ message: "Failed to parse request body",cause:error }),
         });
         const sig = request.headers.get("stripe-signature");
         if (!sig)
