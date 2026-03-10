@@ -43,7 +43,7 @@ export default function StatusChange({ id, status }: Props) {
     <DropdownMenu>
       <DropdownMenuTrigger>{getStatusBadge(status)}</DropdownMenuTrigger>
       <DropdownMenuContent>
-        {[Status.COMPLETED, Status.PENDING, Status.FAILED].map((s, index) => (
+        {["COMPLETED", "PENDING", "FAILED"].map((s, index) => (
           <DropdownMenuItem
             key={index}
             disabled={s === status}

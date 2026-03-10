@@ -12,20 +12,19 @@ import { useSearchParams } from "next/navigation";
 import { Alert, AlertDescription } from "@urban-deals-shop/ui/components/alert";
 import { motion } from "framer-motion";
 
-type OrderStatus = "PENDING" | "COMPLETED" | "FAILED";
+import { useCart } from "@/lib/store";
+import OrdersCard from "./ordersCard";
+import type{ Status } from "@urban-deals-shop/db";
 
 interface Order {
   id: string;
   userId: string;
   products: any[];
   total_price: number;
-  status: OrderStatus;
+  status: Status;
   date: Date;
   createdAt: Date;
 }
-import { useCart } from "@/lib/store";
-import OrdersCard from "./ordersCard";
-
 export default function Orders({ order }: { order: Order[] }) {
   const searchParams = useSearchParams();
   const success = searchParams.get("success");
@@ -33,11 +32,11 @@ export default function Orders({ order }: { order: Order[] }) {
   const [isOpen, setOpen] = useState(false);
   const { removeAll } = useCart();
 
-  const [items, setItems] = useState<OrderStatus>("PENDING");
+  const [activeTab, setActiveTab] = useState<Status>("PENDING");
   const [orders, setOrders] = useState(order);
 
-  const handleStatusChange = (status: OrderStatus) => {
-    setItems(status);
+  const handleStatusChange = (status: Status) => {
+    setActiveTab(status);
   };
   useEffect(() => {
     if (success) {
@@ -47,19 +46,19 @@ export default function Orders({ order }: { order: Order[] }) {
   }, [success, removeAll]);
   useEffect(() => {
     let filtered = order;
-    if (items !== "PENDING") {
-      filtered = order.filter((order) => order.status === items);
+    if (activeTab!== "PENDING") {
+      filtered = order.filter((order) => order.status === activeTab);
     }
     setOrders(filtered);
-  }, [items, order]);
+  }, [activeTab, order]);
 
   return (
     <div className="container mx-auto px-4 py-6 max-w-4xl">
       <Card className="p-6 rounded-md">
         <Tabs
-          defaultValue="PENDING"
+          defaultValue={activeTab}
           className="w-full"
-          onValueChange={(value) => handleStatusChange(value as OrderStatus)}
+          onValueChange={(value) => handleStatusChange(value as Status)}
         >
           <TabsList className="grid w-full grid-cols-3 max-w-xl mx-auto mb-6">
             {["COMPLETED", "PENDING", "FAILED"].map((status) => (

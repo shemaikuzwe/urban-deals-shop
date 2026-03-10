@@ -4,7 +4,6 @@ import { PrismaClient } from "../generated/prisma/client";
 
 export * from "../generated/prisma/client";
 export * from "../generated/prisma/internal/prismaNamespace";
-export * from "../generated/prisma/enums";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,

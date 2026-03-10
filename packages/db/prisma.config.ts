@@ -5,5 +5,5 @@ export default defineConfig({
   datasource: {
     url: env("DATABASE_URL"),
   },
-  schema: "src/prisma/schema.prisma",
+  schema: "src/prisma/schema.prisma"
 });

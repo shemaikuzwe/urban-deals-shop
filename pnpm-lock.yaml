@@ -144,9 +144,6 @@ importers:
       '@urban-deals-shop/auth':
         specifier: workspace:*
         version: link:../../packages/auth
-      '@urban-deals-shop/db':
-        specifier: workspace:*
-        version: link:../../packages/db
       '@urban-deals-shop/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -208,6 +205,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.2
         version: 19.2.3(@types/react@19.2.7)
+      '@urban-deals-shop/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       eslint:
         specifier: ^9.17.0
         version: 9.39.2(jiti@2.6.1)
@@ -3456,6 +3456,7 @@ packages:
   glob@10.3.4:
     resolution: {integrity: sha512-6LFElP3A+i/Q8XQKEvZjkEWEOTgAIALR9AO2rwT8bgPhDd1anmqDJDZ6lLddI4ehxxxR1S5RIqKe1uapMQfYaQ==}
     engines: {node: '>=16 || 14 >=14.17'}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   globals@14.0.0:

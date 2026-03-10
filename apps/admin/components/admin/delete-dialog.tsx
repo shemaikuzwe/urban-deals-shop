@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { startTransition, useState, useTransition } from "react";
 import {
   Dialog,
   DialogContent,
@@ -22,22 +22,19 @@ export default function DeleteDialog({
   product: Product;
 }) {
   const router = useRouter();
-  const [pending, setIsPending] = useState(false);
-  const handleClick = async () => {
+  const [pending, setTransition] = useTransition();
+  const handleClick = startTransition(async () => {
     await deleteProduct(product.id);
-    setIsPending(false);
     setIsOpen(false);
     router.refresh();
-  };
+  });
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Are you sure?</DialogTitle>
           <DialogDescription>
-            <DialogDescription>
-              you want to delete {product.name}
-            </DialogDescription>
+            <DialogDescription>you want to delete {product.name}</DialogDescription>
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-between">

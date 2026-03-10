@@ -13,7 +13,6 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
     "@urban-deals-shop/auth": "workspace:*",
-    "@urban-deals-shop/db": "workspace:*",
     "@urban-deals-shop/ui": "workspace:*",
     "@vercel/speed-insights": "^1.1.0",
     "date-fns": "^4.1.0",
@@ -30,12 +29,14 @@
     "zustand": "^5.0.2"
   },
   "devDependencies": {
+    "@urban-deals-shop/ui": "workspace:*",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.37.0",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.3",
     "@types/react-dom": "^19.0.2",
+    "@urban-deals-shop/db": "workspace:*",
     "eslint": "^9.17.0",
     "eslint-config-next": "15.1.6",
     "prettier": "^3.4.2",

@@ -19,8 +19,7 @@ import { ScrollArea } from "@urban-deals-shop/ui/components/scroll-area";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@urban-deals-shop/ui/components/tooltip";
 import { Button } from "@urban-deals-shop/ui/components/button";
 import { refreshOrders } from "@/lib/action/action";
-import { Status } from "@urban-deals-shop/db";
-
+import type {Status} from "@urban-deals-shop/db"
 interface Props {
   ordersPromise: Promise<OrderUser>;
 }
@@ -34,21 +33,14 @@ export function OrderManagement({ ordersPromise }: Props) {
 
   return (
     <div className="space-y-4">
-      <Tabs
-        value={activeTab}
-        onValueChange={(value) => setActiveTab(value as Status)}
-      >
+      <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value)}>
         <TabsList className=" w-full flex  justify-start">
-          <TabsTrigger value={Status.COMPLETED}>Completed</TabsTrigger>
-          <TabsTrigger value={Status.PENDING}>Pending</TabsTrigger>
-          <TabsTrigger value={Status.FAILED}>Failed</TabsTrigger>
+          <TabsTrigger value={"COMPLETED"}>Completed</TabsTrigger>
+          <TabsTrigger value={"PENDING"}>Pending</TabsTrigger>
+          <TabsTrigger value={"FAILED"}>Failed</TabsTrigger>
         </TabsList>
-        {[Status.COMPLETED, Status.PENDING, Status.FAILED].map((status) => (
-          <TabsContent
-            key={status}
-            value={status}
-            className="border rounded-lg p-4"
-          >
+        {["COMPLETED", "PENDING", "FAILED"].map((status) => (
+          <TabsContent key={status} value={status} className="border rounded-lg p-4">
             <div className="flex justify-between">
               <h2 className="text-lg font-bold mb-4 capitalize">
                 {status.toLocaleLowerCase()} Orders
@@ -84,18 +76,12 @@ export function OrderManagement({ ordersPromise }: Props) {
                       <TableRow key={order.id}>
                         <TableCell>
                           <div className="text-sm flex-col gap-2 leading-none">
-                            <p className="font-medium text-lg  mb-2">
-                              {order.user?.name}
-                            </p>
-                            <p className="font-normal mb-2 text-md">
-                              {order?.user?.email}
-                            </p>
+                            <p className="font-medium text-lg  mb-2">{order.user?.name}</p>
+                            <p className="font-normal mb-2 text-md">{order?.user?.email}</p>
                           </div>
                         </TableCell>
                         <TableCell>{order.date.toLocaleDateString()}</TableCell>
-                        <TableCell>
-                          {order.total_price.toLocaleString()} Rwf
-                        </TableCell>
+                        <TableCell>{order.total_price.toLocaleString()} Rwf</TableCell>
                         <TableCell>
                           <OrderCard
                             order={{

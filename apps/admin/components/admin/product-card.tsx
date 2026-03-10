@@ -30,7 +30,6 @@ export function ProductCard({ product }: { product: Product }) {
   const [isChecked, setIsChecked] = useState(product.isFeatured);
   const [state, action] = useActionState(updateFeatured, undefined);
   useEffect(() => {
-    console.log("success");
     if (state) {
       product.isFeatured = state.status;
     }
@@ -96,7 +95,7 @@ export function ProductCard({ product }: { product: Product }) {
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   <Trash2 className="h-4 w-4" />
-                  <span className="sr-only">Remove roduct</span>
+                  <span className="sr-only">Remove product</span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent className=" bg-destructive">
