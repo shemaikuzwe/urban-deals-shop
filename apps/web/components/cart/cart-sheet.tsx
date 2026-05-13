@@ -96,7 +96,7 @@ export default function Cart() {
           >
             <input type="hidden" name="totalPrice" value={totalPrice} />
             <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-            <span className="font-bold text-black">
+            <span className="font-bold text-sm">
               Total Price :{totalPrice.toLocaleString()} Rwf
             </span>
             {session ? (
